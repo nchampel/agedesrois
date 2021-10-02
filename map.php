@@ -35,15 +35,20 @@ echo ('</pre>');
     <p><?php echo ucfirst($_SESSION['farm']['name']); ?> niveau <span id="farm-level"><?php echo $_SESSION['farm-level']; ?></span> </p>
     <p><?php echo ucfirst($_SESSION['sawmill']['name']); ?> niveau <span id="sawmill-level"><?php echo $_SESSION['sawmill-level']; ?></span> </p>
     <!-- <a href="map1.php">map 1</a> -->
-    <button id="construct-farm" onclick="construction(<?php echo ($_SESSION['farm']['food'] . ', ' . $_SESSION['farm']['timeConstruct']); ?>)">Construire ferme</button>
-    <form id="form-farm-construct" action="backend/constructSubstractResources.php?type=farm&level=<?php echo $_SESSION['farm-level']; ?>&foodNeeded=<?php echo $_SESSION['farm']['food']; ?>" method="POST">
-        <input type="submit" value="Construction ferme" class="button" id="btn-farm-construct" />
+    <!-- <button id="construct-farm" onclick="construction(<?php //echo ($_SESSION['farm']['food'] . ', ' . $_SESSION['farm']['timeConstruct']); 
+                                                            ?>)">Construire ferme</button> -->
+    <form id="form-farm-construct" action="backend/constructSubstractResources.php?type=farm&level=<?php echo $_SESSION['farm-level']; ?>&foodNeeded=<?php echo $_SESSION['farm']['food']; ?>&foodNeeded=<?php echo $_SESSION['farm']['food']; ?>" method="POST">
+        <input type="submit" value="Construction ferme" class="button" />
+    </form>
+    <form id="form-sawmill-construct" action="backend/constructSubstractResources.php?type=sawmill&level=<?php echo $_SESSION['sawmill-level']; ?>&foodNeeded=<?php echo $_SESSION['sawmill']['food']; ?>&woodNeeded=<?php echo $_SESSION['sawmill']['wood']; ?>" method="POST">
+        <input type="submit" value="Construction scierie" class="button" />
     </form>
     <form action="backend/connexion.php" method="POST" id="save-resources">
         <input type="submit" value="Sauvegarde ressources" class="button" />
     </form>
     <script>
         let timeConstructFarm = <?php echo $_SESSION['farm']['timeConstruct']; ?>;
+        let timeConstructSawmill = <?php echo $_SESSION['sawmill']['timeConstruct']; ?>;
         let levelFarm = <?php echo $_SESSION['farm-level']; ?>;
         let levelSawmill = <?php echo $_SESSION['sawmill-level']; ?>;
     </script>

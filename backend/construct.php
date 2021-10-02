@@ -14,6 +14,9 @@ switch ($type) {
     case 'farm':
         $typeColumn = 'farm_level';
         break;
+    case 'sawmill':
+        $typeColumn = 'sawmill_level';
+        break;
 }
 
 include_once('db.php');
@@ -36,6 +39,9 @@ try {
     switch ($type) {
         case 'farm':
             $_SESSION['farm-level'] = $level;
+            break;
+        case 'sawmill':
+            $_SESSION['sawmill-level'] = $level;
             break;
     }
 

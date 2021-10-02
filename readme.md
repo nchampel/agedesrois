@@ -29,4 +29,4 @@ je me lance dans la génération de ressources augmente avec le niveau => réuss
 je crée le dépôt git
 je crée le fichier sql de la bdd
 je me lance dans la création de multiples ressources => réussi
-soustration multiples ressources
+soustraction multiples ressources => ok

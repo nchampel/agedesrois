@@ -20,12 +20,20 @@ function construction(food, time) {
 
 }
 
-let constructBtnElt = document.getElementById('btn-farm-construct');
-let constructFormElt = document.getElementById('form-farm-construct');
+let constructFarmFormElt = document.getElementById('form-farm-construct');
 console.log(timeConstructFarm);
-constructFormElt.addEventListener("submit", function (e) {
+constructFarmFormElt.addEventListener("submit", function (e) {
     e.preventDefault();
     setTimeout(function () {
-        constructFormElt.submit();
+        constructFarmFormElt.submit();
     }, timeConstructFarm * 1000);
+});
+
+let constructSawmillFormElt = document.getElementById('form-sawmill-construct');
+console.log('event scierie');
+constructSawmillFormElt.addEventListener("submit", function (e) {
+    e.preventDefault();
+    setTimeout(function () {
+        constructSawmillFormElt.submit();
+    }, timeConstructSawmill * 1000);
 });
