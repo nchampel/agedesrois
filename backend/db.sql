@@ -28,7 +28,15 @@ INSERT INTO informations (type_item, level_item, time_construct, food, wood) VAL
 ("ferme", 2, 30, 200, 0),
 ("scierie", 0, 10, 50, 10),
 ("scierie", 1, 20, 75, 20),
-("scierie", 2, 30, 100, 50)
+("scierie", 2, 30, 100, 50),
+("archer", 0, 30, 1000, 500),
+("arbaletrier", 0, 30, 10000, 5000),
+("piquier", 0, 30, 1000, 500),
+("hallebardier", 0, 30, 1000, 500),
+("guerrier", 0, 30, 1000, 500),
+("chevalier", 0, 30, 100000, 50000),
+("magicien", 0, 30, 1000, 500),
+("midieu", 0, 30, 1000, 500)
 ;
 
 -- CREATE TABLE interet_adherent(

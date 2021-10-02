@@ -25,6 +25,14 @@ echo ('</pre>');
 </head>
 
 <body>
+    <?php
+    if (isset($_SESSION['flash'])) {
+        if (!empty($_SESSION['flash'])) {
+            echo $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+    }
+    ?>
 
     <!-- <h1>Salut <?php echo $_SESSION['player']; ?> !</h1>
     <p>Nourriture dans la ville : <?php //echo $player['player']; 

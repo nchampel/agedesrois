@@ -4,6 +4,7 @@ faire bdd : joueur => pseudo nourriture bois or pierre etc.
 créer le fichier sql des tables avec données
 faire message flash qui indique action finie
 bug sur la construction qui ne tient pas compte des ressources accumulées entre temps
+mettre métal, mana en ressource
 
 28/09
 
