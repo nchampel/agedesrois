@@ -1,10 +1,16 @@
-faire bdd : joueur => pseudo nourriture bois or pierre etc.
+faire bdd : joueur => pseudo nourriture bois or(mine) pierre(carrière) etc.
             carte => id carte, position (x,y), nom nourriture bois or pierre niveau force défense
 - récupérer données -
 créer le fichier sql des tables avec données
 faire message flash qui indique action finie
 bug sur la construction qui ne tient pas compte des ressources accumulées entre temps
-mettre métal, mana en ressource
+mettre métal(extracteur), mana en ressource, maille (cotte de maille, forge), cuir(tannerie), épée(forge), arc(atelier), arbalète(atelier)
+en cas ressource flèche qui diminue qd archer va au combat (carreau pour arbalétrier)
+arbalétrier => cuir
+
+besoin vache pour cuir qui diminuent dans le temps, augmenter niveau vache en même temps que cuir, sinon pénurie
+
+créer ressources en réserve
 
 28/09
 
@@ -31,3 +37,5 @@ je crée le dépôt git
 je crée le fichier sql de la bdd
 je me lance dans la création de multiples ressources => réussi
 soustraction multiples ressources => ok
+message flash => ok
+mise en stock => ok

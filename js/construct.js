@@ -26,6 +26,7 @@ constructFarmFormElt.addEventListener("submit", function (e) {
     e.preventDefault();
     setTimeout(function () {
         constructFarmFormElt.submit();
+        // document.getElementById('form-save-resources').submit();
     }, timeConstructFarm * 1000);
 });
 
@@ -35,5 +36,18 @@ constructSawmillFormElt.addEventListener("submit", function (e) {
     e.preventDefault();
     setTimeout(function () {
         constructSawmillFormElt.submit();
+        // document.getElementById('form-save-resources').submit();
     }, timeConstructSawmill * 1000);
+});
+
+
+
+let constructStockFormElt = document.getElementById('form-stock');
+console.log('event scierie');
+constructStockFormElt.addEventListener("submit", function (e) {
+    e.preventDefault();
+    setTimeout(function () {
+        constructStockFormElt.submit();
+        // document.getElementById('form-save-resources').submit();
+    }, 60000);
 });

@@ -36,8 +36,8 @@ try {
     //On l'execute
     $result = $statement->execute();
     echo ('test avant');
-    $_SESSION['town-food'] = $food;
-    $_SESSION['town-wood'] = $wood;
+    $_SESSION['town']['town-food'] = $food;
+    $_SESSION['town']['town-wood'] = $wood;
     //session_destroy();
     // include('connexion.php');
     // echo ('test après');

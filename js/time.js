@@ -71,7 +71,7 @@ function addTownWood(levelSawmill) {
 
 // function refreshPage() {
 //     setTimeout(refreshPage, 500000);
-//     document.getElementById('save-resources').submit();
+//     document.getElementById('form-save-resources').submit();
 //     console.log('refresh');
 // }
 

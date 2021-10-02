@@ -7,11 +7,13 @@ CREATE TABLE player(
     pseudo VARCHAR(255),
     town_food INT,
     town_wood INT,
+    stock_food INT,
+    stock_wood INT,
     farm_level INT,
     sawmill_level INT
 );
 
-INSERT INTO player (pseudo, town_food, town_wood, farm_level, sawmill_level) VALUES ("Lucie", 50, 50, 0, 0);
+INSERT INTO player (pseudo, town_food, town_wood, stock_food, stock_wood, farm_level, sawmill_level) VALUES ("Lucie", 50, 50, 0, 0, 0, 0);
 
 CREATE TABLE informations(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
