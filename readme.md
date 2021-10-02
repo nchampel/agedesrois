@@ -3,6 +3,7 @@ faire bdd : joueur => pseudo nourriture bois or pierre etc.
 - récupérer données -
 créer le fichier sql des tables avec données
 faire message flash qui indique action finie
+bug sur la construction qui ne tient pas compte des ressources accumulées entre temps
 
 28/09
 
@@ -27,4 +28,5 @@ je retente pour faire un temps d'attente => cela fonctionne avec addventlistener
 je me lance dans la génération de ressources augmente avec le niveau => réussi
 je crée le dépôt git
 je crée le fichier sql de la bdd
-je me lance dans la création de multiples ressources
+je me lance dans la création de multiples ressources => réussi
+soustration multiples ressources

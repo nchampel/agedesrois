@@ -45,7 +45,7 @@ echo ('</pre>');
     <script>
         let timeConstructFarm = <?php echo $_SESSION['farm']['timeConstruct']; ?>;
         let levelFarm = <?php echo $_SESSION['farm-level']; ?>;
-        let levelSawmill = <?php echo $_SESSION['farm-level']; ?>;
+        let levelSawmill = <?php echo $_SESSION['sawmill-level']; ?>;
     </script>
     <script src="js/time.js"></script>
     <script src="js/construct.js"></script>
