@@ -35,9 +35,11 @@ try {
     $statement->execute();
     // On récupère l'ensemble des résultats dans un tableau
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $_SESSION['town-food'] = $results[0]['town_food'];
     $_SESSION['pseudo'] = $results[0]['pseudo'];
+    $_SESSION['town-food'] = $results[0]['town_food'];
+    $_SESSION['town-wood'] = $results[0]['town_wood'];
     $_SESSION['farm-level'] = $results[0]['farm_level'];
+    $_SESSION['sawmill-level'] = $results[0]['sawmill_level'];
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }

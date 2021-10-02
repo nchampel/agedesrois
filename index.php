@@ -6,7 +6,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     //$_SESSION['pseudo'] = "Lucie";
 }
 //pour vider $_SESSION
-//$_SESSION = array();
+$_SESSION = array();
 ?>
 
 <!DOCTYPE html>

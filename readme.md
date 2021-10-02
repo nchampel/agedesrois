@@ -2,7 +2,7 @@ faire bdd : joueur => pseudo nourriture bois or pierre etc.
             carte => id carte, position (x,y), nom nourriture bois or pierre niveau force défense
 - récupérer données -
 créer le fichier sql des tables avec données
-faire que le niveau de ferme fait augmenter les ressources plus vite
+faire message flash qui indique action finie
 
 28/09
 
@@ -24,4 +24,7 @@ addEventListener click pour appeler script
 02/10
 
 je retente pour faire un temps d'attente => cela fonctionne avec addventlistener sur le formulaire
-je me lance dans la génération de ressources augmente avec le niveau
+je me lance dans la génération de ressources augmente avec le niveau => réussi
+je crée le dépôt git
+je crée le fichier sql de la bdd
+je me lance dans la création de multiples ressources

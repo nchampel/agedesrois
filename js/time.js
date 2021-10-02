@@ -16,7 +16,7 @@ function addTownFood(level) {
 }
 
 function addTownWood(level) {
-    console.log('function addTownFood');
+    console.log('function addTownWood');
     let townWood = document.getElementById('town-wood').innerText;
     //console.log(townFood);
     townWood = parseFloat(townWood);

@@ -5,7 +5,9 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
     //$_SESSION['pseudo'] = "Lucie";
 }
+echo ('<pre>');
 var_dump($_SESSION);
+echo ('</pre>');
 //$player = $_SESSION['player'];
 // echo ($_SESSION['farm']['food'] . ',' . $_SESSION['farm']['timeConstruct']);
 
@@ -31,6 +33,7 @@ var_dump($_SESSION);
     <p>Nourriture dans la ville : <span id="town-food"><?php echo $_SESSION['town-food']; ?></span> </p>
     <p>Bois dans la ville : <span id="town-wood"><?php echo $_SESSION['town-wood']; ?></span> </p>
     <p><?php echo ucfirst($_SESSION['farm']['name']); ?> niveau <span id="farm-level"><?php echo $_SESSION['farm-level']; ?></span> </p>
+    <p><?php echo ucfirst($_SESSION['sawmill']['name']); ?> niveau <span id="sawmill-level"><?php echo $_SESSION['sawmill-level']; ?></span> </p>
     <!-- <a href="map1.php">map 1</a> -->
     <button id="construct-farm" onclick="construction(<?php echo ($_SESSION['farm']['food'] . ', ' . $_SESSION['farm']['timeConstruct']); ?>)">Construire ferme</button>
     <form id="form-farm-construct" action="backend/constructSubstractResources.php?type=farm&level=<?php echo $_SESSION['farm-level']; ?>&foodNeeded=<?php echo $_SESSION['farm']['food']; ?>" method="POST">
@@ -42,6 +45,7 @@ var_dump($_SESSION);
     <script>
         let timeConstructFarm = <?php echo $_SESSION['farm']['timeConstruct']; ?>;
         let levelFarm = <?php echo $_SESSION['farm-level']; ?>;
+        let levelSawmill = <?php echo $_SESSION['farm-level']; ?>;
     </script>
     <script src="js/time.js"></script>
     <script src="js/construct.js"></script>
