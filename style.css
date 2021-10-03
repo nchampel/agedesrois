@@ -2,13 +2,13 @@
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: 200px;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -20,7 +20,7 @@
   z-index: 1;
   bottom: 125%;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -100px;
 
   /* Fade in tooltip */
   opacity: 0;
@@ -43,8 +43,26 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
-} 
+}
+.tooltip{
+    margin-right: 25px;
+}
 
 h3{
     font-size: 1.5em;
+}
+#town-food, #town-wood, #town-metal, #town-stone, #town-gold{
+    color:blue;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
 }

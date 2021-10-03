@@ -22,6 +22,8 @@ mettre taux production ressources par heure
 
 or trouvable uniquement sur les monstres
 
+augmenter niveau bâtiment militaire avant de monter le niveau des héros
+
 28/09
 
 Début : page d'accueil où on s'identifie, on rentre son nom
@@ -33,7 +35,7 @@ Découverte du bug de l'actualisation par f5 : remet les ressources au niveau du
 
 01/10
 
-j'abandonne le bug de l'actualisation par f5 => finalement j'ai contourné le problème en envoyant le formulaire Sauvegarde ressources à intervalles réguliers par javascript
+j'abandonne le bug de l'actualisation par f5 => finalement j'ai contourné le problème en envoyant le formulaire Sauvegarde ressources à intervalles réguliers par javascript => abandonné à intervalles régulier, je me sers juste du bouton sauvegarde pour sauvegarder les ressources avant de lancer une construction.
 utilisation des ressources pour créer ferme, temps d'attente
 adapter ressources à utiliser et temps en fonction du niveau
 je vois pas comment faire le temps d'attente en php
@@ -56,3 +58,4 @@ complément fichier sql => multiples ressources
 formatage des ressources pour avoir la séparation des milliers, millions etc. => ok
 ressources needed or pierre métal formulaire construction
 mise en place des multiples ressources de construction => ok
+tooltip => ok
