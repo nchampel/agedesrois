@@ -38,8 +38,14 @@ try {
     $_SESSION['pseudo'] = $results[0]['pseudo'];
     $_SESSION['town']['town-food'] = $results[0]['town_food'];
     $_SESSION['town']['town-wood'] = $results[0]['town_wood'];
+    $_SESSION['town']['town-metal'] = $results[0]['town_metal'];
+    $_SESSION['town']['town-stone'] = $results[0]['town_stone'];
+    $_SESSION['town']['town-gold'] = $results[0]['town_gold'];
     $_SESSION['stock']['stock-food'] = $results[0]['stock_food'];
     $_SESSION['stock']['stock-wood'] = $results[0]['stock_wood'];
+    $_SESSION['stock']['stock-metal'] = $results[0]['stock_metal'];
+    $_SESSION['stock']['stock-stone'] = $results[0]['stock_stone'];
+    $_SESSION['stock']['stock-gold'] = $results[0]['stock_gold'];
     $_SESSION['farm-level'] = $results[0]['farm_level'];
     $_SESSION['sawmill-level'] = $results[0]['sawmill_level'];
 } catch (Exception $exception) {

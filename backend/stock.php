@@ -2,12 +2,21 @@
 session_start();
 $foodStock = filter_var($_POST['stock-food'], FILTER_SANITIZE_STRING);
 $woodStock = filter_var($_POST['stock-wood'], FILTER_SANITIZE_STRING);
+$metalStock = filter_var($_POST['stock-metal'], FILTER_SANITIZE_STRING);
+$stoneStock = filter_var($_POST['stock-stone'], FILTER_SANITIZE_STRING);
+$goldStock = filter_var($_POST['stock-gold'], FILTER_SANITIZE_STRING);
 // $resource = 51;
 $pseudo = 'Lucie';
 // $foodStock = 100;
 // $woodStock = 100;
 
-if ($_SESSION['town']['town-food'] < $foodStock || $_SESSION['town']['town-wood'] < $woodStock) {
+if (
+    $_SESSION['town']['town-food'] < $foodStock ||
+    $_SESSION['town']['town-wood'] < $woodStock ||
+    $_SESSION['town']['town-metal'] < $metalStock ||
+    $_SESSION['town']['town-stone'] < $stoneStock ||
+    $_SESSION['town']['town-gold'] < $goldStock
+) {
     header('Location: ../map.php');
     exit();
 }
@@ -23,8 +32,11 @@ if (!isset($connexion)) {
 
 $newStockFoodTown = $_SESSION['town']['town-food'] - $foodStock;
 $newStockWoodTown = $_SESSION['town']['town-wood'] - $woodStock;
+$newStockMetalTown = $_SESSION['town']['town-metal'] - $metalStock;
+$newStockStoneTown = $_SESSION['town']['town-stone'] - $stoneStock;
+$newStockGoldTown = $_SESSION['town']['town-gold'] - $goldStock;
 
-$rqt = "UPDATE player set town_food = :food, town_wood = :wood where pseudo = :pseudo";
+$rqt = "UPDATE player set town_food = :food, town_wood = :wood, town_metal = :metal, town_stone = :stone, town_gold = :gold where pseudo = :pseudo";
 //$rqt = "insert into player (pseudo, town_food) values (:pseudo, '100')";
 //On prépare notre requête. ça nous renvoie un objet qui est notre requête préparée prête à être executée
 try {
@@ -32,6 +44,9 @@ try {
     $statement->bindParam(':pseudo', $pseudo);
     $statement->bindParam(':food', $newStockFoodTown);
     $statement->bindParam(':wood', $newStockWoodTown);
+    $statement->bindParam(':metal', $newStockMetalTown);
+    $statement->bindParam(':stone', $newStockStoneTown);
+    $statement->bindParam(':gold', $newStockGoldTown);
 
     //On l'execute
     $result = $statement->execute();

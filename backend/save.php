@@ -13,6 +13,15 @@ switch ($type) {
     case 'wood':
         $typeColumn = 'town_wood';
         break;
+    case 'metal':
+        $typeColumn = 'town_metal';
+        break;
+    case 'stone':
+        $typeColumn = 'town_stone';
+        break;
+    case 'gold':
+        $typeColumn = 'town_gold';
+        break;
 }
 
 include_once('db.php');
@@ -35,8 +44,8 @@ try {
     //session_destroy();
     // include('connexion.php');
     // echo ('test après');
-    unset($_SESSION['town-food']);
-    $_SESSION['town-food'] = $_GET['resource'];
+    // unset($_SESSION['town-food']);
+    // $_SESSION['town-food'] = $_GET['resource'];
     // $_SESSION['town-food'] = $resource;
     // echo ('food');
     // echo ($_SESSION['town-food']);

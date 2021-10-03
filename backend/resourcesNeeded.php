@@ -30,6 +30,9 @@ foreach ($types as $typeItem) {
         // var_dump($results1);
         $_SESSION[$type]['food'] = $results1[0]['food'];
         $_SESSION[$type]['wood'] = $results1[0]['wood'];
+        $_SESSION[$type]['metal'] = $results1[0]['metal'];
+        $_SESSION[$type]['stone'] = $results1[0]['stone'];
+        $_SESSION[$type]['gold'] = $results1[0]['gold'];
         $_SESSION[$type]['timeConstruct'] = $results1[0]['time_construct'];
         $_SESSION[$type]['name'] = $results1[0]['type_item'];
     } catch (Exception $exception) {

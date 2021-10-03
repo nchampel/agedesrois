@@ -1,14 +1,47 @@
+let nf = Intl.NumberFormat("fr-FR", true);
+
+function transformFormatNumber(number) {
+    console.log('format');
+    let numberExploded = number.split("");
+    console.log(numberExploded);
+    let numberIndex = numberExploded.indexOf(" ");
+    console.log(numberIndex);
+    if (numberIndex == -1) {
+        return number;
+    }
+    while (numberIndex != -1) {
+        // console.log(numberIndex);
+
+        numberExploded.splice(numberIndex, 1)
+        console.log(numberExploded);
+
+        numberIndex = numberExploded.indexOf(" ");
+    }
+
+
+
+    return number = numberExploded.join("");
+}
+
 function addTownResources(levelFarm, levelSawmill) {
     // console.log('function addTownFood');
     let townFood = document.getElementById('town-food').innerText;
+    // townFood.replace(" ", "");
+    townFood = transformFormatNumber(townFood);
+    // console.log(townFood);
     townFood = parseFloat(townFood);
+    // console.log(townFood);
     townFood = townFood + 1 + 5 * levelFarm;
-    document.getElementById('town-food').innerText = townFood;
+    let townFoodInnerHTML = nf.format(townFood);
+    townFoodInnerHTML = townFoodInnerHTML.replace(/[\s\uFEFF\xA0]/g, " ");
+    document.getElementById('town-food').innerText = townFoodInnerHTML;
 
     let townWood = document.getElementById('town-wood').innerText;
     townWood = parseFloat(townWood);
     townWood = townWood + 1 + 4 * levelSawmill;
-    document.getElementById('town-wood').innerText = townWood;
+    let townWoodInnerHTML = nf.format(townWood);
+    townWoodInnerHTML = townWoodInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
+    document.getElementById('town-wood').innerText = townWoodInnerHTML;
     setTimeout(function () {
         addTownResources(levelFarm, levelSawmill)
     }, 10000);
@@ -24,6 +57,7 @@ function addTownWood(level) {
     console.log('function addTownWood');
     let townWood = document.getElementById('town-wood').innerText;
     //console.log(townFood);
+    townWood = transformFormatNumber(townWood);
     townWood = parseFloat(townWood);
     // console.log(townFood + 1);
     townWood = townWood + 1 + 4 * level;
