@@ -3,10 +3,19 @@ header('Access-Control-Allow-Origin: *');
 session_start();
 $foodNeeded = (int)$_GET['foodNeeded'];
 $woodNeeded = (int)$_GET['woodNeeded'];
+$metalNeeded = (int)$_GET['metalNeeded'];
+$stoneNeeded = (int)$_GET['stoneNeeded'];
+$goldNeeded = (int)$_GET['goldNeeded'];
 
 echo ('avant test');
 
-if ($_SESSION['town']['town-food'] < $foodNeeded || $_SESSION['town']['town-wood'] < $woodNeeded) {
+if (
+    $_SESSION['town']['town-food'] < $foodNeeded ||
+    $_SESSION['town']['town-wood'] < $woodNeeded ||
+    $_SESSION['town']['town-metal'] < $metalNeeded ||
+    $_SESSION['town']['town-stone'] < $stoneNeeded ||
+    $_SESSION['town']['town-gold'] < $goldNeeded
+) {
     header('Location: ../map.php');
     exit();
 }
@@ -15,6 +24,9 @@ echo ('après test');
 
 $food = $_SESSION['town']['town-food'] - $foodNeeded;
 $wood = $_SESSION['town']['town-wood'] - $woodNeeded;
+$metal = $_SESSION['town']['town-metal'] - $metalNeeded;
+$stone = $_SESSION['town']['town-stone'] - $stoneNeeded;
+$gold = $_SESSION['town']['town-gold'] - $goldNeeded;
 // $food = (int)$_GET['food'];
 
 $pseudo = 'Lucie';
@@ -30,7 +42,7 @@ if (!isset($connexion)) {
 }
 
 
-$rqt = "UPDATE player set town_food = :food, town_wood = :wood where pseudo = :pseudo";
+$rqt = "UPDATE player set town_food = :food, town_wood = :wood, town_metal = :metal, town_stone = :stone, town_gold = :gold where pseudo = :pseudo";
 //$rqt = "insert into player (pseudo, town_food) values (:pseudo, '100')";
 //On prépare notre requête. ça nous renvoie un objet qui est notre requête préparée prête à être executée
 try {
@@ -38,11 +50,17 @@ try {
     $statement->bindParam(':pseudo', $pseudo);
     $statement->bindParam(':food', $food);
     $statement->bindParam(':wood', $wood);
+    $statement->bindParam(':metal', $metal);
+    $statement->bindParam(':stone', $stone);
+    $statement->bindParam(':gold', $gold);
     //On l'execute
     $result = $statement->execute();
     echo ('test avant');
     $_SESSION['town']['town-food'] = $food;
     $_SESSION['town']['town-wood'] = $wood;
+    $_SESSION['town']['town-metal'] - $metal;
+    $_SESSION['town']['town-stone'] = $stone;
+    $_SESSION['town']['town-gold'] = $gold;
     //session_destroy();
     // include('connexion.php');
     // echo ('test après');
@@ -64,7 +82,7 @@ include_once('construct.php');
 //met en $_session les valeurs pour le niveau suivant
 include_once('resourcesNeeded.php');
 
-$_SESSION['flash'] = 'action finie';
+$_SESSION['flash'] = 'construction finie';
 
 header('Location: ../map.php');
 exit();

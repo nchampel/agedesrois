@@ -1,3 +1,7 @@
+résumé du jeu :
+
+construction de bâtiments, récupération de ressources, recrutement d'héros, augmentation de leur niveau, parcourir la carte pour récupérer des ressources pour se battre. Le but : battre le dragon de la carte
+
 faire bdd : joueur => pseudo nourriture bois or(mine) pierre(carrière) etc.
             carte => id carte, position (x,y), nom nourriture bois or pierre niveau force défense
 - récupérer données -
@@ -11,6 +15,12 @@ arbalétrier => cuir
 besoin vache pour cuir qui diminuent dans le temps, augmenter niveau vache en même temps que cuir, sinon pénurie
 
 créer ressources en réserve
+
+si SOUCI avec fichier css, vider le cache
+
+mettre taux production ressources par heure
+
+or trouvable uniquement sur les monstres
 
 28/09
 

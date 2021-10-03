@@ -63,7 +63,13 @@ echo ('</pre>');
     <!-- <button id="construct-farm" onclick="construction(<?php //echo ($_SESSION['farm']['food'] . ', ' . $_SESSION['farm']['timeConstruct']); 
                                                             ?>)">Construire ferme</button> -->
 
-    <form id="form-farm-construct" class="tooltip" action="backend/constructSubstractResources.php?type=farm&level=<?php echo $_SESSION['farm-level']; ?>&foodNeeded=<?php echo $_SESSION['farm']['food']; ?>&woodNeeded=<?php echo $_SESSION['farm']['wood']; ?>" method="POST">
+    <form id="form-farm-construct" class="tooltip" action="backend/constructSubstractResources.php?type=farm&level=
+    <?php echo $_SESSION['farm-level']; ?>
+    &foodNeeded=<?php echo $_SESSION['farm']['food']; ?>
+    &woodNeeded=<?php echo $_SESSION['farm']['wood']; ?>
+    &metalNeeded=<?php echo $_SESSION['farm']['metal']; ?>
+    &stoneNeeded=<?php echo $_SESSION['farm']['stone']; ?>
+    &goldNeeded=<?php echo $_SESSION['farm']['gold']; ?>" method="POST">
         <div class="tooltiptext">
             <h3>Ville</h3>
             <p>Nourriture : <?php echo $_SESSION['farm']['food']; ?></p>
@@ -81,9 +87,15 @@ echo ('</pre>');
             }
             ?>
         </div>
-        <input type="submit" value="Construction ferme" class="button" />
+        <input type="submit" value="Construction ferme niveau <?php echo $_SESSION['farm-level'] + 1; ?>" class="button" />
     </form>
-    <form id="form-sawmill-construct" class="tooltip" action="backend/constructSubstractResources.php?type=sawmill&level=<?php echo $_SESSION['sawmill-level']; ?>&foodNeeded=<?php echo $_SESSION['sawmill']['food']; ?>&woodNeeded=<?php echo $_SESSION['sawmill']['wood']; ?>" method="POST">
+    <form id="form-sawmill-construct" class="tooltip" action="backend/constructSubstractResources.php?type=sawmill&level=
+    <?php echo $_SESSION['sawmill-level']; ?>
+    &foodNeeded=<?php echo $_SESSION['sawmill']['food']; ?>
+    &woodNeeded=<?php echo $_SESSION['sawmill']['wood']; ?>
+    &metalNeeded=<?php echo $_SESSION['sawmill']['metal']; ?>
+    &stoneNeeded=<?php echo $_SESSION['sawmill']['stone']; ?>
+    &goldNeeded=<?php echo $_SESSION['sawmill']['gold']; ?>" method="POST">
         <div class="tooltiptext">
             <h3>Ville</h3>
             <p>Nourriture : <?php echo $_SESSION['sawmill']['food']; ?></p>
@@ -101,9 +113,15 @@ echo ('</pre>');
             }
             ?>
         </div>
-        <input type="submit" value="Construction scierie" class="button" />
+        <input type="submit" value="Construction scierie niveau <?php echo $_SESSION['sawmill-level'] + 1; ?>" class="button" />
     </form>
-    <form id="form-extractor-construct" class="tooltip" action="backend/constructSubstractResources.php?type=extractor&level=<?php echo $_SESSION['extractor-level']; ?>&foodNeeded=<?php echo $_SESSION['extractor']['food']; ?>&woodNeeded=<?php echo $_SESSION['extractor']['wood']; ?>" method="POST">
+    <form id="form-extractor-construct" class="tooltip" action="backend/constructSubstractResources.php?type=extractor&level=
+    <?php echo $_SESSION['extractor-level']; ?>
+    &foodNeeded=<?php echo $_SESSION['extractor']['food']; ?>
+    &woodNeeded=<?php echo $_SESSION['extractor']['wood']; ?>
+    &metalNeeded=<?php echo $_SESSION['extractor']['metal']; ?>
+    &stoneNeeded=<?php echo $_SESSION['extractor']['stone']; ?>
+    &goldNeeded=<?php echo $_SESSION['extractor']['gold']; ?>" method="POST">
         <div class="tooltiptext">
             <h3>Ville</h3>
             <p>Nourriture : <?php echo $_SESSION['extractor']['food']; ?></p>
@@ -121,9 +139,15 @@ echo ('</pre>');
             }
             ?>
         </div>
-        <input type="submit" value="Construction extracteur" class="button" />
+        <input type="submit" value="Construction extracteur niveau <?php echo $_SESSION['extractor-level'] + 1; ?>" class="button" />
     </form>
-    <form id="form-quarry-construct" class="tooltip" action="backend/constructSubstractResources.php?type=quarry&level=<?php echo $_SESSION['quarry-level']; ?>&foodNeeded=<?php echo $_SESSION['quarry']['food']; ?>&woodNeeded=<?php echo $_SESSION['quarry']['wood']; ?>" method="POST">
+    <form id="form-quarry-construct" class="tooltip" action="backend/constructSubstractResources.php?type=quarry&level=
+    <?php echo $_SESSION['quarry-level']; ?>
+    &foodNeeded=<?php echo $_SESSION['quarry']['food']; ?>
+    &woodNeeded=<?php echo $_SESSION['quarry']['wood']; ?>
+    &metalNeeded=<?php echo $_SESSION['quarry']['metal']; ?>
+    &stoneNeeded=<?php echo $_SESSION['quarry']['stone']; ?>
+    &goldNeeded=<?php echo $_SESSION['quarry']['gold']; ?>" method="POST">
         <div class="tooltiptext">
             <h3>Ville</h3>
             <p>Nourriture : <?php echo $_SESSION['quarry']['food']; ?></p>
@@ -141,9 +165,15 @@ echo ('</pre>');
             }
             ?>
         </div>
-        <input type="submit" value="Construction carrière" class="button" />
+        <input type="submit" value="Construction carrière niveau <?php echo $_SESSION['quarry-level'] + 1; ?>" class="button" />
     </form>
-    <form id="form-mine-construct" class="tooltip" action="backend/constructSubstractResources.php?type=mine&level=<?php echo $_SESSION['mine-level']; ?>&foodNeeded=<?php echo $_SESSION['mine']['food']; ?>&woodNeeded=<?php echo $_SESSION['mine']['wood']; ?>" method="POST">
+    <form id="form-mine-construct" class="tooltip" action="backend/constructSubstractResources.php?type=mine&level=
+    <?php echo $_SESSION['mine-level']; ?>
+    &foodNeeded=<?php echo $_SESSION['mine']['food']; ?>
+    &woodNeeded=<?php echo $_SESSION['mine']['wood']; ?>
+    &metalNeeded=<?php echo $_SESSION['mine']['metal']; ?>
+    &stoneNeeded=<?php echo $_SESSION['mine']['stone']; ?>
+    &goldNeeded=<?php echo $_SESSION['mine']['gold']; ?>" method="POST">
         <div class="tooltiptext">
             <h3>Ville</h3>
             <p>Nourriture : <?php echo $_SESSION['mine']['food']; ?></p>
@@ -161,7 +191,7 @@ echo ('</pre>');
             }
             ?>
         </div>
-        <input type="submit" value="Construction mine" class="button" />
+        <input type="submit" value="Construction mine niveau <?php echo $_SESSION['mine-level'] + 1; ?>" class="button" />
     </form>
 
     <form action="backend/connexion.php" method="POST" id="form-save-resources">
