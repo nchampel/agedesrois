@@ -47,6 +47,23 @@ try {
     // unset($_SESSION['town-food']);
     // $_SESSION['town-food'] = $_GET['resource'];
     // $_SESSION['town-food'] = $resource;
+    switch ($type) {
+        case 'food':
+            $_SESSION['town-food'] = $resource;
+            break;
+        case 'wood':
+            $_SESSION['town-wood'] = $resource;
+            break;
+        case 'metal':
+            $_SESSION['town-metal'] = $resource;
+            break;
+        case 'stone':
+            $_SESSION['town-stone'] = $resource;
+            break;
+        case 'gold':
+            $_SESSION['town-gold'] = $resource;
+            break;
+    }
     // echo ('food');
     // echo ($_SESSION['town-food']);
     // header('Location: ../index.php');

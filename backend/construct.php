@@ -17,6 +17,15 @@ switch ($type) {
     case 'sawmill':
         $typeColumn = 'sawmill_level';
         break;
+    case 'extractor':
+        $typeColumn = 'extractor_level';
+        break;
+    case 'quarry':
+        $typeColumn = 'quarry_level';
+        break;
+    case 'mine':
+        $typeColumn = 'mine_level';
+        break;
 }
 
 include_once('db.php');
@@ -42,6 +51,15 @@ try {
             break;
         case 'sawmill':
             $_SESSION['sawmill-level'] = $level;
+            break;
+        case 'extractor':
+            $_SESSION['extractor-level'] = $level;
+            break;
+        case 'quarry':
+            $_SESSION['quarry-level'] = $level;
+            break;
+        case 'mine':
+            $_SESSION['mine-level'] = $level;
             break;
     }
 

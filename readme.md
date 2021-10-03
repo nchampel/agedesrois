@@ -43,3 +43,6 @@ mise en stock => ok
 03/10
 
 complément fichier sql => multiples ressources
+formatage des ressources pour avoir la séparation des milliers, millions etc. => ok
+ressources needed or pierre métal formulaire construction
+mise en place des multiples ressources de construction => ok

@@ -22,13 +22,19 @@ CREATE TABLE player(
     stock_stone INT,
     stock_gold INT,
     farm_level INT,
-    sawmill_level INT
+    sawmill_level INT,
+    extractor_level INT,
+    quarry_level INT,
+    mine_level INT
 );
 
-INSERT INTO player (pseudo, town_food, town_wood, town_metal, town_stone, town_gold, town_mana, town_mail, town_leather, town_sword, town_bow, town_crossbow, stock_food, stock_wood, stock_metal, stock_stone, stock_gold, farm_level, sawmill_level) 
-VALUES ("Lucie", 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO player (pseudo, town_food, town_wood, town_metal, town_stone, town_gold, town_mana, 
+town_mail, town_leather, town_sword, town_bow, town_crossbow, 
+stock_food, stock_wood, stock_metal, stock_stone, stock_gold, 
+farm_level, sawmill_level, extractor_level, quarry_level, mine_level) 
+VALUES ("Lucie", 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-CREATE TABLE informations(
+CREATE TABLE items(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     type_item VARCHAR(255),
     level_item INT,
@@ -46,7 +52,7 @@ CREATE TABLE informations(
     crossbow INT    
 );
 
-INSERT INTO informations (type_item, level_item, time_construct, food, wood, metal, stone, gold, mana, mail, leather, sword, bow, crossbow) VALUES 
+INSERT INTO items (type_item, level_item, time_construct, food, wood, metal, stone, gold, mana, mail, leather, sword, bow, crossbow) VALUES 
 ("ferme", 0, 10, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ("ferme", 1, 12, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ("ferme", 2, 15, 200, 50, 0, 0, 10, 0, 0, 0, 0, 0, 0),
@@ -87,16 +93,16 @@ INSERT INTO informations (type_item, level_item, time_construct, food, wood, met
 ("mine", 7, 40, 3000, 400, 75, 50, 100, 0, 0, 0, 0, 0, 0),
 ("mine", 8, 45, 4000, 450, 100, 75, 150, 0, 0, 0, 0, 0, 0),
 ("mine", 9, 50, 5000, 500, 150, 100, 200, 0, 0, 0, 0, 0, 0),
-("carrière", 0, 10, 50, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-("carrière", 1, 12, 75, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-("carrière", 2, 15, 100, 50, 10, 0, 0, 0, 0, 0, 0, 0, 0),
-("carrière", 3, 20, 500, 100, 20, 0, 20, 0, 0, 0, 0, 0, 0),
-("carrière", 4, 25, 750, 150, 30, 0, 30, 0, 0, 0, 0, 0, 0),
-("carrière", 5, 30, 1000, 200, 40, 10, 50, 0, 0, 0, 0, 0, 0),
-("carrière", 6, 35, 2000, 300, 50, 20, 75, 0, 0, 0, 0, 0, 0),
-("carrière", 7, 40, 3000, 400, 75, 50, 100, 0, 0, 0, 0, 0, 0),
-("carrière", 8, 45, 4000, 450, 100, 75, 150, 0, 0, 0, 0, 0, 0),
-("carrière", 9, 50, 5000, 500, 150, 100, 200, 0, 0, 0, 0, 0, 0),
+("carriere", 0, 10, 50, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+("carriere", 1, 12, 75, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+("carriere", 2, 15, 100, 50, 10, 0, 0, 0, 0, 0, 0, 0, 0),
+("carriere", 3, 20, 500, 100, 20, 0, 20, 0, 0, 0, 0, 0, 0),
+("carriere", 4, 25, 750, 150, 30, 0, 30, 0, 0, 0, 0, 0, 0),
+("carriere", 5, 30, 1000, 200, 40, 10, 50, 0, 0, 0, 0, 0, 0),
+("carriere", 6, 35, 2000, 300, 50, 20, 75, 0, 0, 0, 0, 0, 0),
+("carriere", 7, 40, 3000, 400, 75, 50, 100, 0, 0, 0, 0, 0, 0),
+("carriere", 8, 45, 4000, 450, 100, 75, 150, 0, 0, 0, 0, 0, 0),
+("carriere", 9, 50, 5000, 500, 150, 100, 200, 0, 0, 0, 0, 0, 0),
 ("tour", 0, 10, 50000, 10000, 5000, 2000, 1000, 0, 0, 0, 0, 0, 0),
 ("tour", 1, 12, 100000, 20000, 10000, 5000, 2000, 0, 0, 0, 0, 0, 0),
 ("tour", 2, 15, 200000, 50000, 20000, 10000, 5000, 0, 0, 0, 0, 0, 0),

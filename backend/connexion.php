@@ -48,6 +48,9 @@ try {
     $_SESSION['stock']['stock-gold'] = $results[0]['stock_gold'];
     $_SESSION['farm-level'] = $results[0]['farm_level'];
     $_SESSION['sawmill-level'] = $results[0]['sawmill_level'];
+    $_SESSION['extractor-level'] = $results[0]['extractor_level'];
+    $_SESSION['quarry-level'] = $results[0]['quarry_level'];
+    $_SESSION['mine-level'] = $results[0]['mine_level'];
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }

@@ -1,29 +1,19 @@
 let nf = Intl.NumberFormat("fr-FR", true);
 
 function transformFormatNumber(number) {
-    console.log('format');
     let numberExploded = number.split("");
-    console.log(numberExploded);
     let numberIndex = numberExploded.indexOf(" ");
-    console.log(numberIndex);
     if (numberIndex == -1) {
         return number;
     }
     while (numberIndex != -1) {
-        // console.log(numberIndex);
-
         numberExploded.splice(numberIndex, 1)
-        console.log(numberExploded);
-
         numberIndex = numberExploded.indexOf(" ");
     }
-
-
-
     return number = numberExploded.join("");
 }
 
-function addTownResources(levelFarm, levelSawmill) {
+function addTownResources() {
     // console.log('function addTownFood');
     let townFood = document.getElementById('town-food').innerText;
     // townFood.replace(" ", "");
@@ -37,16 +27,45 @@ function addTownResources(levelFarm, levelSawmill) {
     document.getElementById('town-food').innerText = townFoodInnerHTML;
 
     let townWood = document.getElementById('town-wood').innerText;
+    townWood = transformFormatNumber(townWood);
     townWood = parseFloat(townWood);
     townWood = townWood + 1 + 4 * levelSawmill;
     let townWoodInnerHTML = nf.format(townWood);
     townWoodInnerHTML = townWoodInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
     document.getElementById('town-wood').innerText = townWoodInnerHTML;
+
+    let townMetal = document.getElementById('town-metal').innerText;
+    townMetal = transformFormatNumber(townMetal);
+    townMetal = parseFloat(townMetal);
+    townMetal = townMetal + 3 * levelExtractor;
+    let townMetalInnerHTML = nf.format(townMetal);
+    townMetalInnerHTML = townMetalInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
+    document.getElementById('town-metal').innerText = townMetalInnerHTML;
+
+    let townStone = document.getElementById('town-stone').innerText;
+    townStone = transformFormatNumber(townStone);
+    townStone = parseFloat(townStone);
+    townStone = townStone + 2 * levelQuarry;
+    let townStoneInnerHTML = nf.format(townStone);
+    townStoneInnerHTML = townStoneInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
+    document.getElementById('town-stone').innerText = townStoneInnerHTML;
+
+    let townGold = document.getElementById('town-gold').innerText;
+    townGold = transformFormatNumber(townGold);
+    townGold = parseFloat(townGold);
+    townGold = townGold + 1 * levelMine;
+    let townGoldInnerHTML = nf.format(townGold);
+    townGoldInnerHTML = townGoldInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
+    document.getElementById('town-gold').innerText = townGoldInnerHTML;
+
     setTimeout(function () {
-        addTownResources(levelFarm, levelSawmill)
+        addTownResources()
     }, 10000);
     fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food');//.then(response => console.log(response.text()));
     fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood');
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townMetal + '&type=metal');
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townStone + '&type=stone');
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townGold + '&type=gold');
     // let url = 'http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood;
     // let oReq = new XMLHttpRequest();
     // oReq.open("GET", url, true);
@@ -72,13 +91,13 @@ function addTownWood(level) {
     // oReq.open("GET", url, true);
 }
 
-function addResources(levelFarm) {
+function addResources() {
 
     setTimeout(function () {
-        addTownResources(levelFarm, levelSawmill);
+        addTownResources();
         // addTownWood(levelSawmill);
         // handleResources(levelFarm, levelSawmill)
-    }, 1000);
+    }, 10000);
     // setInterval(setTimeout(function () {
     //     addTownWood(levelSawmill)
     // }, 1000));
@@ -114,7 +133,7 @@ function addTownWood(levelSawmill) {
 // }
 // console.log(levelFarm);
 // console.log(timeConstructFarm);
-addResources(levelFarm, levelSawmill);
+addResources();
 // console.log('après timeout');
 // addTownWood(levelSawmill);
 //setTimeout(addTownFood, 1000);

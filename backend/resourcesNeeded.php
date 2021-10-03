@@ -1,6 +1,6 @@
 <?php
 
-$types = ['ferme', 'scierie'];
+$types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine'];
 
 foreach ($types as $typeItem) {
     switch ($typeItem) {
@@ -12,11 +12,23 @@ foreach ($types as $typeItem) {
             $level = $_SESSION['sawmill-level'];
             $type = 'sawmill';
             break;
+        case 'extracteur':
+            $level = $_SESSION['extractor-level'];
+            $type = 'extractor';
+            break;
+        case 'carriere':
+            $level = $_SESSION['quarry-level'];
+            $type = 'quarry';
+            break;
+        case 'mine':
+            $level = $_SESSION['mine-level'];
+            $type = 'mine';
+            break;
     }
     // $typeItem = 'ferme';
     // var_dump($level);
 
-    $rqt = "SELECT * from informations where type_item = :typeItem and level_item = :level";
+    $rqt = "SELECT * from items where type_item = :typeItem and level_item = :level";
     //On prépare notre requête. ça nous renvoie un objet qui est notre requête préparée prête à être executée
     try {
         $statement = $connexion->prepare($rqt);
@@ -35,6 +47,9 @@ foreach ($types as $typeItem) {
         $_SESSION[$type]['gold'] = $results1[0]['gold'];
         $_SESSION[$type]['timeConstruct'] = $results1[0]['time_construct'];
         $_SESSION[$type]['name'] = $results1[0]['type_item'];
+        if ($type = 'quarry') {
+            $_SESSION[$type]['name'] = "carrière";
+        }
     } catch (Exception $exception) {
         echo $exception->getMessage();
     }
