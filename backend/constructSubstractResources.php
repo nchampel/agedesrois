@@ -3,13 +3,18 @@ header('Access-Control-Allow-Origin: *');
 session_start();
 $foodNeeded = (int)$_GET['foodNeeded'];
 $woodNeeded = (int)$_GET['woodNeeded'];
-if ($_SESSION['town-food'] < $foodNeeded || $_SESSION['town-wood'] < $woodNeeded) {
+
+echo ('avant test');
+
+if ($_SESSION['town']['town-food'] < $foodNeeded || $_SESSION['town']['town-wood'] < $woodNeeded) {
     header('Location: ../map.php');
     exit();
 }
 
-$food = $_SESSION['town-food'] - $foodNeeded;
-$wood = $_SESSION['town-wood'] - $woodNeeded;
+echo ('après test');
+
+$food = $_SESSION['town']['town-food'] - $foodNeeded;
+$wood = $_SESSION['town']['town-wood'] - $woodNeeded;
 // $food = (int)$_GET['food'];
 
 $pseudo = 'Lucie';

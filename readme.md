@@ -4,7 +4,7 @@ faire bdd : joueur => pseudo nourriture bois or(mine) pierre(carrière) etc.
 créer le fichier sql des tables avec données
 faire message flash qui indique action finie
 bug sur la construction qui ne tient pas compte des ressources accumulées entre temps
-mettre métal(extracteur), mana en ressource, maille (cotte de maille, forge), cuir(tannerie), épée(forge), arc(atelier), arbalète(atelier)
+mettre métal(extracteur), mana(tour) en ressource, maille (cotte de maille, forge), cuir(tannerie), épée(forge), arc(atelier), arbalète(atelier)
 en cas ressource flèche qui diminue qd archer va au combat (carreau pour arbalétrier)
 arbalétrier => cuir
 
@@ -39,3 +39,7 @@ je me lance dans la création de multiples ressources => réussi
 soustraction multiples ressources => ok
 message flash => ok
 mise en stock => ok
+
+03/10
+
+complément fichier sql => multiples ressources

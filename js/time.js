@@ -81,7 +81,7 @@ function addTownWood(levelSawmill) {
 // console.log(levelFarm);
 // console.log(timeConstructFarm);
 addResources(levelFarm, levelSawmill);
-console.log('après timeout');
+// console.log('après timeout');
 // addTownWood(levelSawmill);
 //setTimeout(addTownFood, 1000);
 // refresh();
