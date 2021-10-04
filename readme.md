@@ -59,3 +59,7 @@ formatage des ressources pour avoir la séparation des milliers, millions etc. =
 ressources needed or pierre métal formulaire construction
 mise en place des multiples ressources de construction => ok
 tooltip => ok
+
+04/10
+
+réorganisation arborescence et fichier map.php pour plus de clarté

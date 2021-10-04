@@ -1,10 +1,11 @@
+/* code du tooltip */
+
 /* Tooltip container */
 .tooltip {
   position: relative;
   display: inline-block;
   /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
 }
-
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
@@ -14,19 +15,16 @@
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-
   /* Position the tooltip text */
   position: absolute;
   z-index: 1;
   bottom: 125%;
   left: 50%;
   margin-left: -100px;
-
   /* Fade in tooltip */
   opacity: 0;
   transition: opacity 0.3s;
 }
-
 /* Tooltip arrow */
 .tooltip .tooltiptext::after {
   content: "";
@@ -38,7 +36,6 @@
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
-
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
@@ -48,12 +45,19 @@
     margin-right: 25px;
 }
 
+/* code map.php */
+
 h3{
     font-size: 1.5em;
 }
+
+/* code townresources.php */
+
 #town-food, #town-wood, #town-metal, #town-stone, #town-gold{
     color:blue;
 }
+
+/* code world.php */
 
 table {
   font-family: arial, sans-serif;

@@ -17,7 +17,7 @@ if (
     $_SESSION['town']['town-stone'] < $stoneStock ||
     $_SESSION['town']['town-gold'] < $goldStock
 ) {
-    header('Location: ../map.php');
+    header('Location: ../frontend/map.php');
     exit();
 }
 
@@ -111,5 +111,5 @@ var_dump($_SESSION);
 //header('Content-type: text/plain');
 //echo json_encode('php');
 //echo $result;
-header('Location: ../map.php');
+header('Location: ../frontend/map.php');
 exit();

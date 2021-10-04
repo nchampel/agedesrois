@@ -85,5 +85,5 @@ var_dump($_SESSION['town-food']);
 // $player->setPseudo($results[0]['pseudo']);
 // $player->setTownFood($results[0]['town_food']);
 
-header('Location: ../map.php');
+header('Location: ../frontend/map.php');
 exit();

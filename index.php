@@ -30,7 +30,7 @@ $_SESSION = array();
 
         <input type="submit" value="Connexion" class="button" />
     </form>
-    <p><span>Pas encore inscrit ?</span><a href="inscription.html" class="button">Inscription</a></p>
+    <!-- <p><span>Pas encore inscrit ?</span><a href="inscription.html" class="button">Inscription</a></p> -->
 </body>
 
 </html>

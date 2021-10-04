@@ -16,7 +16,7 @@ if (
     $_SESSION['town']['town-stone'] < $stoneNeeded ||
     $_SESSION['town']['town-gold'] < $goldNeeded
 ) {
-    header('Location: ../map.php');
+    header('Location: ../frontend/map.php');
     exit();
 }
 
@@ -84,5 +84,5 @@ include_once('resourcesNeeded.php');
 
 $_SESSION['flash'] = 'construction finie';
 
-header('Location: ../map.php');
+header('Location: ../frontend/map.php');
 exit();
