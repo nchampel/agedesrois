@@ -22,7 +22,7 @@ $_SESSION = array();
 
 <body>
 
-    <h2>Annuaire</h2>
+    <h2>Se connecter</h2>
     <form action="backend/connexion.php" method="POST">
 
         <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" required>

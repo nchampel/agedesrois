@@ -51,6 +51,7 @@ try {
     $_SESSION['extractor-level'] = $results[0]['extractor_level'];
     $_SESSION['quarry-level'] = $results[0]['quarry_level'];
     $_SESSION['mine-level'] = $results[0]['mine_level'];
+    $_SESSION['workshop-level'] = $results[0]['workshop_level'];
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }

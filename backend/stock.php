@@ -56,6 +56,10 @@ try {
     // echo ('test après');
     $_SESSION['town']['town-food'] = $newStockFoodTown;
     $_SESSION['town']['town-wood'] = $newStockWoodTown;
+    $_SESSION['town']['town-metal'] = $newStockMetalTown;
+    $_SESSION['town']['town-stone'] = $newStockStoneTown;
+    $_SESSION['town']['town-gold'] = $newStockGoldTown;
+
     // $_SESSION['town-food'] = $resource;
     // echo ('food');
     // echo ($_SESSION['town-food']);
@@ -72,8 +76,11 @@ try {
 
 $foodStock = $_SESSION['stock']['stock-food'] + $foodStock;
 $woodStock = $_SESSION['stock']['stock-wood'] + $woodStock;
+$metalStock = $_SESSION['stock']['stock-metal'] + $metalStock;
+$stoneStock = $_SESSION['stock']['stock-stone'] + $stoneStock;
+$goldStock = $_SESSION['stock']['stock-gold'] + $goldStock;
 
-$rqt = "UPDATE player set stock_food = :food, stock_wood = :wood where pseudo = :pseudo";
+$rqt = "UPDATE player set stock_food = :food, stock_wood = :wood, stock_metal = :metal, stock_stone = :stone, stock_gold = :gold where pseudo = :pseudo";
 //$rqt = "insert into player (pseudo, town_food) values (:pseudo, '100')";
 //On prépare notre requête. ça nous renvoie un objet qui est notre requête préparée prête à être executée
 try {
@@ -81,6 +88,9 @@ try {
     $statement->bindParam(':pseudo', $pseudo);
     $statement->bindParam(':food', $foodStock);
     $statement->bindParam(':wood', $woodStock);
+    $statement->bindParam(':metal', $metalStock);
+    $statement->bindParam(':stone', $stoneStock);
+    $statement->bindParam(':gold', $goldStock);
 
     //On l'execute
     $result = $statement->execute();
@@ -90,6 +100,9 @@ try {
     // echo ('test après');
     $_SESSION['stock']['stock-food'] = $foodStock;
     $_SESSION['stock']['stock-wood'] = $woodStock;
+    $_SESSION['stock']['stock-metal'] = $metalStock;
+    $_SESSION['stock']['stock-stone'] = $stoneStock;
+    $_SESSION['stock']['stock-gold'] = $goldStock;
     // $_SESSION['town-food'] = $resource;
     // echo ('food');
     // echo ($_SESSION['town-food']);

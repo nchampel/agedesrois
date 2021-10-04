@@ -26,6 +26,9 @@ switch ($type) {
     case 'mine':
         $typeColumn = 'mine_level';
         break;
+    case 'workshop':
+        $typeColumn = 'workshop_level';
+        break;
 }
 
 include_once('db.php');
@@ -60,6 +63,9 @@ try {
             break;
         case 'mine':
             $_SESSION['mine-level'] = $level;
+            break;
+        case 'mine':
+            $_SESSION['workshop-level'] = $level;
             break;
     }
 

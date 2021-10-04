@@ -24,6 +24,9 @@ or trouvable uniquement sur les monstres
 
 augmenter niveau bâtiment militaire avant de monter le niveau des héros
 
+mettre gif animé d'attente
+
+
 28/09
 
 Début : page d'accueil où on s'identifie, on rentre son nom
@@ -63,3 +66,4 @@ tooltip => ok
 04/10
 
 réorganisation arborescence et fichier map.php pour plus de clarté
+mise en place de la construction à partir du stock

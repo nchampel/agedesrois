@@ -131,3 +131,30 @@
     </div>
     <input type="submit" value="Construction mine niveau <?php echo $_SESSION['mine-level'] + 1; ?>" class="button" />
 </form>
+
+<form id="form-workshop-construct" class="tooltip" action="../backend/constructStockSubstractResources.php?type=workshop&level=
+    <?php echo $_SESSION['workshop-level']; ?>
+    &foodNeeded=<?php echo $_SESSION['workshop']['food']; ?>
+    &woodNeeded=<?php echo $_SESSION['workshop']['wood']; ?>
+    &metalNeeded=<?php echo $_SESSION['workshop']['metal']; ?>
+    &stoneNeeded=<?php echo $_SESSION['workshop']['stone']; ?>
+    &goldNeeded=<?php echo $_SESSION['workshop']['gold']; ?>" method="POST">
+    <div class="tooltiptext">
+        <h3>Stock</h3>
+        <p>Nourriture : <?php echo $_SESSION['workshop']['food']; ?></p>
+        <?php if ($_SESSION['workshop']['wood'] > 0) {
+            echo '<p>Bois : ' . $_SESSION['workshop']['wood'] . '</p>';
+        }
+        if ($_SESSION['workshop']['metal'] > 0) {
+            echo '<p>Métal : ' . $_SESSION['workshop']['metal'] . '</p>';
+        }
+        if ($_SESSION['workshop']['stone'] > 0) {
+            echo '<p>Pierre : ' . $_SESSION['workshop']['stone'] . '</p>';
+        }
+        if ($_SESSION['workshop']['gold'] > 0) {
+            echo '<p>Or : ' . $_SESSION['workshop']['gold'] . '</p>';
+        }
+        ?>
+    </div>
+    <input type="submit" value="Construction atelier niveau <?php echo $_SESSION['workshop-level'] + 1; ?>" class="button" />
+</form>

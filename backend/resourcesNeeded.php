@@ -1,6 +1,6 @@
 <?php
 
-$types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine'];
+$types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier'];
 
 foreach ($types as $typeItem) {
     switch ($typeItem) {
@@ -23,6 +23,10 @@ foreach ($types as $typeItem) {
         case 'mine':
             $level = $_SESSION['mine-level'];
             $type = 'mine';
+            break;
+        case 'atelier':
+            $level = $_SESSION['workshop-level'];
+            $type = 'workshop';
             break;
     }
     // $typeItem = 'ferme';

@@ -6,7 +6,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     //$_SESSION['pseudo'] = "Lucie";
 }
 echo ('<pre>');
-// var_dump($_SESSION);
+var_dump($_SESSION);
 echo ('</pre>');
 //$player = $_SESSION['player'];
 // echo ($_SESSION['farm']['food'] . ',' . $_SESSION['farm']['timeConstruct']);
@@ -83,6 +83,8 @@ echo ('</pre>');
         let timeConstructExtractor = <?php echo $_SESSION['extractor']['timeConstruct']; ?>;
         let timeConstructQuarry = <?php echo $_SESSION['quarry']['timeConstruct']; ?>;
         let timeConstructMine = <?php echo $_SESSION['mine']['timeConstruct']; ?>;
+
+        let timeConstructWorkshop = <?php echo $_SESSION['workshop']['timeConstruct']; ?>;
 
         let levelFarm = <?php echo $_SESSION['farm-level']; ?>;
         let levelSawmill = <?php echo $_SESSION['sawmill-level']; ?>;

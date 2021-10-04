@@ -22,6 +22,12 @@ switch ($type) {
     case 'gold':
         $typeColumn = 'town_gold';
         break;
+    case 'bow':
+        $typeColumn = 'town_bow';
+        break;
+    case 'crossbow':
+        $typeColumn = 'town_crossbow';
+        break;
 }
 
 include_once('db.php');
@@ -62,6 +68,12 @@ try {
             break;
         case 'gold':
             $_SESSION['town-gold'] = $resource;
+            break;
+        case 'bow':
+            $_SESSION['town-bow'] = $resource;
+            break;
+        case 'crossbow':
+            $_SESSION['town-crossbow'] = $resource;
             break;
     }
     // echo ('food');

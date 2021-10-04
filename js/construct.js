@@ -86,6 +86,19 @@ constructMineFormElt.addEventListener("submit", function (e) {
     }, timeConstructMine * 1000);
 });
 
+// temps d'attente construction atelier
+let construcWorkshopFormElt = document.getElementById('form-workshop-construct');
+// console.log('event scierie');
+construcWorkshopFormElt.addEventListener("submit", function (e) {
+    waitingMessageElt.innerText = 'Construction atelier lancée';
+    e.preventDefault();
+    setTimeout(function () {
+        construcWorkshopFormElt.submit();
+        // document.getElementById('form-save-resources').submit();
+    }, timeConstructWorkshop * 1000);
+});
+
+
 
 // temps d'attente mise en stock
 let stockFormElt = document.getElementById('form-stock');
