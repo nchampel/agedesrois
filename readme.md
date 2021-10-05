@@ -73,3 +73,6 @@ ressources pas enlevées du stock et niveau ne monte pas
 
 construction à partir du stock => ok
 ajout arc et arbalète => ok
+plus de temps d'attente avant d'annuler construction car pas assez de ressources
+marche pas avec scierie, pas testé avec atelier
+souci sur le fichier save.php avec pseudo en dur => résolu

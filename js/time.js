@@ -14,6 +14,7 @@ function transformFormatNumber(number) {
 }
 
 function addTownResources() {
+    let pseudo = document.getElementById('pseudo').innerText;
     // console.log('function addTownFood');
     let townFood = document.getElementById('town-food').innerText;
     // townFood.replace(" ", "");
@@ -78,13 +79,13 @@ function addTownResources() {
     setTimeout(function () {
         addTownResources()
     }, 10000);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food');//.then(response => console.log(response.text()));
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood');
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townMetal + '&type=metal');
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townStone + '&type=stone');
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townGold + '&type=gold');
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townBow + '&type=bow');
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townCrossbow + '&type=crossbow');
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);//.then(response => console.log(response.text()));
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
     // let url = 'http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood;
     // let oReq = new XMLHttpRequest();
     // oReq.open("GET", url, true);

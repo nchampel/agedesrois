@@ -141,7 +141,7 @@ stockFormElt.addEventListener("submit", function (e) {
         setTimeout(function () {
             stockFormElt.submit();
             // document.getElementById('form-save-resources').submit();
-        }, 60000);
+        }, 30000);
     } else {
         waitingMessageElt.innerText = 'Pas assez de ressources à stocker';
     }

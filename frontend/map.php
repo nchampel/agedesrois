@@ -7,7 +7,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 }
 echo ('<pre>');
 var_dump($_SESSION);
-echo 'true';
+// echo 'true';
 // echo true;
 // echo 'false';
 // echo false;
@@ -44,7 +44,7 @@ echo ('</pre>');
                     ?> !</h1>
     <p>Nourriture dans la ville : <?php //echo $player['player']; 
                                     ?> </p> -->
-    <h1>Salut <?php echo $_SESSION['pseudo']; ?> !</h1>
+    <h1>Salut <span id="pseudo"><?php echo $_SESSION['pseudo']; ?></span> !</h1>
 
     <?php include('townresources.php'); ?>
 

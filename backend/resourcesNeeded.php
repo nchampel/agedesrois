@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier'];
 
 foreach ($types as $typeItem) {

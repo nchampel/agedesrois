@@ -4,8 +4,9 @@ session_start();
 $resource = $_GET['resource'];
 $type = $_GET['type'];
 // $resource = 51;
-$pseudo = $_SESSION['pseudo'];
-$pseudo = 'Lucie';
+// $pseudo = $_SESSION['pseudo'];
+// $pseudo = 'Lucie';
+$pseudo = $_GET['pseudo'];
 
 switch ($type) {
     case 'food':
