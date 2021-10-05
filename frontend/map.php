@@ -7,6 +7,10 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 }
 echo ('<pre>');
 var_dump($_SESSION);
+echo 'true';
+// echo true;
+// echo 'false';
+// echo false;
 echo ('</pre>');
 //$player = $_SESSION['player'];
 // echo ($_SESSION['farm']['food'] . ',' . $_SESSION['farm']['timeConstruct']);
@@ -77,6 +81,78 @@ echo ('</pre>');
 
     <?php include('world.php'); ?>
 
+    <?php
+    $constructsFromTownResources = ['farm', 'sawmill', 'extractor', 'quarry', 'mine'];
+    $constructsFromStockResources = ['workshop'];
+
+    foreach ($constructsFromTownResources as $construct) {
+        switch ($construct) {
+            case 'farm':
+                $constructIsOK = 'farm-construct-isOK';
+                break;
+            case 'sawmill':
+                $constructIsOK = 'sawmill-construct-isOK';
+                break;
+            case 'extractor':
+                $constructIsOK = 'extractor-construct-isOK';
+                break;
+            case 'quarry':
+                $constructIsOK = 'quarry-construct-isOK';
+                break;
+            case 'mine':
+                $constructIsOK = 'mine-construct-isOK';
+                break;
+        }
+        if (
+            $_SESSION['town']['town-food'] >= $_SESSION[$construct]['food'] &&
+            $_SESSION['town']['town-wood'] >= $_SESSION[$construct]['wood'] &&
+            $_SESSION['town']['town-metal'] >= $_SESSION[$construct]['metal'] &&
+            $_SESSION['town']['town-stone'] >= $_SESSION[$construct]['stone'] &&
+            $_SESSION['town']['town-gold'] >= $_SESSION[$construct]['gold']
+        ) {
+            $_SESSION[$constructIsOK] = 'true';
+        } else {
+            $_SESSION[$constructIsOK] = 'false';
+        }
+    }
+
+    foreach ($constructsFromStockResources as $construct) {
+        switch ($construct) {
+            case 'workshop':
+                $constructIsOK = 'workshop-construct-isOK';
+                break;
+                // case 'sawmill':
+                //     $constructIsOK = 'sawmill-construct-isOK';
+                //     break;
+                // case 'extractor':
+                //     $constructIsOK = 'extractor-construct-isOK';
+                //     break;
+                // case 'quarry':
+                //     $constructIsOK = 'quarry-construct-isOK';
+                //     break;
+                // case 'mine':
+                //     $constructIsOK = 'mine-construct-isOK';
+                //     break;
+        }
+        if (
+            $_SESSION['stock']['stock-food'] >= $_SESSION[$construct]['food'] &&
+            $_SESSION['stock']['stock-wood'] >= $_SESSION[$construct]['wood'] &&
+            $_SESSION['stock']['stock-metal'] >= $_SESSION[$construct]['metal'] &&
+            $_SESSION['stock']['stock-stone'] >= $_SESSION[$construct]['stone'] &&
+            $_SESSION['stock']['stock-gold'] >= $_SESSION[$construct]['gold']
+        ) {
+            $_SESSION[$constructIsOK] = 'true';
+        } else {
+            $_SESSION[$constructIsOK] = 'false';
+        }
+    }
+
+
+
+
+
+    ?>
+
     <script>
         let timeConstructFarm = <?php echo $_SESSION['farm']['timeConstruct']; ?>;
         let timeConstructSawmill = <?php echo $_SESSION['sawmill']['timeConstruct']; ?>;
@@ -91,6 +167,18 @@ echo ('</pre>');
         let levelExtractor = <?php echo $_SESSION['extractor-level']; ?>;
         let levelQuarry = <?php echo $_SESSION['quarry-level']; ?>;
         let levelMine = <?php echo $_SESSION['mine-level']; ?>;
+
+        let levelWorkshop = <?php echo $_SESSION['workshop-level']; ?>;
+
+        let isConstructOKFarm = JSON.parse(<?php echo $_SESSION['farm-construct-isOK']; ?>);
+        let isConstructOKSawmill = JSON.parse(<?php echo $_SESSION['sawmill-construct-isOK']; ?>);
+        let isConstructOKExtractor = JSON.parse(<?php echo $_SESSION['extractor-construct-isOK']; ?>);
+        let isConstructOKQuarry = JSON.parse(<?php echo $_SESSION['quarry-construct-isOK']; ?>);
+        let isConstructOKMine = JSON.parse(<?php echo $_SESSION['mine-construct-isOK']; ?>);
+
+        let isConstructOKWorkshop = JSON.parse(<?php echo $_SESSION['workshop-construct-isOK']; ?>);
+
+        let isStockResourcesOK = true;
     </script>
     <script src="../js/time.js"></script>
     <script src="../js/construct.js"></script>

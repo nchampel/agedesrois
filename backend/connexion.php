@@ -11,10 +11,11 @@
 // }
 header('Access-Control-Allow-Origin: *');
 session_start();
+echo 'test' . $_SESSION['pseudo'];
 if (isset($_POST['pseudo'])) {
     $user = filter_var($_POST['pseudo'], FILTER_SANITIZE_STRING);
 } else {
-    $user = 'Lucie';
+    $user = $_SESSION['pseudo'];
 }
 
 //$password = $_POST['password'];
@@ -41,6 +42,8 @@ try {
     $_SESSION['town']['town-metal'] = $results[0]['town_metal'];
     $_SESSION['town']['town-stone'] = $results[0]['town_stone'];
     $_SESSION['town']['town-gold'] = $results[0]['town_gold'];
+    $_SESSION['town']['town-bow'] = $results[0]['town_bow'];
+    $_SESSION['town']['town-crossbow'] = $results[0]['town_crossbow'];
     $_SESSION['stock']['stock-food'] = $results[0]['stock_food'];
     $_SESSION['stock']['stock-wood'] = $results[0]['stock_wood'];
     $_SESSION['stock']['stock-metal'] = $results[0]['stock_metal'];

@@ -4,6 +4,7 @@ session_start();
 $resource = $_GET['resource'];
 $type = $_GET['type'];
 // $resource = 51;
+$pseudo = $_SESSION['pseudo'];
 $pseudo = 'Lucie';
 
 switch ($type) {
@@ -55,25 +56,25 @@ try {
     // $_SESSION['town-food'] = $resource;
     switch ($type) {
         case 'food':
-            $_SESSION['town-food'] = $resource;
+            $_SESSION['town']['town-food'] = $resource;
             break;
         case 'wood':
-            $_SESSION['town-wood'] = $resource;
+            $_SESSION['town']['town-wood'] = $resource;
             break;
         case 'metal':
-            $_SESSION['town-metal'] = $resource;
+            $_SESSION['town']['town-metal'] = $resource;
             break;
         case 'stone':
-            $_SESSION['town-stone'] = $resource;
+            $_SESSION['town']['town-stone'] = $resource;
             break;
         case 'gold':
-            $_SESSION['town-gold'] = $resource;
+            $_SESSION['town']['town-gold'] = $resource;
             break;
         case 'bow':
-            $_SESSION['town-bow'] = $resource;
+            $_SESSION['town']['town-bow'] = $resource;
             break;
         case 'crossbow':
-            $_SESSION['town-crossbow'] = $resource;
+            $_SESSION['town']['town-crossbow'] = $resource;
             break;
     }
     // echo ('food');

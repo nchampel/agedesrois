@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 session_start();
 $type = $_GET['type'];
 $level = (int)$_GET['level'];
-$pseudo = 'Lucie';
+$pseudo = $_SESSION['pseudo'];
 
 // $type = 'farm';
 // $level = 10;
@@ -64,7 +64,7 @@ try {
         case 'mine':
             $_SESSION['mine-level'] = $level;
             break;
-        case 'mine':
+        case 'workshop':
             $_SESSION['workshop-level'] = $level;
             break;
     }

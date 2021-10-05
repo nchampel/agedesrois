@@ -12,6 +12,7 @@ if (
     $_SESSION['town']['town-gold'] < $goldNeeded ||
     $_SESSION['town']['town-bow'] < $bowNeeded
 ) {
+    $_SESSION['flash'] = 'Entraînement annulé car pas assez de ressources en ville';
     header('Location: ../frontend/map.php');
     exit();
 }
@@ -23,7 +24,7 @@ $gold = $_SESSION['town']['town-gold'] - $goldNeeded;
 $bow = $_SESSION['town']['town-bow'] - $bowNeeded;
 // $food = (int)$_GET['food'];
 
-$pseudo = 'Lucie';
+$pseudo = $_SESSION['pseudo'];
 
 // $type = 'farm';
 // $level = 10;

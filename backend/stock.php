@@ -6,7 +6,7 @@ $metalStock = filter_var($_POST['stock-metal'], FILTER_SANITIZE_STRING);
 $stoneStock = filter_var($_POST['stock-stone'], FILTER_SANITIZE_STRING);
 $goldStock = filter_var($_POST['stock-gold'], FILTER_SANITIZE_STRING);
 // $resource = 51;
-$pseudo = 'Lucie';
+$pseudo = $_SESSION['pseudo'];
 // $foodStock = 100;
 // $woodStock = 100;
 
@@ -17,6 +17,8 @@ if (
     $_SESSION['town']['town-stone'] < $stoneStock ||
     $_SESSION['town']['town-gold'] < $goldStock
 ) {
+
+    $_SESSION['flash'] = 'Mise en stock annulée car pas assez de ressources en ville';
     header('Location: ../frontend/map.php');
     exit();
 }

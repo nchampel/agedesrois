@@ -16,6 +16,7 @@ if (
     $_SESSION['town']['town-stone'] < $stoneNeeded ||
     $_SESSION['town']['town-gold'] < $goldNeeded
 ) {
+    $_SESSION['flash'] = 'Construction annulée car pas assez de ressources en ville';
     header('Location: ../frontend/map.php');
     exit();
 }
@@ -29,7 +30,7 @@ $stone = $_SESSION['town']['town-stone'] - $stoneNeeded;
 $gold = $_SESSION['town']['town-gold'] - $goldNeeded;
 // $food = (int)$_GET['food'];
 
-$pseudo = 'Lucie';
+$pseudo = $_SESSION['pseudo'];
 
 // $type = 'farm';
 // $level = 10;

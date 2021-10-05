@@ -10,26 +10,27 @@ $goldNeeded = (int)$_GET['goldNeeded'];
 echo ('avant test');
 
 if (
-    $_SESSION['stock']['town-food'] < $foodNeeded ||
-    $_SESSION['stock']['town-wood'] < $woodNeeded ||
-    $_SESSION['stock']['town-metal'] < $metalNeeded ||
-    $_SESSION['stock']['town-stone'] < $stoneNeeded ||
-    $_SESSION['stock']['town-gold'] < $goldNeeded
+    $_SESSION['stock']['stock-food'] < $foodNeeded ||
+    $_SESSION['stock']['stock-wood'] < $woodNeeded ||
+    $_SESSION['stock']['stock-metal'] < $metalNeeded ||
+    $_SESSION['stock']['stock-stone'] < $stoneNeeded ||
+    $_SESSION['stock']['stock-gold'] < $goldNeeded
 ) {
+    $_SESSION['flash'] = 'Construction annulée car pas assez de ressources en stock';
     header('Location: ../frontend/map.php');
     exit();
 }
 
 echo ('après test');
 
-$food = $_SESSION['stock']['town-food'] - $foodNeeded;
-$wood = $_SESSION['stock']['town-wood'] - $woodNeeded;
-$metal = $_SESSION['stock']['town-metal'] - $metalNeeded;
-$stone = $_SESSION['stock']['town-stone'] - $stoneNeeded;
-$gold = $_SESSION['stock']['town-gold'] - $goldNeeded;
+$food = $_SESSION['stock']['stock-food'] - $foodNeeded;
+$wood = $_SESSION['stock']['stock-wood'] - $woodNeeded;
+$metal = $_SESSION['stock']['stock-metal'] - $metalNeeded;
+$stone = $_SESSION['stock']['stock-stone'] - $stoneNeeded;
+$gold = $_SESSION['stock']['stock-gold'] - $goldNeeded;
 // $food = (int)$_GET['food'];
 
-$pseudo = 'Lucie';
+$pseudo = $_SESSION['pseudo'];
 
 // $type = 'farm';
 // $level = 10;
@@ -56,11 +57,11 @@ try {
     //On l'execute
     $result = $statement->execute();
     echo ('test avant');
-    $_SESSION['stock']['town-food'] = $food;
-    $_SESSION['stock']['town-wood'] = $wood;
-    $_SESSION['stock']['town-metal'] - $metal;
-    $_SESSION['stock']['town-stone'] = $stone;
-    $_SESSION['stock']['town-gold'] = $gold;
+    $_SESSION['stock']['stock-food'] = $food;
+    $_SESSION['stock']['stock-wood'] = $wood;
+    $_SESSION['stock']['stock-metal'] = $metal;
+    $_SESSION['stock']['stock-stone'] = $stone;
+    $_SESSION['stock']['stock-gold'] = $gold;
     //session_destroy();
     // include('connexion.php');
     // echo ('test après');

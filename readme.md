@@ -67,3 +67,9 @@ tooltip => ok
 
 réorganisation arborescence et fichier map.php pour plus de clarté
 mise en place de la construction à partir du stock
+ressources pas enlevées du stock et niveau ne monte pas
+
+05/10
+
+construction à partir du stock => ok
+ajout arc et arbalète => ok

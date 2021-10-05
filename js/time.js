@@ -58,6 +58,23 @@ function addTownResources() {
     townGoldInnerHTML = townGoldInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
     document.getElementById('town-gold').innerText = townGoldInnerHTML;
 
+    let townBow = document.getElementById('town-bow').innerText;
+    // console.log('bow');
+    townBow = transformFormatNumber(townBow);
+    townBow = parseFloat(townBow);
+    townBow = townBow + 1 * levelWorkshop;
+    let townBowInnerHTML = nf.format(townBow);
+    townBowInnerHTML = townBowInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
+    document.getElementById('town-bow').innerText = townBowInnerHTML;
+
+    let townCrossbow = document.getElementById('town-crossbow').innerText;
+    townCrossbow = transformFormatNumber(townCrossbow);
+    townCrossbow = parseFloat(townCrossbow);
+    townCrossbow = townCrossbow + 1 * levelWorkshop;
+    let townCrossbowInnerHTML = nf.format(townCrossbow);
+    townCrossbowInnerHTML = townCrossbowInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
+    document.getElementById('town-crossbow').innerText = townCrossbowInnerHTML;
+
     setTimeout(function () {
         addTownResources()
     }, 10000);
@@ -66,6 +83,8 @@ function addTownResources() {
     fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townMetal + '&type=metal');
     fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townStone + '&type=stone');
     fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townGold + '&type=gold');
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townBow + '&type=bow');
+    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townCrossbow + '&type=crossbow');
     // let url = 'http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood;
     // let oReq = new XMLHttpRequest();
     // oReq.open("GET", url, true);
