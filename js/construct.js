@@ -50,6 +50,7 @@ constructFarmFormElt.addEventListener("submit", function (e) {
 let constructSawmillFormElt = document.getElementById('form-sawmill-construct');
 // console.log('event scierie');
 constructSawmillFormElt.addEventListener("submit", function (e) {
+    console.log('event scierie');
     if (isConstructOKSawmill) {
         waitingMessageElt.innerText = 'Construction scierie lancée';
         e.preventDefault();
@@ -70,6 +71,7 @@ constructExtractorFormElt.addEventListener("submit", function (e) {
     e.preventDefault();
     if (isConstructOKExtractor) {
         waitingMessageElt.innerText = 'Construction extracteur lancé';
+        timedProgBar(timeConstructExtractor);
         setTimeout(function () {
             constructExtractorFormElt.submit();
             // document.getElementById('form-save-resources').submit();
@@ -119,6 +121,7 @@ construcWorkshopFormElt.addEventListener("submit", function (e) {
     e.preventDefault();
     if (isConstructOKWorkshop) {
         waitingMessageElt.innerText = 'Construction atelier lancée';
+        timedProgBar(timeConstructWorkshop);
         setTimeout(function () {
             construcWorkshopFormElt.submit();
             // document.getElementById('form-save-resources').submit();
@@ -138,6 +141,7 @@ stockFormElt.addEventListener("submit", function (e) {
     e.preventDefault();
     if (isStockResourcesOK) {
         waitingMessageElt.innerText = 'Stockage en cours';
+        timedProgBar(30);
         setTimeout(function () {
             stockFormElt.submit();
             // document.getElementById('form-save-resources').submit();

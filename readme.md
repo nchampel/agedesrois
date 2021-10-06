@@ -24,7 +24,7 @@ or trouvable uniquement sur les monstres
 
 augmenter niveau bâtiment militaire avant de monter le niveau des héros
 
-mettre gif animé d'attente
+mettre gif animé d'attente ou barre de progression comme clikerheroes2
 
 
 28/09
@@ -76,3 +76,7 @@ ajout arc et arbalète => ok
 plus de temps d'attente avant d'annuler construction car pas assez de ressources
 marche pas avec scierie, pas testé avec atelier
 souci sur le fichier save.php avec pseudo en dur => résolu
+
+06/10
+
+barre de progression colorée => OK

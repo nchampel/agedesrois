@@ -6,7 +6,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     //$_SESSION['pseudo'] = "Lucie";
 }
 echo ('<pre>');
-var_dump($_SESSION);
+// var_dump($_SESSION);
 // echo 'true';
 // echo true;
 // echo 'false';
@@ -29,6 +29,10 @@ echo ('</pre>');
 </head>
 
 <body>
+    <!-- <progress id="progress-bar" value="60" max="100"></progress> -->
+    <div id="div-progress-bar">
+        <div id="progress-bar"></div>
+    </div>
     <?php
     if (isset($_SESSION['flash'])) {
         if (!empty($_SESSION['flash'])) {
@@ -44,7 +48,7 @@ echo ('</pre>');
                     ?> !</h1>
     <p>Nourriture dans la ville : <?php //echo $player['player']; 
                                     ?> </p> -->
-    <h1>Salut <span id="pseudo"><?php echo $_SESSION['pseudo']; ?></span> !</h1>
+    <h1 id="test">Salut <span id="pseudo"><?php echo $_SESSION['pseudo']; ?></span> !</h1>
 
     <?php include('townresources.php'); ?>
 
@@ -180,8 +184,11 @@ echo ('</pre>');
 
         let isStockResourcesOK = true;
     </script>
+
+    <script src="../js/design.js"></script>
     <script src="../js/time.js"></script>
     <script src="../js/construct.js"></script>
+
 </body>
 
 </html>
