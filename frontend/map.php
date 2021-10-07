@@ -62,6 +62,8 @@ echo ('</pre>');
 
     <?php include('constructionbuttons.php'); ?>
 
+    <?php include('trainingbuttons.php'); ?>
+
 
 
     <form action="../backend/connexion.php" method="POST" id="form-save-resources">
@@ -151,9 +153,21 @@ echo ('</pre>');
         }
     }
 
+    // if (
+    //     $_SESSION['stock']['stock-food'] >= $_SESSION[$construct]['food'] &&
+    //     $_SESSION['stock']['stock-wood'] >= $_SESSION[$construct]['wood'] &&
+    //     $_SESSION['stock']['stock-metal'] >= $_SESSION[$construct]['metal'] &&
+    //     $_SESSION['stock']['stock-stone'] >= $_SESSION[$construct]['stone'] &&
+    //     $_SESSION['stock']['stock-gold'] >= $_SESSION[$construct]['gold']
+    // ) {
+    //     $_SESSION[$constructIsOK] = 'true';
+    // } else {
+    //     $_SESSION[$constructIsOK] = 'false';
+    // }
 
-
-
+    if (isset($_POST['stock-food'])) {
+        echo filter_var($_POST['stock-food'], FILTER_SANITIZE_STRING);
+    }
 
     ?>
 
@@ -165,6 +179,8 @@ echo ('</pre>');
         let timeConstructMine = <?php echo $_SESSION['mine']['timeConstruct']; ?>;
 
         let timeConstructWorkshop = <?php echo $_SESSION['workshop']['timeConstruct']; ?>;
+
+        let timeTrainingArcher = <?php echo $_SESSION['archer']['timeConstruct']; ?>;
 
         let levelFarm = <?php echo $_SESSION['farm-level']; ?>;
         let levelSawmill = <?php echo $_SESSION['sawmill-level']; ?>;
@@ -182,6 +198,9 @@ echo ('</pre>');
 
         let isConstructOKWorkshop = JSON.parse(<?php echo $_SESSION['workshop-construct-isOK']; ?>);
 
+        //let isTrainingOKArcher = JSON.parse(<?php //echo $_SESSION['archer-training-isOK'];
+                                                ?>);
+        let isTrainingOKArcher = true;
         let isStockResourcesOK = true;
     </script>
 

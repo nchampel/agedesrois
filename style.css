@@ -57,8 +57,8 @@
 progress[value]::-webkit-progress-bar {
   background-color: "green";
 } */
-#progress-bar {
-  /* border: none; */
+/* #progress-bar {
+  border: none;
   width: 400px;
   height: 10px;
   background: white;
@@ -82,28 +82,29 @@ progress[value]::-webkit-progress-value {
 
 progress[value]::-webkit-progress-bar {
   background: blue;
-}
+} */
 
 
 /* code map.php */
-h1{
-  color:red;
-}
 h3{
     font-size: 1.5em;
 }
+#progress-bar, #div-progress-bar{
+  /* display: none; */
+  border-radius: 15px;
+}
 #div-progress-bar{
-  display: none;
   background-color: white;
   height: 10px;
   width: 300px;
   border: black 1px solid;
+  box-shadow: 2px 2px 5px black;
 }
 #progress-bar{
-  display: none;
+  /* margin: 2px; */
   background-color: green;
   height: 10px;
-  width: 0px;
+  width: 50px;
 }
 
 /* code townresources.php */

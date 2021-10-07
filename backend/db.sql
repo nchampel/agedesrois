@@ -26,14 +26,15 @@ CREATE TABLE player(
     extractor_level INT,
     quarry_level INT,
     mine_level INT,
-    workshop_level INT
+    workshop_level INT,
+    archer_level INT
 );
 
 INSERT INTO player (pseudo, town_food, town_wood, town_metal, town_stone, town_gold, town_mana, 
 town_mail, town_leather, town_sword, town_bow, town_crossbow, 
 stock_food, stock_wood, stock_metal, stock_stone, stock_gold, 
-farm_level, sawmill_level, extractor_level, quarry_level, mine_level, workshop_level) 
-VALUES ("Lucie", 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+farm_level, sawmill_level, extractor_level, quarry_level, mine_level, workshop_level, archer_level) 
+VALUES ("Lucie", 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 CREATE TABLE items(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,

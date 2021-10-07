@@ -37,6 +37,8 @@ function timedProgBar(time) {
     }
 }
 
+// timedProgBar(60);
+
 // 1000px
 // 4s
 // 250, 500 750 1000

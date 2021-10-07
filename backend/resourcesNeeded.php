@@ -2,7 +2,7 @@
 
 session_start();
 
-$types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier'];
+$types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier', 'archer'];
 
 foreach ($types as $typeItem) {
     switch ($typeItem) {
@@ -30,6 +30,10 @@ foreach ($types as $typeItem) {
             $level = $_SESSION['workshop-level'];
             $type = 'workshop';
             break;
+        case 'archer':
+            $level = $_SESSION['archer-level'];
+            $type = 'archer';
+            break;
     }
     // $typeItem = 'ferme';
     // var_dump($level);
@@ -51,6 +55,7 @@ foreach ($types as $typeItem) {
         $_SESSION[$type]['metal'] = $results1[0]['metal'];
         $_SESSION[$type]['stone'] = $results1[0]['stone'];
         $_SESSION[$type]['gold'] = $results1[0]['gold'];
+        $_SESSION[$type]['bow'] = $results1[0]['bow'];
         $_SESSION[$type]['timeConstruct'] = $results1[0]['time_construct'];
         $_SESSION[$type]['name'] = $results1[0]['type_item'];
         if ($type = 'quarry') {

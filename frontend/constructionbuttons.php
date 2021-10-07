@@ -1,160 +1,161 @@
 <!-- <button id="construct-farm" onclick="construction(<?php //echo ($_SESSION['farm']['food'] . ', ' . $_SESSION['farm']['timeConstruct']); 
                                                         ?>)">Construire ferme</button> -->
+<?php
+function colorResourceTown($resource, $construct)
+{
+    switch ($resource) {
+        case 'food':
+            $resourceColumn = 'town-food';
+            break;
+        case 'wood':
+            $resourceColumn = 'town-wood';
+            break;
+        case 'metal':
+            $resourceColumn = 'town-metal';
+            break;
+        case 'stone':
+            $resourceColumn = 'town-stone';
+            break;
+        case 'gold':
+            $resourceColumn = 'town-gold';
+            break;
+    }
+    // echo $_SESSION[$construct][$resource];
+    // echo $_SESSION['farm']['food'];
+    if ($_SESSION['town'][$resourceColumn] >= $_SESSION[$construct][$resource]) {
+        return '#4cff49';
+    } else {
+        return '#ff2020';
+    }
+}
+function colorResourceStock($resource, $construct)
+{
+    switch ($resource) {
+        case 'food':
+            $resourceColumn = 'stock-food';
+            break;
+        case 'wood':
+            $resourceColumn = 'stock-wood';
+            break;
+        case 'metal':
+            $resourceColumn = 'stock-metal';
+            break;
+        case 'stone':
+            $resourceColumn = 'stock-stone';
+            break;
+        case 'gold':
+            $resourceColumn = 'stock-gold';
+            break;
+    }
+    // echo $_SESSION[$construct][$resource];
+    // echo $_SESSION['farm']['food'];
+    if ($_SESSION['stock'][$resourceColumn] >= $_SESSION[$construct][$resource]) {
+        return '#4cff49';
+    } else {
+        return '#ff2020';
+    }
+}
 
-<form id="form-farm-construct" class="tooltip" action="../backend/constructSubstractResources.php?type=farm&level=
-    <?php echo $_SESSION['farm-level']; ?>
-    &foodNeeded=<?php echo $_SESSION['farm']['food']; ?>
-    &woodNeeded=<?php echo $_SESSION['farm']['wood']; ?>
-    &metalNeeded=<?php echo $_SESSION['farm']['metal']; ?>
-    &stoneNeeded=<?php echo $_SESSION['farm']['stone']; ?>
-    &goldNeeded=<?php echo $_SESSION['farm']['gold']; ?>" method="POST">
-    <div class="tooltiptext">
-        <h3>Ville</h3>
-        <p>Nourriture : <?php echo $_SESSION['farm']['food']; ?></p>
-        <?php if ($_SESSION['farm']['wood'] > 0) {
-            echo '<p>Bois : ' . $_SESSION['farm']['wood'] . '</p>';
-        }
-        if ($_SESSION['farm']['metal'] > 0) {
-            echo '<p>Métal : ' . $_SESSION['farm']['metal'] . '</p>';
-        }
-        if ($_SESSION['farm']['stone'] > 0) {
-            echo '<p>Pierre : ' . $_SESSION['farm']['stone'] . '</p>';
-        }
-        if ($_SESSION['farm']['gold'] > 0) {
-            echo '<p>Or : ' . $_SESSION['farm']['gold'] . '</p>';
-        }
-        ?>
-    </div>
-    <input type="submit" value="Construction ferme niveau <?php echo $_SESSION['farm-level'] + 1; ?>" class="button" />
-</form>
-<form id="form-sawmill-construct" class="tooltip" action="../backend/constructSubstractResources.php?type=sawmill&level=
-    <?php echo $_SESSION['sawmill-level']; ?>
-    &foodNeeded=<?php echo $_SESSION['sawmill']['food']; ?>
-    &woodNeeded=<?php echo $_SESSION['sawmill']['wood']; ?>
-    &metalNeeded=<?php echo $_SESSION['sawmill']['metal']; ?>
-    &stoneNeeded=<?php echo $_SESSION['sawmill']['stone']; ?>
-    &goldNeeded=<?php echo $_SESSION['sawmill']['gold']; ?>" method="POST">
-    <div class="tooltiptext">
-        <h3>Ville</h3>
-        <p>Nourriture : <?php echo $_SESSION['sawmill']['food']; ?></p>
-        <?php if ($_SESSION['sawmill']['wood'] > 0) {
-            echo '<p>Bois : ' . $_SESSION['sawmill']['wood'] . '</p>';
-        }
-        if ($_SESSION['sawmill']['metal'] > 0) {
-            echo '<p>Métal : ' . $_SESSION['sawmill']['metal'] . '</p>';
-        }
-        if ($_SESSION['sawmill']['stone'] > 0) {
-            echo '<p>Pierre : ' . $_SESSION['sawmill']['stone'] . '</p>';
-        }
-        if ($_SESSION['sawmill']['gold'] > 0) {
-            echo '<p>Or : ' . $_SESSION['sawmill']['gold'] . '</p>';
-        }
-        ?>
-    </div>
-    <input type="submit" value="Construction scierie niveau <?php echo $_SESSION['sawmill-level'] + 1; ?>" class="button" />
-</form>
-<form id="form-extractor-construct" class="tooltip" action="../backend/constructSubstractResources.php?type=extractor&level=
-    <?php echo $_SESSION['extractor-level']; ?>
-    &foodNeeded=<?php echo $_SESSION['extractor']['food']; ?>
-    &woodNeeded=<?php echo $_SESSION['extractor']['wood']; ?>
-    &metalNeeded=<?php echo $_SESSION['extractor']['metal']; ?>
-    &stoneNeeded=<?php echo $_SESSION['extractor']['stone']; ?>
-    &goldNeeded=<?php echo $_SESSION['extractor']['gold']; ?>" method="POST">
-    <div class="tooltiptext">
-        <h3>Ville</h3>
-        <p>Nourriture : <?php echo $_SESSION['extractor']['food']; ?></p>
-        <?php if ($_SESSION['extractor']['wood'] > 0) {
-            echo '<p>Bois : ' . $_SESSION['extractor']['wood'] . '</p>';
-        }
-        if ($_SESSION['extractor']['metal'] > 0) {
-            echo '<p>Métal : ' . $_SESSION['extractor']['metal'] . '</p>';
-        }
-        if ($_SESSION['extractor']['stone'] > 0) {
-            echo '<p>Pierre : ' . $_SESSION['extractor']['stone'] . '</p>';
-        }
-        if ($_SESSION['extractor']['gold'] > 0) {
-            echo '<p>Or : ' . $_SESSION['extractor']['gold'] . '</p>';
-        }
-        ?>
-    </div>
-    <input type="submit" value="Construction extracteur niveau <?php echo $_SESSION['extractor-level'] + 1; ?>" class="button" />
-</form>
-<form id="form-quarry-construct" class="tooltip" action="../backend/constructSubstractResources.php?type=quarry&level=
-    <?php echo $_SESSION['quarry-level']; ?>
-    &foodNeeded=<?php echo $_SESSION['quarry']['food']; ?>
-    &woodNeeded=<?php echo $_SESSION['quarry']['wood']; ?>
-    &metalNeeded=<?php echo $_SESSION['quarry']['metal']; ?>
-    &stoneNeeded=<?php echo $_SESSION['quarry']['stone']; ?>
-    &goldNeeded=<?php echo $_SESSION['quarry']['gold']; ?>" method="POST">
-    <div class="tooltiptext">
-        <h3>Ville</h3>
-        <p>Nourriture : <?php echo $_SESSION['quarry']['food']; ?></p>
-        <?php if ($_SESSION['quarry']['wood'] > 0) {
-            echo '<p>Bois : ' . $_SESSION['quarry']['wood'] . '</p>';
-        }
-        if ($_SESSION['quarry']['metal'] > 0) {
-            echo '<p>Métal : ' . $_SESSION['quarry']['metal'] . '</p>';
-        }
-        if ($_SESSION['quarry']['stone'] > 0) {
-            echo '<p>Pierre : ' . $_SESSION['quarry']['stone'] . '</p>';
-        }
-        if ($_SESSION['quarry']['gold'] > 0) {
-            echo '<p>Or : ' . $_SESSION['quarry']['gold'] . '</p>';
-        }
-        ?>
-    </div>
-    <input type="submit" value="Construction carrière niveau <?php echo $_SESSION['quarry-level'] + 1; ?>" class="button" />
-</form>
-<form id="form-mine-construct" class="tooltip" action="../backend/constructSubstractResources.php?type=mine&level=
-    <?php echo $_SESSION['mine-level']; ?>
-    &foodNeeded=<?php echo $_SESSION['mine']['food']; ?>
-    &woodNeeded=<?php echo $_SESSION['mine']['wood']; ?>
-    &metalNeeded=<?php echo $_SESSION['mine']['metal']; ?>
-    &stoneNeeded=<?php echo $_SESSION['mine']['stone']; ?>
-    &goldNeeded=<?php echo $_SESSION['mine']['gold']; ?>" method="POST">
-    <div class="tooltiptext">
-        <h3>Ville</h3>
-        <p>Nourriture : <?php echo $_SESSION['mine']['food']; ?></p>
-        <?php if ($_SESSION['mine']['wood'] > 0) {
-            echo '<p>Bois : ' . $_SESSION['mine']['wood'] . '</p>';
-        }
-        if ($_SESSION['mine']['metal'] > 0) {
-            echo '<p>Métal : ' . $_SESSION['mine']['metal'] . '</p>';
-        }
-        if ($_SESSION['mine']['stone'] > 0) {
-            echo '<p>Pierre : ' . $_SESSION['mine']['stone'] . '</p>';
-        }
-        if ($_SESSION['mine']['gold'] > 0) {
-            echo '<p>Or : ' . $_SESSION['mine']['gold'] . '</p>';
-        }
-        ?>
-    </div>
-    <input type="submit" value="Construction mine niveau <?php echo $_SESSION['mine-level'] + 1; ?>" class="button" />
-</form>
+$constructsTownType = ['farm', 'sawmill', 'extractor', 'quarry', 'mine'];
 
-<form id="form-workshop-construct" class="tooltip" action="../backend/constructStockSubstractResources.php?type=workshop&level=
-    <?php echo $_SESSION['workshop-level']; ?>
-    &foodNeeded=<?php echo $_SESSION['workshop']['food']; ?>
-    &woodNeeded=<?php echo $_SESSION['workshop']['wood']; ?>
-    &metalNeeded=<?php echo $_SESSION['workshop']['metal']; ?>
-    &stoneNeeded=<?php echo $_SESSION['workshop']['stone']; ?>
-    &goldNeeded=<?php echo $_SESSION['workshop']['gold']; ?>" method="POST">
-    <div class="tooltiptext">
+foreach ($constructsTownType as $Towntype) {
+
+    switch ($Towntype) {
+        case 'farm':
+            $level = 'farm-level';
+            $construct = 'ferme';
+            $displayLevel = (int)$_SESSION[$level] + 1;
+            break;
+        case 'sawmill':
+            $level = 'sawmill-level';
+            $construct = 'scierie';
+            $displayLevel = (int)$_SESSION[$level] + 1;
+            break;
+        case 'extractor':
+            $level = 'extractor-level';
+            $construct = 'extracteur';
+            $displayLevel = (int)$_SESSION[$level] + 1;
+            break;
+        case 'quarry':
+            $level = 'quarry-level';
+            $construct = 'carrière';
+            $displayLevel = (int)$_SESSION[$level] + 1;
+            break;
+        case 'mine':
+            $level = 'mine-level';
+            $construct = 'mine';
+            $displayLevel = (int)$_SESSION[$level] + 1;
+            break;
+    }
+
+    echo '<form id="form-' . $Towntype . '-construct" class="tooltip" action="../backend/constructSubstractResources.php?type=' . $Towntype . '&level=' .
+        $_SESSION[$level] .
+        '&foodNeeded=' . $_SESSION[$Towntype]['food'] .
+        '&woodNeeded=' .  $_SESSION[$Towntype]['wood'] .
+        '&metalNeeded=' . $_SESSION[$Towntype]['metal'] .
+        '&stoneNeeded=' . $_SESSION[$Towntype]['stone'] .
+        '&goldNeeded=' . $_SESSION[$Towntype]['gold'] . '" method="POST">';
+    echo '<div class="tooltiptext">
+        <h3>Ville</h3>
+        <p>Nourriture : <span style="color: ' . colorResourceTown('food', $Towntype) . ';">' . $_SESSION[$Towntype]['food'] . '</span></p>';
+    if ($_SESSION[$Towntype]['wood'] > 0) {
+        echo '<p>Bois : <span style="color: ' . colorResourceTown('wood', $Towntype) . '";>' . $_SESSION[$Towntype]['wood'] . '</span></p>';
+    }
+    if ($_SESSION[$Towntype]['metal'] > 0) {
+        echo '<p>Métal : <span style="color: ' . colorResourceTown('metal', $Towntype) . '";>' . $_SESSION[$Towntype]['metal'] . '</span></p>';
+    }
+    if ($_SESSION[$Towntype]['stone'] > 0) {
+        echo '<p>Pierre : <span style="color: ' . colorResourceTown('stone', $Towntype) . '";>' . $_SESSION[$Towntype]['stone'] . '</span></p>';
+    }
+    if ($_SESSION[$Towntype]['gold'] > 0) {
+        echo '<p>Or : <span style="color: ' . colorResourceTown('gold', $Towntype) . '" ;>' . $_SESSION[$Towntype]['gold'] . '</span></p>';
+    }
+
+    echo '
+    </div>';
+    echo '<input type="submit" value="Construction ' . $construct . ' niveau ' . $displayLevel . '" class="button" />';
+    echo '</form>';
+}
+
+$constructsStockType = ['workshop'];
+
+foreach ($constructsStockType as $Stocktype) {
+
+    switch ($Stocktype) {
+        case 'workshop':
+            $level = 'workshop-level';
+            $construct = 'atelier';
+            $displayLevel = (int)$_SESSION[$level] + 1;
+            break;
+    }
+
+    echo '<form id="form-' . $Stocktype . '-construct" class="tooltip" action="../backend/constructStockSubstractResources.php?type=' . $Stocktype . '&level=' .
+        $_SESSION[$level] .
+        '&foodNeeded=' . $_SESSION[$Stocktype]['food'] .
+        '&woodNeeded=' .  $_SESSION[$Stocktype]['wood'] .
+        '&metalNeeded=' . $_SESSION[$Stocktype]['metal'] .
+        '&stoneNeeded=' . $_SESSION[$Stocktype]['stone'] .
+        '&goldNeeded=' . $_SESSION[$Stocktype]['gold'] . '" method="POST">';
+    echo '<div class="tooltiptext">
         <h3>Stock</h3>
-        <p>Nourriture : <?php echo $_SESSION['workshop']['food']; ?></p>
-        <?php if ($_SESSION['workshop']['wood'] > 0) {
-            echo '<p>Bois : ' . $_SESSION['workshop']['wood'] . '</p>';
-        }
-        if ($_SESSION['workshop']['metal'] > 0) {
-            echo '<p>Métal : ' . $_SESSION['workshop']['metal'] . '</p>';
-        }
-        if ($_SESSION['workshop']['stone'] > 0) {
-            echo '<p>Pierre : ' . $_SESSION['workshop']['stone'] . '</p>';
-        }
-        if ($_SESSION['workshop']['gold'] > 0) {
-            echo '<p>Or : ' . $_SESSION['workshop']['gold'] . '</p>';
-        }
-        ?>
-    </div>
-    <input type="submit" value="Construction atelier niveau <?php echo $_SESSION['workshop-level'] + 1; ?>" class="button" />
-</form>
+        <p>Nourriture : <span style="color: ' . colorResourceStock('food', $Stocktype) . ';">' . $_SESSION[$Stocktype]['food'] . '</span></p>';
+    if ($_SESSION[$Stocktype]['wood'] > 0) {
+        echo '<p>Bois : <span style="color: ' . colorResourceStock('wood', $Stocktype) . '";>' . $_SESSION[$Stocktype]['wood'] . '</span></p>';
+    }
+    if ($_SESSION[$Stocktype]['metal'] > 0) {
+        echo '<p>Métal : <span style="color: ' . colorResourceStock('metal', $Stocktype) . '";>' . $_SESSION[$Stocktype]['metal'] . '</span></p>';
+    }
+    if ($_SESSION[$Stocktype]['stone'] > 0) {
+        echo '<p>Pierre : <span style="color: ' . colorResourceStock('stone', $Stocktype) . '";>' . $_SESSION[$Stocktype]['stone'] . '</span></p>';
+    }
+    if ($_SESSION[$Stocktype]['gold'] > 0) {
+        echo '<p>Or : <span style="color: ' . colorResourceStock('gold', $Stocktype) . '" ;>' . $_SESSION[$Stocktype]['gold'] . '</span></p>';
+    }
+
+    echo '
+    </div>';
+    echo '<input type="submit" value="Construction ' . $construct . ' niveau ' . $displayLevel . '" class="button" />';
+    echo '</form>';
+}
+
+?>
