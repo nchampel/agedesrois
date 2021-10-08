@@ -72,16 +72,16 @@ echo ('</pre>');
 
     <p>Ressources à transférer dans la réserve</p>
     <form id="form-stock" action="../backend/stock.php" method="POST">
-        <label for="stock-food">Nourriture</label>
-        <input type="text" name="stock-food" id="stock-food" value="0">
-        <label for="stock-wood">Bois</label>
-        <input type="text" name="stock-wood" id="stock-wood" value="0">
-        <label for="stock-metal">Métal</label>
-        <input type="text" name="stock-metal" id="stock-metal" value="0">
-        <label for="stock-stone">Pierre</label>
-        <input type="text" name="stock-stone" id="stock-stone" value="0">
-        <label for="stock-gold">Or</label>
-        <input type="text" name="stock-gold" id="stock-gold" value="0">
+        <label for="transfer-food">Nourriture</label>
+        <input type="text" name="transfer-food" id="transfer-food" value="0">
+        <label for="transfer-wood">Bois</label>
+        <input type="text" name="transfer-wood" id="transfer-wood" value="0">
+        <label for="transfer-metal">Métal</label>
+        <input type="text" name="transfer-metal" id="transfer-metal" value="0">
+        <label for="transfer-stone">Pierre</label>
+        <input type="text" name="transfer-stone" id="transfer-stone" value="0">
+        <label for="transfer-gold">Or</label>
+        <input type="text" name="transfer-gold" id="transfer-gold" value="0">
         <input type="submit" value="Mettre en stock" class="button" />
     </form>
 
@@ -172,6 +172,12 @@ echo ('</pre>');
     ?>
 
     <script>
+        let foodTown = <?php echo $_SESSION['town']['town-food']; ?>;
+        let woodTown = <?php echo $_SESSION['town']['town-wood']; ?>;
+        let metalTown = <?php echo $_SESSION['town']['town-metal']; ?>;
+        let stoneTown = <?php echo $_SESSION['town']['town-stone']; ?>;
+        let goldTown = <?php echo $_SESSION['town']['town-gold']; ?>;
+
         let timeConstructFarm = <?php echo $_SESSION['farm']['timeConstruct']; ?>;
         let timeConstructSawmill = <?php echo $_SESSION['sawmill']['timeConstruct']; ?>;
         let timeConstructExtractor = <?php echo $_SESSION['extractor']['timeConstruct']; ?>;
@@ -201,7 +207,7 @@ echo ('</pre>');
         //let isTrainingOKArcher = JSON.parse(<?php //echo $_SESSION['archer-training-isOK'];
                                                 ?>);
         let isTrainingOKArcher = true;
-        let isStockResourcesOK = true;
+        // let isStockResourcesOK = true;
     </script>
 
     <script src="../js/design.js"></script>

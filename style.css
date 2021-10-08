@@ -104,7 +104,9 @@ h3{
   /* margin: 2px; */
   background-color: green;
   height: 10px;
-  width: 50px;
+  width: 296px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 /* code townresources.php */

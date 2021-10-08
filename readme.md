@@ -26,6 +26,8 @@ augmenter niveau bâtiment militaire avant de monter le niveau des héros
 
 mettre gif animé d'attente ou barre de progression comme clikerheroes2
 
+pour souci attente à blanc si pas asssez de ressources en ville pour el stockage => form pointant sur map.php, on remplit les champs avec les valeurs saisies, on compare les valeurs et on définit si isStockResourcesOK est true ou false
+
 
 28/09
 
@@ -80,3 +82,12 @@ souci sur le fichier save.php avec pseudo en dur => résolu
 06/10
 
 barre de progression colorée => OK
+
+07/10
+
+bug scierie corrigé par amélioration du code en faisant du DRY
+
+08/10
+
+amélioration barre de progression
+construction, entraînement et stockage annulé si pas assez de ressources sans temps d'attente

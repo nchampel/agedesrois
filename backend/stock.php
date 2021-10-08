@@ -1,10 +1,10 @@
 <?php
 session_start();
-$foodStock = filter_var($_POST['stock-food'], FILTER_SANITIZE_STRING);
-$woodStock = filter_var($_POST['stock-wood'], FILTER_SANITIZE_STRING);
-$metalStock = filter_var($_POST['stock-metal'], FILTER_SANITIZE_STRING);
-$stoneStock = filter_var($_POST['stock-stone'], FILTER_SANITIZE_STRING);
-$goldStock = filter_var($_POST['stock-gold'], FILTER_SANITIZE_STRING);
+$foodStock = filter_var($_POST['transfer-food'], FILTER_SANITIZE_STRING);
+$woodStock = filter_var($_POST['transfer-wood'], FILTER_SANITIZE_STRING);
+$metalStock = filter_var($_POST['transfer-metal'], FILTER_SANITIZE_STRING);
+$stoneStock = filter_var($_POST['transfer-stone'], FILTER_SANITIZE_STRING);
+$goldStock = filter_var($_POST['transfer-gold'], FILTER_SANITIZE_STRING);
 // $resource = 51;
 $pseudo = $_SESSION['pseudo'];
 // $foodStock = 100;

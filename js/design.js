@@ -24,16 +24,20 @@ let numberColors = colorsProgressBar.length;
 function timedProgBar(time) {
     containerElt.style.display = "block";
     progressBarElt.style.display = "block";
-    console.log(parseInt(i * 300 / time));
-    if (i <= time) {
+    // console.log(parseInt(i * 300 / (time * 10)));
+    if (i <= time * 10) {
 
-        progressBarElt.style.width = parseInt(i * 300 / time) + "px";
-        progressBarElt.style.backgroundColor = colorsProgressBar[parseInt(i * numberColors / time)];
-        console.log(i * numberColors / time);
+        progressBarElt.style.width = parseInt(i * 300 / (time * 10)) + "px";
+        if (parseInt(i * 300 / (time * 10)) >= 296) {
+            progressBarElt.style.borderTopRightRadius = '15px';
+            progressBarElt.style.borderBottomRightRadius = '15px';
+        }
+        progressBarElt.style.backgroundColor = colorsProgressBar[parseInt(i * numberColors / (time * 10))];
+        console.log(parseInt(i * numberColors / (time * 10)));
         setTimeout(function () {
             timedProgBar(time);
-        }, 1000);
-        i++;
+        }, 100);
+        i = i + 1;
     }
 }
 
