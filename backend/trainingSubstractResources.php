@@ -7,6 +7,8 @@ $bowNeeded = (int)$_GET['bowNeeded'];
 
 echo ('avant test');
 
+include_once('townResourcesRecovering.php');
+
 if (
     $_SESSION['town']['town-food'] < $foodNeeded ||
     $_SESSION['town']['town-gold'] < $goldNeeded ||

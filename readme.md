@@ -91,3 +91,7 @@ bug scierie corrigé par amélioration du code en faisant du DRY
 
 amélioration barre de progression
 construction, entraînement et stockage annulé si pas assez de ressources sans temps d'attente
+
+09/10
+
+bug ressources perdues lors attente construction, entraînement et mise en stock => résolu

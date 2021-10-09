@@ -90,7 +90,7 @@ h3{
     font-size: 1.5em;
 }
 #progress-bar, #div-progress-bar{
-  /* display: none; */
+  display: none;
   border-radius: 15px;
 }
 #div-progress-bar{

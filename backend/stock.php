@@ -10,6 +10,8 @@ $pseudo = $_SESSION['pseudo'];
 // $foodStock = 100;
 // $woodStock = 100;
 
+include_once('townResourcesRecovering.php');
+
 if (
     $_SESSION['town']['town-food'] < $foodStock ||
     $_SESSION['town']['town-wood'] < $woodStock ||
