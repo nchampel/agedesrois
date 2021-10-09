@@ -85,7 +85,7 @@ include_once('construct.php');
 //met en $_session les valeurs pour le niveau suivant
 include_once('resourcesNeeded.php');
 
-$_SESSION['flash'] = 'construction finie';
+$_SESSION['flash'] = 'Construction finie';
 
 header('Location: ../frontend/map.php');
 exit();

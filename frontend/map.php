@@ -5,6 +5,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
     //$_SESSION['pseudo'] = "Lucie";
 }
+include_once('../backend/resourcesRecoveringMap.php');
 echo ('<pre>');
 // var_dump($_SESSION);
 // echo 'true';
@@ -33,16 +34,19 @@ echo ('</pre>');
     <div id="div-progress-bar">
         <div id="progress-bar"></div>
     </div>
-    <?php
-    if (isset($_SESSION['flash'])) {
-        if (!empty($_SESSION['flash'])) {
-            echo $_SESSION['flash'];
-            $_SESSION['flash'] = '';
+    <p id="flash-message">
+        <?php
+        if (isset($_SESSION['flash'])) {
+            if (!empty($_SESSION['flash'])) {
+                echo $_SESSION['flash'];
+                $_SESSION['flash'] = '';
+            }
         }
-    }
-    ?>
+        ?>
+    </p>
 
-    <p id="waiting-message"></p>
+
+    <!-- <p id="waiting-message"></p> -->
 
     <!-- <h1>Salut <?php //echo $_SESSION['player']; 
                     ?> !</h1>

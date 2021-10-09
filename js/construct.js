@@ -1,4 +1,4 @@
-let waitingMessageElt = document.getElementById('waiting-message');
+let waitingMessageElt = document.getElementById('flash-message');
 
 // console.log(document.getElementById('transfer-food'));
 

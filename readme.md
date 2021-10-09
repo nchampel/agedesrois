@@ -95,3 +95,4 @@ construction, entraînement et stockage annulé si pas assez de ressources sans 
 09/10
 
 bug ressources perdues lors attente construction, entraînement et mise en stock => résolu
+bug actualisation avec les ressources perdues => résolu

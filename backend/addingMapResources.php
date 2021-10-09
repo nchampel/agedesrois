@@ -1,41 +1,25 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 session_start();
-$foodNeeded = (int)$_GET['foodNeeded'];
-$woodNeeded = (int)$_GET['woodNeeded'];
-$metalNeeded = (int)$_GET['metalNeeded'];
-$stoneNeeded = (int)$_GET['stoneNeeded'];
-$goldNeeded = (int)$_GET['goldNeeded'];
+$foodEarned = (int)$_GET['foodEarned'];
+$woodEarned = (int)$_GET['woodEarned'];
+$metalEarned = (int)$_GET['metalEarned'];
+$stoneEarned = (int)$_GET['stoneEarned'];
+$goldEarned = (int)$_GET['goldEarned'];
 
 echo ('avant test');
 
 include_once('townResourcesRecovering.php');
 
-if (
-    $_SESSION['town']['town-food'] < $foodNeeded ||
-    $_SESSION['town']['town-wood'] < $woodNeeded ||
-    $_SESSION['town']['town-metal'] < $metalNeeded ||
-    $_SESSION['town']['town-stone'] < $stoneNeeded ||
-    $_SESSION['town']['town-gold'] < $goldNeeded
-) {
-    $_SESSION['flash'] = 'Construction annulée car pas assez de ressources en ville';
-    header('Location: ../frontend/map.php');
-    exit();
-}
-
 echo ('après test');
-
-$food = $_SESSION['town']['town-food'] - $foodNeeded;
-$wood = $_SESSION['town']['town-wood'] - $woodNeeded;
-$metal = $_SESSION['town']['town-metal'] - $metalNeeded;
-$stone = $_SESSION['town']['town-stone'] - $stoneNeeded;
-$gold = $_SESSION['town']['town-gold'] - $goldNeeded;
-// $food = (int)$_GET['food'];
 
 $pseudo = $_SESSION['pseudo'];
 
-// $type = 'farm';
-// $level = 10;
+$food = $_SESSION['town']['town-food'] + $foodEarned;
+$wood = $_SESSION['town']['town-wood'] + $woodEarned;
+$metal = $_SESSION['town']['town-metal'] + $metalEarned;
+$stone = $_SESSION['town']['town-stone'] + $stoneEarned;
+$gold = $_SESSION['town']['town-gold'] + $goldEarned;
 
 include_once('db.php');
 if (!isset($connexion)) {
@@ -80,12 +64,11 @@ try {
     echo $exception->getMessage();
 }
 
-// sleep(10);
-include_once('construct.php');
-//met en $_session les valeurs pour le niveau suivant
-include_once('resourcesNeeded.php');
 
-$_SESSION['flash'] = 'Construction finie';
+//met en $_session les valeurs pour le niveau suivant
+// include_once('resourcesNeeded.php');
+
+$_SESSION['flash'] = 'Vous avez gagné Nourriture : ' . $foodEarned . ', Bois : ' . $woodEarned . ', Métal : ' . $metalEarned . ', Pierre : ' . $quarryEarned . ', Or : ' . $goldEarned;
 
 header('Location: ../frontend/map.php');
 exit();

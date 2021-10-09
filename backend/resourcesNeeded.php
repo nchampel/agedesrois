@@ -1,6 +1,10 @@
 <?php
 
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    //var_dump('test');
+    session_start();
+    //$_SESSION['pseudo'] = "Lucie";
+}
 
 $types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier', 'archer'];
 
