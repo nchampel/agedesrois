@@ -33,7 +33,7 @@ function timedProgBar(time) {
             progressBarElt.style.borderBottomRightRadius = '15px';
         }
         progressBarElt.style.backgroundColor = colorsProgressBar[parseInt(i * numberColors / (time * 10))];
-        console.log(parseInt(i * numberColors / (time * 10)));
+        // console.log(parseInt(i * numberColors / (time * 10)));
         setTimeout(function () {
             timedProgBar(time);
         }, 100);

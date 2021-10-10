@@ -6,7 +6,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     //$_SESSION['pseudo'] = "Lucie";
 }
 
-$types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier', 'archer'];
+$types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier', 'caserne'];
 
 foreach ($types as $typeItem) {
     switch ($typeItem) {
@@ -30,13 +30,13 @@ foreach ($types as $typeItem) {
             $level = $_SESSION['mine-level'];
             $type = 'mine';
             break;
+        case 'caserne':
+            $level = $_SESSION['barracks-level'];
+            $type = 'barracks';
+            break;
         case 'atelier':
             $level = $_SESSION['workshop-level'];
             $type = 'workshop';
-            break;
-        case 'archer':
-            $level = $_SESSION['archer-level'];
-            $type = 'archer';
             break;
     }
     // $typeItem = 'ferme';
@@ -65,6 +65,42 @@ foreach ($types as $typeItem) {
         if ($type = 'quarry') {
             $_SESSION[$type]['name'] = "carrière";
         }
+    } catch (Exception $exception) {
+        echo $exception->getMessage();
+    }
+}
+
+$typesArmy = ['archer'];
+
+foreach ($typesArmy as $typeArmy) {
+    switch ($typeArmy) {
+        case 'archer':
+            $level = $_SESSION['archer-level'];
+            $typeSoldier = 'archer';
+            break;
+    }
+    // $typeItem = 'ferme';
+    // var_dump($level);
+
+    $rqt = "SELECT * from army where type_item = :typeItem and level_item = :level";
+    //On prépare notre requête. ça nous renvoie un objet qui est notre requête préparée prête à être executée
+    try {
+        $statement = $connexion->prepare($rqt);
+        $statement->bindParam(':typeItem', $typeArmy);
+        $statement->bindParam(':level', $level);
+        //On l'execute
+        $statement->execute();
+
+        // On récupère l'ensemble des résultats dans un tableau
+        $results1 = $statement->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($results1);
+        $_SESSION[$typeSoldier]['strength'] = $results1[0]['strength'];
+        $_SESSION[$typeSoldier]['life_points'] = $results1[0]['life_points'];
+        $_SESSION[$typeSoldier]['food'] = $results1[0]['food'];
+        $_SESSION[$typeSoldier]['gold'] = $results1[0]['gold'];
+        $_SESSION[$typeSoldier]['bow'] = $results1[0]['bow'];
+        $_SESSION[$typeSoldier]['timeConstruct'] = $results1[0]['time_construct'];
+        $_SESSION[$typeSoldier]['name'] = $results1[0]['type_item'];
     } catch (Exception $exception) {
         echo $exception->getMessage();
     }

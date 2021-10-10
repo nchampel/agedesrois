@@ -7,34 +7,32 @@ CREATE TABLE player(
     pseudo VARCHAR(255),
     town_food INT,
     town_wood INT,
-    town_metal INT,
-    town_stone INT,
-    town_gold INT,
-    town_mana INT,
-    town_mail INT,
-    town_leather INT,
-    town_sword INT,
-    town_bow INT,
-    town_crossbow INT,
-    stock_food INT,
-    stock_wood INT,
-    stock_metal INT,
-    stock_stone INT,
-    stock_gold INT,
-    farm_level INT,
-    sawmill_level INT,
-    extractor_level INT,
-    quarry_level INT,
-    mine_level INT,
-    workshop_level INT,
-    archer_level INT
+    town_metal INT DEFAULT 0,
+    town_stone INT DEFAULT 0,
+    town_gold INT DEFAULT 0,
+    town_mana INT DEFAULT 0,
+    town_mail INT DEFAULT 0,
+    town_leather INT DEFAULT 0,
+    town_sword INT DEFAULT 0,
+    town_bow INT DEFAULT 0,
+    town_crossbow INT DEFAULT 0,
+    stock_food INT DEFAULT 0,
+    stock_wood INT DEFAULT 0,
+    stock_metal INT DEFAULT 0,
+    stock_stone INT DEFAULT 0,
+    stock_gold INT DEFAULT 0,
+    farm_level INT DEFAULT 0,
+    sawmill_level INT DEFAULT 0,
+    extractor_level INT DEFAULT 0,
+    quarry_level INT DEFAULT 0,
+    mine_level INT DEFAULT 0,
+    barracks_level INT DEFAULT 0,
+    workshop_level INT DEFAULT 0,
+    archer_level INT DEFAULT 0
 );
 
-INSERT INTO player (pseudo, town_food, town_wood, town_metal, town_stone, town_gold, town_mana, 
-town_mail, town_leather, town_sword, town_bow, town_crossbow, 
-stock_food, stock_wood, stock_metal, stock_stone, stock_gold, 
-farm_level, sawmill_level, extractor_level, quarry_level, mine_level, workshop_level, archer_level) 
-VALUES ("Lucie", 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO player (pseudo, town_food, town_wood) 
+VALUES ("Lucie", 50, 50);
 
 CREATE TABLE items(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -55,6 +53,16 @@ CREATE TABLE items(
 );
 
 INSERT INTO items (type_item, level_item, time_construct, food, wood, metal, stone, gold, mana, mail, leather, sword, bow, crossbow) VALUES 
+("caserne", 0, 10, 2000, 1000, 500, 250, 0, 0, 0, 0, 0, 0, 0),
+("caserne", 1, 12, 2500, 2000, 750, 500, 0, 0, 0, 0, 0, 0, 0),
+("caserne", 2, 15, 5000, 2500, 1000, 750, 0, 0, 0, 0, 0, 0, 0),
+("caserne", 3, 20, 10000, 5000, 2000, 1000, 0, 0, 0, 0, 0, 0, 0),
+("caserne", 4, 25, 20000, 7500, 2500, 2000, 0, 0, 0, 0, 0, 0, 0),
+("caserne", 5, 30, 25000, 10000, 5000, 2500, 0, 0, 0, 0, 0, 0, 0),
+("caserne", 6, 35, 50000, 20000, 7500, 5000, 0, 0, 0, 0, 0, 0, 0),
+("caserne", 7, 40, 75000, 25000, 10000, 7500, 10, 0, 0, 0, 0, 0, 0),
+("caserne", 8, 45, 100000, 50000, 20000, 10000, 25, 0, 0, 0, 0, 0, 0),
+("caserne", 9, 50, 200000, 75000, 25000, 20000, 50, 0, 0, 0, 0, 0, 0),
 ("atelier", 0, 10, 2000, 1000, 500, 250, 0, 0, 0, 0, 0, 0, 0),
 ("atelier", 1, 12, 2500, 2000, 750, 500, 0, 0, 0, 0, 0, 0, 0),
 ("atelier", 2, 15, 5000, 2500, 1000, 750, 0, 0, 0, 0, 0, 0, 0),
@@ -136,13 +144,34 @@ INSERT INTO items (type_item, level_item, time_construct, food, wood, metal, sto
 ("tour", 6, 35, 2000000, 300000, 250000, 75000, 75000, 0, 0, 0, 0, 0, 0),
 ("tour", 7, 40, 3000000, 400000, 400000, 100000, 100000, 0, 0, 0, 0, 0, 0),
 ("tour", 8, 45, 4000000, 450000, 450000, 250000, 150000, 0, 0, 0, 0, 0, 0),
-("tour", 9, 50, 5000000, 500000, 500000, 500000, 200000, 0, 0, 0, 0, 0, 0),
-("archer", 0, 30, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0),
-("archer", 1, 30, 2000, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0),
-("archer", 2, 30, 2500, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0),
-("archer", 3, 30, 5000, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0),
-("archer", 4, 30, 7500, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0),
-("archer", 5, 30, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0),
+("tour", 9, 50, 5000000, 500000, 500000, 500000, 200000, 0, 0, 0, 0, 0, 0)
+;
+
+CREATE TABLE army(
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    type_item VARCHAR(255),
+    level_item INT,
+    time_construct INT,
+    strength INT,
+    life_points INT,
+    stock INT,
+    food INT,
+    gold INT,
+    mana INT,
+    mail INT,
+    leather INT,
+    sword INT,
+    bow INT,
+    crossbow INT  
+);
+
+INSERT INTO army (type_item, level_item, time_construct, strength, life_points, stock, food, gold, mana, mail, leather, sword, bow, crossbow) VALUES 
+("archer", 0, 30, 10, 50, 1000, 1000, 0, 0, 0, 0, 0, 10, 0),
+("archer", 1, 30, 20, 100, 2000, 2000, 0, 0, 0, 0, 0, 10, 0),
+("archer", 2, 30, 30, 150, 3000, 2500, 0, 0, 0, 0, 0, 10, 0),
+("archer", 3, 30, 40, 200, 4000, 5000, 0, 0, 0, 0, 0, 10, 0),
+("archer", 4, 30, 50, 250, 5000, 7500, 0, 0, 0, 0, 0, 10, 0),
+("archer", 5, 30, 60, 300, 6000, 10000, 0, 0, 0, 0, 0, 10, 0),
 ("arbaletrier", 0, 30, 10000, 5000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ("piquier", 0, 30, 1000, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ("hallebardier", 0, 30, 1000, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -151,24 +180,6 @@ INSERT INTO items (type_item, level_item, time_construct, food, wood, metal, sto
 ("magicien", 0, 30, 1000, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ("midieu", 0, 30, 1000, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 ;
-
-CREATE TABLE items(
-    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    type_item VARCHAR(255),
-    level_item INT,
-    time_construct INT,
-    food INT,
-    wood INT,
-    metal INT,
-    stone INT,
-    gold INT,
-    mana INT,
-    mail INT,
-    leather INT,
-    sword INT,
-    bow INT,
-    crossbow INT    
-);
 
 -- CREATE TABLE interet_adherent(
 --     adherent_id INT,

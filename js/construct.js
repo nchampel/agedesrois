@@ -50,13 +50,13 @@ function saveResources() {
 
     //pour que cela fonctionne en ligne
 
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);//.then(response => console.log(response.text()));
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);//.then(response => console.log(response.text()));
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
 
 }
 
@@ -65,6 +65,11 @@ function waitingTimeConstruct(type) {
     let name = "";
     let isOK = false;
     let answer = "";
+    let food = '';
+    let wood = '';
+    let metal = '';
+    let stone = '';
+    let gold = '';
     switch (type) {
         case 'farm':
             id = 'form-farm-construct';
@@ -72,6 +77,11 @@ function waitingTimeConstruct(type) {
             answer = 'Pas assez de ressources pour lancer la construction de la ferme';
             isOK = isConstructOKFarm;
             time = timeConstructFarm;
+            food = farmFood;
+            wood = farmWood;
+            metal = farmMetal;
+            stone = farmStone;
+            gold = farmGold;
             break;
         case 'sawmill':
             id = 'form-sawmill-construct';
@@ -79,6 +89,11 @@ function waitingTimeConstruct(type) {
             answer = 'Pas assez de ressources pour lancer la construction de la scierie';
             isOK = isConstructOKSawmill;
             time = timeConstructSawmill;
+            food = sawmillFood;
+            wood = sawmillWood;
+            metal = sawmillMetal;
+            stone = sawmillStone;
+            gold = sawmillGold;
             break;
         case 'extractor':
             id = 'form-extractor-construct';
@@ -86,6 +101,11 @@ function waitingTimeConstruct(type) {
             answer = 'Pas assez de ressources pour lancer la construction de l\'extracteur';
             isOK = isConstructOKExtractor;
             time = timeConstructExtractor;
+            food = extractorFood;
+            wood = extractorWood;
+            metal = extractorMetal;
+            stone = extractorStone;
+            gold = extractorGold;
             break;
         case 'quarry':
             id = 'form-quarry-construct';
@@ -93,6 +113,11 @@ function waitingTimeConstruct(type) {
             answer = 'Pas assez de ressources pour lancer la construction de la carrière';
             isOK = isConstructOKQuarry;
             time = timeConstructQuarry;
+            food = quarryFood;
+            wood = quarryWood;
+            metal = quarryMetal;
+            stone = quarryStone;
+            gold = quarryGold;
             break;
         case 'mine':
             id = 'form-mine-construct';
@@ -100,28 +125,98 @@ function waitingTimeConstruct(type) {
             answer = 'Pas assez de ressources pour lancer la construction de la mine';
             isOK = isConstructOKMine;
             time = timeConstructMine;
+            food = mineFood;
+            wood = mineWood;
+            metal = mineMetal;
+            stone = mineStone;
+            gold = mineGold;
             break;
+    }
+    let formElt = document.getElementById(id);
+    // console.log(formElt);
+    formElt.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // fetch('http://localhost:8080/LageDesRois/backend/connexion.php');
+        // console.log(formElt);
+        let townFoodUpdate = document.getElementById('town-food').innerText;
+        // console.log(townFoodUpdate);
+        townFoodUpdate = parseFloat(transformFormatNumber(townFoodUpdate));
+        let townWoodUpdate = parseFloat(transformFormatNumber(document.getElementById('town-wood').innerText));
+        // console.log(townWoodUpdate);
+        let townMetalUpdate = parseFloat(transformFormatNumber(document.getElementById('town-metal').innerText));
+        let townStoneUpdate = parseFloat(transformFormatNumber(document.getElementById('town-stone').innerText));
+        let townGoldUpdate = parseFloat(transformFormatNumber(document.getElementById('town-gold').innerText));
+        // console.log(townFoodUpdate);
+        // console.log(food);
+        if (townFoodUpdate >= food && townWoodUpdate >= wood && townMetalUpdate >= metal && townStoneUpdate >= stone && townGoldUpdate >= gold) {
+            // if (isOK) {
+            waitingMessageElt.innerText = 'Construction ' + name;
+            timedProgBar(time);
+            setTimeout(function () {
+                // console.log('event settimeout ferme');
+                // let townFood = document.getElementById('town-food').innerText;
+                // let townWood = document.getElementById('town-wood').innerText;
+                // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food');
+                // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood');
+                // saveResources(); //marche pas
+
+                formElt.submit();
+            }, time * 1000 + 2000);
+        } else {
+            console.log('bug');
+            waitingMessageElt.innerText = answer;
+        }
+    });
+}
+
+function waitingTimeConstructStock(type) {
+    let id = "";
+    let name = "";
+    let isOK = false;
+    let answer = "";
+    let food = '';
+    let wood = '';
+    let metal = '';
+    let stone = '';
+    let gold = '';
+
+    switch (type) {
         case 'workshop':
             id = 'form-workshop-construct';
             name = 'atelier lancée';
             answer = 'Pas assez de ressources pour lancer la construction de l\'atelier';
             isOK = isConstructOKWorkshop;
             time = timeConstructWorkshop;
+            food = workshopFood;
+            wood = workshopWood;
+            metal = workshopMetal;
+            stone = workshopStone;
+            gold = workshopGold;
             break;
     }
     let formElt = document.getElementById(id);
+    // console.log(formElt);
     formElt.addEventListener("submit", function (e) {
         e.preventDefault();
-        if (isOK) {
+        // fetch('http://localhost:8080/LageDesRois/backend/connexion.php');
+        let stockFoodUpdate = parseFloat(transformFormatNumber(document.getElementById('stock-food').innerText));
+        let stockWoodUpdate = parseFloat(transformFormatNumber(document.getElementById('stock-wood').innerText));
+        let stockMetalUpdate = parseFloat(transformFormatNumber(document.getElementById('stock-metal').innerText));
+        let stockStoneUpdate = parseFloat(transformFormatNumber(document.getElementById('stock-stone').innerText));
+        let stockGoldUpdate = parseFloat(transformFormatNumber(document.getElementById('stock-gold').innerText));
+        // console.log(stockFoodUpdate);
+        if (stockFoodUpdate >= food && stockWoodUpdate >= wood && stockMetalUpdate >= metal && stockStoneUpdate >= stone && stockGoldUpdate >= gold) {
+            // if (isOK) {
             waitingMessageElt.innerText = 'Construction ' + name;
             timedProgBar(time);
             setTimeout(function () {
-                console.log('event settimeout ferme');
+                // console.log('event settimeout ferme');
                 // let townFood = document.getElementById('town-food').innerText;
                 // let townWood = document.getElementById('town-wood').innerText;
                 // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food');
                 // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood');
-                saveResources(); //marche pas
+                // saveResources(); //marche pas
+
                 formElt.submit();
             }, time * 1000 + 2000);
         } else {
@@ -135,6 +230,11 @@ function waitingTimeTraining(type) {
     let name = "";
     let isOK = false;
     let answer = "";
+    let food = '';
+    let gold = '';
+    let bow = 0;
+    let crossbow = 0;
+
     switch (type) {
         case 'archer':
             id = 'form-archer-training';
@@ -142,21 +242,30 @@ function waitingTimeTraining(type) {
             answer = 'Pas assez de ressources pour lancer l\'amélioration de l\'archer';
             isOK = isTrainingOKArcher;
             time = timeTrainingArcher;
+            food = archerFood;
+            gold = archerGold;
+            bow = archerBow;
+            // crossbow = archerCrossbow;
             break;
     }
     let formElt = document.getElementById(id);
     formElt.addEventListener("submit", function (e) {
         e.preventDefault();
-        if (isOK) {
+        let townFoodUpdate = document.getElementById('town-food').innerText;
+        townFoodUpdate = parseFloat(transformFormatNumber(townFoodUpdate));
+        let townGoldUpdate = parseFloat(transformFormatNumber(document.getElementById('town-gold').innerText));
+        let townBowUpdate = parseFloat(transformFormatNumber(document.getElementById('town-bow').innerText));
+        if (townFoodUpdate >= food && townGoldUpdate >= gold && townBowUpdate >= bow) {
+            // if (isOK) {
             waitingMessageElt.innerText = 'Amélioration ' + name;
             timedProgBar(time);
             setTimeout(function () {
-                console.log('event settimeout ferme');
+                // console.log('event settimeout ferme');
                 // let townFood = document.getElementById('town-food').innerText;
                 // let townWood = document.getElementById('town-wood').innerText;
                 // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food');
                 // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood');
-                saveResources();
+                // saveResources();
                 formElt.submit();
             }, time * 1000 + 2000);
         } else {
@@ -165,9 +274,14 @@ function waitingTimeTraining(type) {
     });
 }
 
-let types = ['farm', 'sawmill', 'extractor', 'quarry', 'mine', 'workshop'];
-types.forEach(function (type) {
+let typesTown = ['farm', 'sawmill', 'extractor', 'quarry', 'mine'];
+typesTown.forEach(function (type) {
     waitingTimeConstruct(type);
+});
+
+let typesStock = ['workshop'];
+typesStock.forEach(function (type) {
+    waitingTimeConstructStock(type);
 });
 
 let trainingTypes = ['archer'];
@@ -195,17 +309,17 @@ stockFormElt.addEventListener("submit", function (e) {
     } else {
         isStockResourcesOK = false;
     }
-    console.log('event stockage');
-    console.log(metalToStock);
+    // console.log('event stockage');
+    // console.log(metalToStock);
     e.preventDefault();
     if (isStockResourcesOK) {
         waitingMessageElt.innerText = 'Stockage en cours';
-        timedProgBar(60);
+        timedProgBar(10);
         setTimeout(function () {
-            saveResources();
+            // saveResources();
             stockFormElt.submit();
             // document.getElementById('form-save-resources').submit();
-        }, 60000 + 4000);
+        }, 10000 + 4000);
     } else {
         waitingMessageElt.innerText = 'Pas assez de ressources à stocker';
     }

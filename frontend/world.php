@@ -2,13 +2,19 @@
 
 ?>
 
+
+
 <p>Carte</p>
 
 <table>
     <tr>
         <td>Monstre</td>
         <td>Vide</td>
-        <td>Nourriture</td>
+        <td>
+            <form action="../backend/addingMapResources.php?food=10000" method="POST" id="form-food-niv1">
+                <input type="submit" value="Réserve nourriture niveau 1" class="button" />
+            </form>
+        </td>
         <td>Monstre</td>
         <td>Vide</td>
         <td>Nourriture</td>

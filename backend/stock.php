@@ -1,5 +1,9 @@
 <?php
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    //var_dump('test');
+    session_start();
+    //$_SESSION['pseudo'] = "Lucie";
+}
 $foodStock = filter_var($_POST['transfer-food'], FILTER_SANITIZE_STRING);
 $woodStock = filter_var($_POST['transfer-wood'], FILTER_SANITIZE_STRING);
 $metalStock = filter_var($_POST['transfer-metal'], FILTER_SANITIZE_STRING);

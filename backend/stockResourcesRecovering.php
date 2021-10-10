@@ -10,7 +10,11 @@
 
 // }
 header('Access-Control-Allow-Origin: *');
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    //var_dump('test');
+    session_start();
+    //$_SESSION['pseudo'] = "Lucie";
+}
 echo 'test' . $_SESSION['pseudo'];
 if (isset($_POST['pseudo'])) {
     $user = filter_var($_POST['pseudo'], FILTER_SANITIZE_STRING);

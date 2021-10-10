@@ -173,6 +173,11 @@ echo ('</pre>');
         echo filter_var($_POST['stock-food'], FILTER_SANITIZE_STRING);
     }
 
+    echo ('<pre>');
+    var_dump($_SESSION);
+
+    echo ('</pre>');
+
     ?>
 
     <script>
@@ -181,6 +186,50 @@ echo ('</pre>');
         let metalTown = <?php echo $_SESSION['town']['town-metal']; ?>;
         let stoneTown = <?php echo $_SESSION['town']['town-stone']; ?>;
         let goldTown = <?php echo $_SESSION['town']['town-gold']; ?>;
+
+
+        let farmFood = <?php echo $_SESSION['farm']['food']; ?>;
+        let farmWood = <?php echo $_SESSION['farm']['wood']; ?>;
+        let farmMetal = <?php echo $_SESSION['farm']['metal']; ?>;
+        let farmStone = <?php echo $_SESSION['farm']['stone']; ?>;
+        let farmGold = <?php echo $_SESSION['farm']['gold']; ?>;
+        let sawmillFood = <?php echo $_SESSION['sawmill']['food']; ?>;
+        let sawmillWood = <?php echo $_SESSION['sawmill']['wood']; ?>;
+        let sawmillMetal = <?php echo $_SESSION['sawmill']['metal']; ?>;
+        let sawmillStone = <?php echo $_SESSION['sawmill']['stone']; ?>;
+        let sawmillGold = <?php echo $_SESSION['sawmill']['gold']; ?>;
+        let extractorFood = <?php echo $_SESSION['extractor']['food']; ?>;
+        let extractorWood = <?php echo $_SESSION['extractor']['wood']; ?>;
+        let extractorMetal = <?php echo $_SESSION['extractor']['metal']; ?>;
+        let extractorStone = <?php echo $_SESSION['extractor']['stone']; ?>;
+        let extractorGold = <?php echo $_SESSION['extractor']['gold']; ?>;
+        let quarryFood = <?php echo $_SESSION['quarry']['food']; ?>;
+        let quarryWood = <?php echo $_SESSION['quarry']['wood']; ?>;
+        let quarryMetal = <?php echo $_SESSION['quarry']['metal']; ?>;
+        let quarryStone = <?php echo $_SESSION['quarry']['stone']; ?>;
+        let quarryGold = <?php echo $_SESSION['quarry']['gold']; ?>;
+        let mineFood = <?php echo $_SESSION['mine']['food']; ?>;
+        let mineWood = <?php echo $_SESSION['mine']['wood']; ?>;
+        let mineMetal = <?php echo $_SESSION['mine']['metal']; ?>;
+        let mineStone = <?php echo $_SESSION['mine']['stone']; ?>;
+        let mineGold = <?php echo $_SESSION['mine']['gold']; ?>;
+
+        let barracksFood = <?php echo $_SESSION['barracks']['food']; ?>;
+        let barracksWood = <?php echo $_SESSION['barracks']['wood']; ?>;
+        let barracksMetal = <?php echo $_SESSION['barracks']['metal']; ?>;
+        let barracksStone = <?php echo $_SESSION['barracks']['stone']; ?>;
+        let barracksGold = <?php echo $_SESSION['barracks']['gold']; ?>;
+
+        let workshopFood = <?php echo $_SESSION['workshop']['food']; ?>;
+        let workshopWood = <?php echo $_SESSION['workshop']['wood']; ?>;
+        let workshopMetal = <?php echo $_SESSION['workshop']['metal']; ?>;
+        let workshopStone = <?php echo $_SESSION['workshop']['stone']; ?>;
+        let workshopGold = <?php echo $_SESSION['workshop']['gold']; ?>;
+
+        let archerFood = <?php echo $_SESSION['archer']['food']; ?>;
+        let archerGold = <?php echo $_SESSION['archer']['gold']; ?>;
+        let archerBow = <?php echo $_SESSION['archer']['bow']; ?>;
+
 
         let timeConstructFarm = <?php echo $_SESSION['farm']['timeConstruct']; ?>;
         let timeConstructSawmill = <?php echo $_SESSION['sawmill']['timeConstruct']; ?>;

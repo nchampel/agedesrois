@@ -1,6 +1,10 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    //var_dump('test');
+    session_start();
+    //$_SESSION['pseudo'] = "Lucie";
+}
 $foodNeeded = (int)$_GET['foodNeeded'];
 $woodNeeded = (int)$_GET['woodNeeded'];
 $metalNeeded = (int)$_GET['metalNeeded'];

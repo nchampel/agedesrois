@@ -76,6 +76,193 @@ function addTownResources() {
     townCrossbowInnerHTML = townCrossbowInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
     document.getElementById('town-crossbow').innerText = townCrossbowInnerHTML;
 
+    // pour faire la coloration en temps réel des tooltip
+
+    if (townFood >= farmFood) {
+        let id = 'tooltip-food-farm';
+        document.getElementById(id).style.color = '#4cff49';
+    }
+    if (townWood >= farmWood) {
+        let id = 'tooltip-wood-farm';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+
+    }
+    if (townMetal >= farmMetal) {
+        let id = 'tooltip-metal-farm';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townStone >= farmStone) {
+        let id = 'tooltip-stone-farm';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townGold >= farmGold) {
+        let id = 'tooltip-gold-farm';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+
+    if (townFood >= sawmillFood) {
+        let id = 'tooltip-food-sawmill';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townWood >= sawmillWood) {
+        let id = 'tooltip-wood-sawmill';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townMetal >= sawmillMetal) {
+        let id = 'tooltip-metal-sawmill';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townStone >= sawmillStone) {
+        let id = 'tooltip-stone-sawmill';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townGold >= sawmillGold) {
+        let id = 'tooltip-gold-sawmill';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+
+    if (townFood >= extractorFood) {
+        let id = 'tooltip-food-extractor';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townWood >= extractorWood) {
+        let id = 'tooltip-wood-extractor';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townMetal >= extractorMetal) {
+        let id = 'tooltip-metal-extractor';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townStone >= extractorStone) {
+        let id = 'tooltip-stone-extractor';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townGold >= extractorGold) {
+        let id = 'tooltip-gold-extractor';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+
+    if (townFood >= quarryFood) {
+        let id = 'tooltip-food-quarry';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townWood >= quarryWood) {
+        let id = 'tooltip-wood-quarry';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townMetal >= quarryMetal) {
+        let id = 'tooltip-metal-quarry';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townStone >= quarryStone) {
+        let id = 'tooltip-stone-quarry';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townGold >= quarryGold) {
+        let id = 'tooltip-gold-quarry';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+
+    if (townFood >= mineFood) {
+        let id = 'tooltip-food-mine';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townWood >= mineWood) {
+        let id = 'tooltip-wood-mine';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townMetal >= mineMetal) {
+        let id = 'tooltip-metal-mine';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townStone >= mineStone) {
+        let id = 'tooltip-stone-mine';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townGold >= mineGold) {
+        let id = 'tooltip-gold-mine';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+
+    if (townFood >= barracksFood) {
+        let id = 'tooltip-food-barracks';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townWood >= barracksWood) {
+        let id = 'tooltip-wood-barracks';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townMetal >= barracksMetal) {
+        let id = 'tooltip-metal-barracks';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townStone >= barracksStone) {
+        let id = 'tooltip-stone-barracks';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+    if (townGold >= barracksGold) {
+        let id = 'tooltip-gold-barracks';
+        if (document.getElementById(id) !== null) {
+            document.getElementById(id).style.color = '#4cff49';
+        }
+    }
+
     setTimeout(function () {
         addTownResources()
     }, 10000);
@@ -97,13 +284,13 @@ function addTownResources() {
 
     //pour que cela fonctionne en ligne
 
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
-    // fetch('http://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
 
 
 }

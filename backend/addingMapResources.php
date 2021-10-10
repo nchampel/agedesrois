@@ -1,11 +1,59 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-session_start();
-$foodEarned = (int)$_GET['foodEarned'];
-$woodEarned = (int)$_GET['woodEarned'];
-$metalEarned = (int)$_GET['metalEarned'];
-$stoneEarned = (int)$_GET['stoneEarned'];
-$goldEarned = (int)$_GET['goldEarned'];
+if (session_status() != PHP_SESSION_ACTIVE) {
+    //var_dump('test');
+    session_start();
+    //$_SESSION['pseudo'] = "Lucie";
+}
+
+$resourcesEarned = ['foodEarned', 'woodEarned', 'metalEarned', 'stoneEarned', 'goldEarned'];
+
+foreach ($resourcesEarned as $resourceEarned) {
+    switch ($resourceEarned) {
+        case 'foodEarned':
+            if (isset($_GET[$resourceEarned])) {
+                $foodEarned = (int)$_GET[$resourceEarned];
+            } else {
+                $foodEarned = 0;
+            }
+            break;
+        case 'woodEarned':
+            if (isset($_GET[$resourceEarned])) {
+                $woodEarned = (int)$_GET[$resourceEarned];
+            } else {
+                $woodEarned = 0;
+            }
+            break;
+        case 'metalEarned':
+            if (isset($_GET[$resourceEarned])) {
+                $metalEarned = (int)$_GET[$resourceEarned];
+            } else {
+                $metalEarned = 0;
+            }
+            break;
+        case 'stoneEarned':
+            if (isset($_GET[$resourceEarned])) {
+                $stoneEarned = (int)$_GET[$resourceEarned];
+            } else {
+                $stoneEarned = 0;
+            }
+            break;
+        case 'goldEarned':
+            if (isset($_GET[$resourceEarned])) {
+                $goldEarned = (int)$_GET[$resourceEarned];
+            } else {
+                $goldEarned = 0;
+            }
+            break;
+    }
+}
+
+
+// $foodEarned = (int)$_GET['foodEarned'];
+// $woodEarned = (int)$_GET['woodEarned'];
+// $metalEarned = (int)$_GET['metalEarned'];
+// $stoneEarned = (int)$_GET['stoneEarned'];
+// $goldEarned = (int)$_GET['goldEarned'];
 
 echo ('avant test');
 

@@ -2,6 +2,11 @@ résumé du jeu :
 
 construction de bâtiments, récupération de ressources, recrutement d'héros, augmentation de leur niveau, parcourir la carte pour récupérer des ressources pour se battre. Le but : battre le dragon de la carte
 
+battre le dragon
+pour cela il faut recruter et entraîner son équipe
+et pour cela il faut avoir des ressources et pour accélerer on peut en récolter sur le monde, et se battre contre des monstres, et résister aux assauts ennemis qui veulent nos ressources
+une sorte de clash of clans sans le côté mmo
+
 faire bdd : joueur => pseudo nourriture bois or(mine) pierre(carrière) etc.
             carte => id carte, position (x,y), nom nourriture bois or pierre niveau force défense
 - récupérer données -
@@ -27,6 +32,8 @@ augmenter niveau bâtiment militaire avant de monter le niveau des héros
 mettre gif animé d'attente ou barre de progression comme clikerheroes2
 
 pour souci attente à blanc si pas asssez de ressources en ville pour el stockage => form pointant sur map.php, on remplit les champs avec les valeurs saisies, on compare les valeurs et on définit si isStockResourcesOK est true ou false
+
+couleur ressource suffisantes ou pas en js pour colorisation en temps réel sans actualisation
 
 
 28/09
@@ -96,3 +103,9 @@ construction, entraînement et stockage annulé si pas assez de ressources sans 
 
 bug ressources perdues lors attente construction, entraînement et mise en stock => résolu
 bug actualisation avec les ressources perdues => résolu
+commencement des points de ressources sur la carte
+
+10/10
+
+bug quand on a les ressources mais qu'on peut pas lancer construction sans recharger la page => corrigé
+bug couleur pas mise à jour automatiquement des ressources => corrigé

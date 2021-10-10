@@ -25,12 +25,18 @@ function colorResourceTrainingTown($resource, $training)
 
 $trainingsType = ['archer'];
 
+include_once('../backend/trainingChecking.php');
+
+
+
 foreach ($trainingsType as $type) {
 
     switch ($type) {
         case 'archer':
             $level = 'archer-level';
             $displayLevel = (int)$_SESSION[$level] + 1;
+            $building = 'caserne';
+            $item = 'la';
             break;
     }
 
@@ -40,8 +46,11 @@ foreach ($trainingsType as $type) {
         '&bowNeeded=' . $_SESSION[$type]['bow'] .
         '&goldNeeded=' . $_SESSION[$type]['gold'] . '" method="POST">';
     echo '<div class="tooltiptext">
-        <h3>Ville</h3>
-        <p>Nourriture : <span style="color: ' . colorResourceTrainingTown('food', $type) . ';">' . $_SESSION[$type]['food'] . '</span></p>';
+        <h3>' . ucfirst($building) . '</h3>';
+    if ($_SESSION[$type]['isOKTraining'] == 'disabled') {
+        echo 'Augmenter le niveau de ' . $item . ' ' . $building . ' pour entraîner';
+    }
+    echo '<p>Nourriture : <span style="color: ' . colorResourceTrainingTown('food', $type) . ';">' . $_SESSION[$type]['food'] . '</span></p>';
     if ($_SESSION[$type]['bow'] > 0) {
         echo '<p>Arcs : <span style="color: ' . colorResourceTrainingTown('bow', $type) . '";>' . $_SESSION[$type]['bow'] . '</span></p>';
     }
@@ -50,7 +59,7 @@ foreach ($trainingsType as $type) {
     }
 
     echo '</div>';
-    echo '<input type="submit" value="Entraînement ' . $type . ' niveau ' . $displayLevel . '" class="button" />';
+    echo '<input type="submit" value="Entraînement ' . $type . ' niveau ' . $displayLevel . '" class="button" ' . $_SESSION[$type]['isOKTraining'] . '/>';
     echo '</form>';
 }
 

@@ -56,7 +56,7 @@ function colorResourceStock($resource, $construct)
     }
 }
 
-$constructsTownType = ['farm', 'sawmill', 'extractor', 'quarry', 'mine'];
+$constructsTownType = ['farm', 'sawmill', 'extractor', 'quarry', 'mine', 'barracks'];
 
 foreach ($constructsTownType as $Towntype) {
 
@@ -86,6 +86,11 @@ foreach ($constructsTownType as $Towntype) {
             $construct = 'mine';
             $displayLevel = (int)$_SESSION[$level] + 1;
             break;
+        case 'barracks':
+            $level = 'barracks-level';
+            $construct = 'caserne';
+            $displayLevel = (int)$_SESSION[$level] + 1;
+            break;
     }
 
     echo '<form id="form-' . $Towntype . '-construct" class="tooltip" action="../backend/constructSubstractResources.php?type=' . $Towntype . '&level=' .
@@ -97,18 +102,18 @@ foreach ($constructsTownType as $Towntype) {
         '&goldNeeded=' . $_SESSION[$Towntype]['gold'] . '" method="POST">';
     echo '<div class="tooltiptext">
         <h3>Ville</h3>
-        <p>Nourriture : <span style="color: ' . colorResourceTown('food', $Towntype) . ';">' . $_SESSION[$Towntype]['food'] . '</span></p>';
+        <p>Nourriture : <span id="tooltip-food-' . $Towntype . '" style="color: ' . colorResourceTown('food', $Towntype) . ';">' . $_SESSION[$Towntype]['food'] . '</span></p>';
     if ($_SESSION[$Towntype]['wood'] > 0) {
-        echo '<p>Bois : <span style="color: ' . colorResourceTown('wood', $Towntype) . '";>' . $_SESSION[$Towntype]['wood'] . '</span></p>';
+        echo '<p>Bois : <span id="tooltip-wood-' . $Towntype . '" style="color: ' . colorResourceTown('wood', $Towntype) . '";>' . $_SESSION[$Towntype]['wood'] . '</span></p>';
     }
     if ($_SESSION[$Towntype]['metal'] > 0) {
-        echo '<p>Métal : <span style="color: ' . colorResourceTown('metal', $Towntype) . '";>' . $_SESSION[$Towntype]['metal'] . '</span></p>';
+        echo '<p>Métal : <span id="tooltip-metal-' . $Towntype . '" style="color: ' . colorResourceTown('metal', $Towntype) . '";>' . $_SESSION[$Towntype]['metal'] . '</span></p>';
     }
     if ($_SESSION[$Towntype]['stone'] > 0) {
-        echo '<p>Pierre : <span style="color: ' . colorResourceTown('stone', $Towntype) . '";>' . $_SESSION[$Towntype]['stone'] . '</span></p>';
+        echo '<p>Pierre : <span id="tooltip-stone-' . $Towntype . '" style="color: ' . colorResourceTown('stone', $Towntype) . '";>' . $_SESSION[$Towntype]['stone'] . '</span></p>';
     }
     if ($_SESSION[$Towntype]['gold'] > 0) {
-        echo '<p>Or : <span style="color: ' . colorResourceTown('gold', $Towntype) . '" ;>' . $_SESSION[$Towntype]['gold'] . '</span></p>';
+        echo '<p>Or : <span id="tooltip-gold-' . $Towntype . '" style="color: ' . colorResourceTown('gold', $Towntype) . '" ;>' . $_SESSION[$Towntype]['gold'] . '</span></p>';
     }
 
     echo '
@@ -116,6 +121,7 @@ foreach ($constructsTownType as $Towntype) {
     echo '<input type="submit" value="Construction ' . $construct . ' niveau ' . $displayLevel . '" class="button" />';
     echo '</form>';
 }
+echo '<br />';
 
 $constructsStockType = ['workshop'];
 
@@ -157,5 +163,7 @@ foreach ($constructsStockType as $Stocktype) {
     echo '<input type="submit" value="Construction ' . $construct . ' niveau ' . $displayLevel . '" class="button" />';
     echo '</form>';
 }
+
+echo '<br />';
 
 ?>
