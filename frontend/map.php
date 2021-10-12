@@ -5,6 +5,11 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
     //$_SESSION['pseudo'] = "Lucie";
 }
+
+if (!isset($_SESSION['pseudo']) || empty($_SESSION['pseudo'])) {
+    header('Location: ../index.php');
+    exit();
+}
 include_once('../backend/resourcesRecoveringMap.php');
 echo ('<pre>');
 // var_dump($_SESSION);
@@ -70,9 +75,9 @@ echo ('</pre>');
 
 
 
-    <form action="../backend/connexion.php" method="POST" id="form-save-resources">
+    <!-- <form action="../backend/connexion.php" method="POST" id="form-save-resources">
         <input type="submit" value="Sauvegarde ressources" class="button" />
-    </form>
+    </form> -->
 
     <p>Ressources à transférer dans la réserve</p>
     <form id="form-stock" action="../backend/stock.php" method="POST">
@@ -174,7 +179,7 @@ echo ('</pre>');
     }
 
     echo ('<pre>');
-    var_dump($_SESSION);
+    // var_dump($_SESSION);
 
     echo ('</pre>');
 
@@ -187,7 +192,11 @@ echo ('</pre>');
         let stoneTown = <?php echo $_SESSION['town']['town-stone']; ?>;
         let goldTown = <?php echo $_SESSION['town']['town-gold']; ?>;
 
-
+        let castleFood = <?php echo $_SESSION['castle']['food']; ?>;
+        let castleWood = <?php echo $_SESSION['castle']['wood']; ?>;
+        let castleMetal = <?php echo $_SESSION['castle']['metal']; ?>;
+        let castleStone = <?php echo $_SESSION['castle']['stone']; ?>;
+        let castleGold = <?php echo $_SESSION['castle']['gold']; ?>;
         let farmFood = <?php echo $_SESSION['farm']['food']; ?>;
         let farmWood = <?php echo $_SESSION['farm']['wood']; ?>;
         let farmMetal = <?php echo $_SESSION['farm']['metal']; ?>;
@@ -230,22 +239,26 @@ echo ('</pre>');
         let archerGold = <?php echo $_SESSION['archer']['gold']; ?>;
         let archerBow = <?php echo $_SESSION['archer']['bow']; ?>;
 
-
+        let timeConstructCastle = <?php echo $_SESSION['castle']['timeConstruct']; ?>;
         let timeConstructFarm = <?php echo $_SESSION['farm']['timeConstruct']; ?>;
         let timeConstructSawmill = <?php echo $_SESSION['sawmill']['timeConstruct']; ?>;
         let timeConstructExtractor = <?php echo $_SESSION['extractor']['timeConstruct']; ?>;
         let timeConstructQuarry = <?php echo $_SESSION['quarry']['timeConstruct']; ?>;
         let timeConstructMine = <?php echo $_SESSION['mine']['timeConstruct']; ?>;
 
+        let timeConstructBarracks = <?php echo $_SESSION['barracks']['timeConstruct']; ?>;
+
         let timeConstructWorkshop = <?php echo $_SESSION['workshop']['timeConstruct']; ?>;
 
         let timeTrainingArcher = <?php echo $_SESSION['archer']['timeConstruct']; ?>;
 
+        let levelCastle = <?php echo $_SESSION['castle-level']; ?>;
         let levelFarm = <?php echo $_SESSION['farm-level']; ?>;
         let levelSawmill = <?php echo $_SESSION['sawmill-level']; ?>;
         let levelExtractor = <?php echo $_SESSION['extractor-level']; ?>;
         let levelQuarry = <?php echo $_SESSION['quarry-level']; ?>;
         let levelMine = <?php echo $_SESSION['mine-level']; ?>;
+        let levelBarracks = <?php echo $_SESSION['barracks-level']; ?>;
 
         let levelWorkshop = <?php echo $_SESSION['workshop-level']; ?>;
 

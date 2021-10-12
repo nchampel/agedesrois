@@ -31,10 +31,25 @@ augmenter niveau bâtiment militaire avant de monter le niveau des héros
 
 mettre gif animé d'attente ou barre de progression comme clikerheroes2
 
-pour souci attente à blanc si pas asssez de ressources en ville pour el stockage => form pointant sur map.php, on remplit les champs avec les valeurs saisies, on compare les valeurs et on définit si isStockResourcesOK est true ou false
+pour souci attente à blanc si pas asssez de ressources en ville pour le stockage => form pointant sur map.php, on remplit les champs avec les valeurs saisies, on compare les valeurs et on définit si isStockResourcesOK est true ou false
 
 couleur ressource suffisantes ou pas en js pour colorisation en temps réel sans actualisation
 
+bâtiments de défense : château, mur, tour de guet
+
+bâtiments d'entraînement comptent dans les points de défense
+
+niveau château limite les niveaux maximums des autres bâtiments
+
+nouvelle ressource : les outils, collectables sur les monstres, pour réparer les bâtiments après attaque
+
+2 niveaux : endommagé et détruit
+
+soigner héros après combat
+
+attaque d'un ennemi pourra être en même temps qu'une action et ne pas être annulée par f5 ou déconnexion
+
+fonction eval pour nom de variable dynamique en js
 
 28/09
 
@@ -109,3 +124,15 @@ commencement des points de ressources sur la carte
 
 bug quand on a les ressources mais qu'on peut pas lancer construction sans recharger la page => corrigé
 bug couleur pas mise à jour automatiquement des ressources => corrigé
+corriger bug ressources en stock
+rediriger qd mauvais pseudo ou qd session finie
+
+11/10
+
+bug ressources en stock => corrigé
+rediriger qd mauvais pseudo ou qd session finie => ok
+limitation construction niveau château php => ok
+
+12/10
+
+limitation construction niveau château js => ok

@@ -5,8 +5,8 @@ CREATE DATABASE IF NOT EXISTS agedesrois;
 CREATE TABLE player(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     pseudo VARCHAR(255),
-    town_food INT,
-    town_wood INT,
+    town_food INT DEFAULT 50,
+    town_wood INT DEFAULT 50,
     town_metal INT DEFAULT 0,
     town_stone INT DEFAULT 0,
     town_gold INT DEFAULT 0,
@@ -21,6 +21,7 @@ CREATE TABLE player(
     stock_metal INT DEFAULT 0,
     stock_stone INT DEFAULT 0,
     stock_gold INT DEFAULT 0,
+    castle_level INT DEFAULT 1,
     farm_level INT DEFAULT 0,
     sawmill_level INT DEFAULT 0,
     extractor_level INT DEFAULT 0,
@@ -31,8 +32,8 @@ CREATE TABLE player(
     archer_level INT DEFAULT 0
 );
 
-INSERT INTO player (pseudo, town_food, town_wood) 
-VALUES ("Lucie", 50, 50);
+INSERT INTO player (pseudo) 
+VALUES ("Lucie");
 
 CREATE TABLE items(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -53,6 +54,16 @@ CREATE TABLE items(
 );
 
 INSERT INTO items (type_item, level_item, time_construct, food, wood, metal, stone, gold, mana, mail, leather, sword, bow, crossbow) VALUES 
+("chateau", 0, 10, 2000, 1000, 500, 250, 0, 0, 0, 0, 0, 0, 0),
+("chateau", 1, 12, 2500, 2000, 750, 500, 0, 0, 0, 0, 0, 0, 0),
+("chateau", 2, 15, 5000, 2500, 1000, 750, 0, 0, 0, 0, 0, 0, 0),
+("chateau", 3, 20, 10000, 5000, 2000, 1000, 0, 0, 0, 0, 0, 0, 0),
+("chateau", 4, 25, 20000, 7500, 2500, 2000, 0, 0, 0, 0, 0, 0, 0),
+("chateau", 5, 30, 25000, 10000, 5000, 2500, 0, 0, 0, 0, 0, 0, 0),
+("chateau", 6, 35, 50000, 20000, 7500, 5000, 0, 0, 0, 0, 0, 0, 0),
+("chateau", 7, 40, 75000, 25000, 10000, 7500, 10, 0, 0, 0, 0, 0, 0),
+("chateau", 8, 45, 100000, 50000, 20000, 10000, 25, 0, 0, 0, 0, 0, 0),
+("chateau", 9, 50, 200000, 75000, 25000, 20000, 50, 0, 0, 0, 0, 0, 0),
 ("caserne", 0, 10, 2000, 1000, 500, 250, 0, 0, 0, 0, 0, 0, 0),
 ("caserne", 1, 12, 2500, 2000, 750, 500, 0, 0, 0, 0, 0, 0, 0),
 ("caserne", 2, 15, 5000, 2500, 1000, 750, 0, 0, 0, 0, 0, 0, 0),

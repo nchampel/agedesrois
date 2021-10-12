@@ -6,10 +6,14 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     //$_SESSION['pseudo'] = "Lucie";
 }
 
-$types = ['ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier', 'caserne'];
+$types = ['chateau', 'ferme', 'scierie', 'extracteur', 'carriere', 'mine', 'atelier', 'caserne'];
 
 foreach ($types as $typeItem) {
     switch ($typeItem) {
+        case 'chateau':
+            $level = $_SESSION['castle-level'];
+            $type = 'castle';
+            break;
         case 'ferme':
             $level = $_SESSION['farm-level'];
             $type = 'farm';
@@ -64,6 +68,9 @@ foreach ($types as $typeItem) {
         $_SESSION[$type]['name'] = $results1[0]['type_item'];
         if ($type = 'quarry') {
             $_SESSION[$type]['name'] = "carrière";
+        }
+        if ($type = 'castle') {
+            $_SESSION[$type]['name'] = "château";
         }
     } catch (Exception $exception) {
         echo $exception->getMessage();

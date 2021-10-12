@@ -6,7 +6,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     //$_SESSION['pseudo'] = "Lucie";
 }
 
-$resourcesEarned = ['foodEarned', 'woodEarned', 'metalEarned', 'stoneEarned', 'goldEarned'];
+$resourcesEarned = ['foodEarned', 'woodEarned', 'metalEarned', 'stoneEarned', 'goldEarned', 'toolEarned'];
 
 foreach ($resourcesEarned as $resourceEarned) {
     switch ($resourceEarned) {
@@ -43,6 +43,13 @@ foreach ($resourcesEarned as $resourceEarned) {
                 $goldEarned = (int)$_GET[$resourceEarned];
             } else {
                 $goldEarned = 0;
+            }
+            break;
+        case 'toolEarned':
+            if (isset($_GET[$resourceEarned])) {
+                $toolEarned = (int)$_GET[$resourceEarned];
+            } else {
+                $toolEarned = 0;
             }
             break;
     }

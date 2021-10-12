@@ -56,11 +56,16 @@ function colorResourceStock($resource, $construct)
     }
 }
 
-$constructsTownType = ['farm', 'sawmill', 'extractor', 'quarry', 'mine', 'barracks'];
+$constructsTownType = ['castle', 'farm', 'sawmill', 'extractor', 'quarry', 'mine', 'barracks'];
 
 foreach ($constructsTownType as $Towntype) {
 
     switch ($Towntype) {
+        case 'castle':
+            $level = 'castle-level';
+            $construct = 'château';
+            $displayLevel = (int)$_SESSION[$level] + 1;
+            break;
         case 'farm':
             $level = 'farm-level';
             $construct = 'ferme';
@@ -93,7 +98,7 @@ foreach ($constructsTownType as $Towntype) {
             break;
     }
 
-    echo '<form id="form-' . $Towntype . '-construct" class="tooltip" action="../backend/constructSubstractResources.php?type=' . $Towntype . '&level=' .
+    echo '<form id="form-' . $Towntype . '-construct" class="tooltip" action="../backend/construct.php?type=' . $Towntype . '&level=' .
         $_SESSION[$level] .
         '&foodNeeded=' . $_SESSION[$Towntype]['food'] .
         '&woodNeeded=' .  $_SESSION[$Towntype]['wood'] .
@@ -102,6 +107,7 @@ foreach ($constructsTownType as $Towntype) {
         '&goldNeeded=' . $_SESSION[$Towntype]['gold'] . '" method="POST">';
     echo '<div class="tooltiptext">
         <h3>Ville</h3>
+        <p id="not-displayed-' . $Towntype . '">Augmenter le niveau du château pour pouvoir construire</p>
         <p>Nourriture : <span id="tooltip-food-' . $Towntype . '" style="color: ' . colorResourceTown('food', $Towntype) . ';">' . $_SESSION[$Towntype]['food'] . '</span></p>';
     if ($_SESSION[$Towntype]['wood'] > 0) {
         echo '<p>Bois : <span id="tooltip-wood-' . $Towntype . '" style="color: ' . colorResourceTown('wood', $Towntype) . '";>' . $_SESSION[$Towntype]['wood'] . '</span></p>';
@@ -118,7 +124,7 @@ foreach ($constructsTownType as $Towntype) {
 
     echo '
     </div>';
-    echo '<input type="submit" value="Construction ' . $construct . ' niveau ' . $displayLevel . '" class="button" />';
+    echo '<input type="submit" value="Construction ' . $construct . ' niveau ' . $displayLevel . '" class="button" id="btn-' . $Towntype . '" />';
     echo '</form>';
 }
 echo '<br />';

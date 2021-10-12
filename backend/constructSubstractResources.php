@@ -11,7 +11,7 @@ $metalNeeded = (int)$_GET['metalNeeded'];
 $stoneNeeded = (int)$_GET['stoneNeeded'];
 $goldNeeded = (int)$_GET['goldNeeded'];
 
-echo ('avant test');
+// echo ('avant test');
 
 include_once('townResourcesRecovering.php');
 
@@ -27,7 +27,7 @@ if (
     exit();
 }
 
-echo ('après test');
+// echo ('après test');
 
 $food = $_SESSION['town']['town-food'] - $foodNeeded;
 $wood = $_SESSION['town']['town-wood'] - $woodNeeded;
@@ -62,7 +62,7 @@ try {
     $statement->bindParam(':gold', $gold);
     //On l'execute
     $result = $statement->execute();
-    echo ('test avant');
+    // echo ('test avant');
     $_SESSION['town']['town-food'] = $food;
     $_SESSION['town']['town-wood'] = $wood;
     $_SESSION['town']['town-metal'] - $metal;
@@ -85,11 +85,6 @@ try {
 }
 
 // sleep(10);
-include_once('construct.php');
+// include_once('construct.php');
 //met en $_session les valeurs pour le niveau suivant
 include_once('resourcesNeeded.php');
-
-$_SESSION['flash'] = 'Construction finie';
-
-header('Location: ../frontend/map.php');
-exit();
