@@ -59,7 +59,7 @@ foreach ($trainingsType as $type) {
     }
 
     echo '</div>';
-    echo '<input type="submit" value="Entraînement ' . $type . ' niveau ' . $displayLevel . '" class="button" ' . $_SESSION[$type]['isOKTraining'] . '/>';
+    echo '<input type="submit" value="Entraînement ' . $type . ' niveau ' . $displayLevel . '" class="button" id="btn-' . $type . '" ' . $_SESSION[$type]['isOKTraining'] . '/>';
     echo '</form>';
 }
 

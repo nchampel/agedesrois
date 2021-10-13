@@ -11,9 +11,11 @@ $metalNeeded = (int)$_GET['metalNeeded'];
 $stoneNeeded = (int)$_GET['stoneNeeded'];
 $goldNeeded = (int)$_GET['goldNeeded'];
 
-echo ('avant test');
+// echo ('avant test');
 
-include_once('townResourcesRecovering.php');
+include_once('stockResourcesRecovering.php');
+
+// var_dump($woodNeeded);
 
 if (
     $_SESSION['stock']['stock-food'] < $foodNeeded ||
@@ -85,11 +87,12 @@ try {
 }
 
 // sleep(10);
-include_once('construct.php');
+
 //met en $_session les valeurs pour le niveau suivant
 include_once('resourcesNeeded.php');
 
 $_SESSION['flash'] = 'Construction finie';
 
-header('Location: ../frontend/map.php');
-exit();
+// header('Location: ../frontend/map.php');
+// exit();.
+include_once('construct.php');

@@ -71,6 +71,8 @@ echo ('</pre>');
 
     <?php include('constructionbuttons.php'); ?>
 
+    <?php include('../backend/trainingChecking.php'); ?>
+
     <?php include('trainingbuttons.php'); ?>
 
 
@@ -91,7 +93,7 @@ echo ('</pre>');
         <input type="text" name="transfer-stone" id="transfer-stone" value="0">
         <label for="transfer-gold">Or</label>
         <input type="text" name="transfer-gold" id="transfer-gold" value="0">
-        <input type="submit" value="Mettre en stock" class="button" />
+        <input type="submit" value="Mettre en stock" class="button" id="btn-stock" />
     </form>
 
     <?php include('world.php'); ?>
@@ -261,6 +263,8 @@ echo ('</pre>');
         let levelBarracks = <?php echo $_SESSION['barracks-level']; ?>;
 
         let levelWorkshop = <?php echo $_SESSION['workshop-level']; ?>;
+
+        let levelArcher = <?php echo $_SESSION['archer-level']; ?>;
 
         let isConstructOKFarm = JSON.parse(<?php echo $_SESSION['farm-construct-isOK']; ?>);
         let isConstructOKSawmill = JSON.parse(<?php echo $_SESSION['sawmill-construct-isOK']; ?>);

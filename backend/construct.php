@@ -54,10 +54,11 @@ switch ($type) {
 }
 
 $castleLevel = $_SESSION['castle-level'];
-var_dump((int)$castleLevel);
-echo ' ';
-var_dump((int)$_SESSION[$typeLevel]);
-echo (int)$castleLevel <= (int)$_SESSION[$typeLevel];
+$barracksLevel = $_SESSION['barracks-level'];
+// var_dump((int)$castleLevel);
+// echo ' ';
+// var_dump((int)$_SESSION[$typeLevel]);
+// echo (int)$castleLevel <= (int)$_SESSION[$typeLevel];
 
 if ((int)$castleLevel <= (int)$_SESSION[$typeLevel] && $type != 'castle') {
     $_SESSION['flash'] = 'Niveau de château insuffisant';
@@ -69,7 +70,18 @@ if ((int)$castleLevel <= (int)$_SESSION[$typeLevel] && $type != 'castle') {
     $levelConstruct++;
 }
 
-include_once('constructSubstractResources.php');
+if ($type == 'archer') {
+    if ((int)$barracksLevel <= (int)$_SESSION['archer-level']) {
+        $_SESSION['flash'] = 'Niveau de caserne insuffisant';
+        header('Location: ../frontend/map.php');
+        exit();
+    }
+}
+
+if ($type != 'workshop') {
+    include_once('constructSubstractResources.php');
+}
+
 
 include_once('db.php');
 if (!isset($connexion)) {

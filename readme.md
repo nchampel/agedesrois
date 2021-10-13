@@ -136,3 +136,7 @@ limitation construction niveau château php => ok
 12/10
 
 limitation construction niveau château js => ok
+
+13/10
+
+impossible désormais de lancer une 2e action avant que la 1ère soit finie

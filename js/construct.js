@@ -1,5 +1,8 @@
 let waitingMessageElt = document.getElementById('flash-message');
 
+// mettre tous les boutons
+let idNames = ['castle', 'farm', 'sawmill', 'extractor', 'quarry', 'mine', 'workshop', 'barracks', 'archer', 'stock'];
+
 // console.log(document.getElementById('transfer-food'));
 
 // document.getElementById('transfer-food').innerText = 0;
@@ -7,6 +10,11 @@ let waitingMessageElt = document.getElementById('flash-message');
 // document.getElementById('transfer-metal').innerText = 0;
 // document.getElementById('transfer-stone').innerText = 0;
 // document.getElementById('transfer-gold').innerText = 0;
+
+idNames.forEach(function (name) {
+    let idName = 'btn-' + name;
+    document.getElementById(idName).disabled = false;
+});
 
 function construction(food, time) {
 
@@ -83,6 +91,11 @@ if (levelCastle <= levelMine) {
 if (levelCastle <= levelBarracks) {
     document.getElementById('btn-barracks').disabled = true;
     document.getElementById('not-displayed-barracks').style.display = 'block';
+}
+
+if (levelBarracks <= levelArcher) {
+    document.getElementById('btn-archer').disabled = true;
+    // document.getElementById('not-displayed-archer').style.display = 'block';
 }
 
 function waitingTimeConstruct(type) {
@@ -200,6 +213,10 @@ function waitingTimeConstruct(type) {
         if (townFoodUpdate >= food && townWoodUpdate >= wood && townMetalUpdate >= metal && townStoneUpdate >= stone && townGoldUpdate >= gold) {
             // if (isOK) {
             waitingMessageElt.innerText = 'Construction ' + name;
+            idNames.forEach(function (name) {
+                let idName = 'btn-' + name;
+                document.getElementById(idName).disabled = true;
+            });
             timedProgBar(time);
             setTimeout(function () {
                 // console.log('event settimeout ferme');
@@ -257,6 +274,10 @@ function waitingTimeConstructStock(type) {
         if (stockFoodUpdate >= food && stockWoodUpdate >= wood && stockMetalUpdate >= metal && stockStoneUpdate >= stone && stockGoldUpdate >= gold) {
             // if (isOK) {
             waitingMessageElt.innerText = 'Construction ' + name;
+            idNames.forEach(function (name) {
+                let idName = 'btn-' + name;
+                document.getElementById(idName).disabled = true;
+            });
             timedProgBar(time);
             setTimeout(function () {
                 // console.log('event settimeout ferme');
@@ -307,6 +328,10 @@ function waitingTimeTraining(type) {
         if (townFoodUpdate >= food && townGoldUpdate >= gold && townBowUpdate >= bow) {
             // if (isOK) {
             waitingMessageElt.innerText = 'Amélioration ' + name;
+            idNames.forEach(function (name) {
+                let idName = 'btn-' + name;
+                document.getElementById(idName).disabled = true;
+            });
             timedProgBar(time);
             setTimeout(function () {
                 // console.log('event settimeout ferme');
@@ -371,6 +396,10 @@ stockFormElt.addEventListener("submit", function (e) {
     e.preventDefault();
     if (isStockResourcesOK) {
         waitingMessageElt.innerText = 'Stockage en cours';
+        idNames.forEach(function (name) {
+            let idName = 'btn-' + name;
+            document.getElementById(idName).disabled = true;
+        });
         timedProgBar(10);
         setTimeout(function () {
             // saveResources();

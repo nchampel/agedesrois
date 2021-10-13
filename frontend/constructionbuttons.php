@@ -131,9 +131,9 @@ echo '<br />';
 
 $constructsStockType = ['workshop'];
 
-foreach ($constructsStockType as $Stocktype) {
+foreach ($constructsStockType as $stockType) {
 
-    switch ($Stocktype) {
+    switch ($stockType) {
         case 'workshop':
             $level = 'workshop-level';
             $construct = 'atelier';
@@ -141,32 +141,32 @@ foreach ($constructsStockType as $Stocktype) {
             break;
     }
 
-    echo '<form id="form-' . $Stocktype . '-construct" class="tooltip" action="../backend/constructStockSubstractResources.php?type=' . $Stocktype . '&level=' .
+    echo '<form id="form-' . $stockType . '-construct" class="tooltip" action="../backend/constructStockSubstractResources.php?type=' . $stockType . '&level=' .
         $_SESSION[$level] .
-        '&foodNeeded=' . $_SESSION[$Stocktype]['food'] .
-        '&woodNeeded=' .  $_SESSION[$Stocktype]['wood'] .
-        '&metalNeeded=' . $_SESSION[$Stocktype]['metal'] .
-        '&stoneNeeded=' . $_SESSION[$Stocktype]['stone'] .
-        '&goldNeeded=' . $_SESSION[$Stocktype]['gold'] . '" method="POST">';
+        '&foodNeeded=' . $_SESSION[$stockType]['food'] .
+        '&woodNeeded=' .  $_SESSION[$stockType]['wood'] .
+        '&metalNeeded=' . $_SESSION[$stockType]['metal'] .
+        '&stoneNeeded=' . $_SESSION[$stockType]['stone'] .
+        '&goldNeeded=' . $_SESSION[$stockType]['gold'] . '" method="POST">';
     echo '<div class="tooltiptext">
         <h3>Stock</h3>
-        <p>Nourriture : <span style="color: ' . colorResourceStock('food', $Stocktype) . ';">' . $_SESSION[$Stocktype]['food'] . '</span></p>';
-    if ($_SESSION[$Stocktype]['wood'] > 0) {
-        echo '<p>Bois : <span style="color: ' . colorResourceStock('wood', $Stocktype) . '";>' . $_SESSION[$Stocktype]['wood'] . '</span></p>';
+        <p>Nourriture : <span style="color: ' . colorResourceStock('food', $stockType) . ';">' . $_SESSION[$stockType]['food'] . '</span></p>';
+    if ($_SESSION[$stockType]['wood'] > 0) {
+        echo '<p>Bois : <span style="color: ' . colorResourceStock('wood', $stockType) . '";>' . $_SESSION[$stockType]['wood'] . '</span></p>';
     }
-    if ($_SESSION[$Stocktype]['metal'] > 0) {
-        echo '<p>Métal : <span style="color: ' . colorResourceStock('metal', $Stocktype) . '";>' . $_SESSION[$Stocktype]['metal'] . '</span></p>';
+    if ($_SESSION[$stockType]['metal'] > 0) {
+        echo '<p>Métal : <span style="color: ' . colorResourceStock('metal', $stockType) . '";>' . $_SESSION[$stockType]['metal'] . '</span></p>';
     }
-    if ($_SESSION[$Stocktype]['stone'] > 0) {
-        echo '<p>Pierre : <span style="color: ' . colorResourceStock('stone', $Stocktype) . '";>' . $_SESSION[$Stocktype]['stone'] . '</span></p>';
+    if ($_SESSION[$stockType]['stone'] > 0) {
+        echo '<p>Pierre : <span style="color: ' . colorResourceStock('stone', $stockType) . '";>' . $_SESSION[$stockType]['stone'] . '</span></p>';
     }
-    if ($_SESSION[$Stocktype]['gold'] > 0) {
-        echo '<p>Or : <span style="color: ' . colorResourceStock('gold', $Stocktype) . '" ;>' . $_SESSION[$Stocktype]['gold'] . '</span></p>';
+    if ($_SESSION[$stockType]['gold'] > 0) {
+        echo '<p>Or : <span style="color: ' . colorResourceStock('gold', $stockType) . '" ;>' . $_SESSION[$stockType]['gold'] . '</span></p>';
     }
 
     echo '
     </div>';
-    echo '<input type="submit" value="Construction ' . $construct . ' niveau ' . $displayLevel . '" class="button" />';
+    echo '<input type="submit" value="Construction ' . $construct . ' niveau ' . $displayLevel . '" class="button" id="btn-' . $stockType . '" />';
     echo '</form>';
 }
 

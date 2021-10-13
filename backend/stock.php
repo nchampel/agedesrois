@@ -58,7 +58,7 @@ try {
 
     //On l'execute
     $result = $statement->execute();
-    echo ('test avant');
+    // echo ('test avant');
     //session_destroy();
     // include('connexion.php');
     // echo ('test après');
@@ -102,7 +102,7 @@ try {
 
     //On l'execute
     $result = $statement->execute();
-    echo ('test avant');
+    // echo ('test avant');
     //session_destroy();
     // include('connexion.php');
     // echo ('test après');
@@ -125,7 +125,7 @@ try {
 
 $_SESSION['flash'] = 'Mise en stock effectuée';
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 
 
