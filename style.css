@@ -108,7 +108,8 @@ h3{
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-#not-displayed-farm, #not-displayed-sawmill, #not-displayed-extractor, #not-displayed-quarry, #not-displayed-mine, #not-displayed-castle, #not-displayed-barracks {
+#not-displayed-farm, #not-displayed-sawmill, #not-displayed-extractor, #not-displayed-quarry,
+#not-displayed-mine, #not-displayed-castle, #not-displayed-barracks, #not-displayed-archer {
   display: none;
 }
 .button {

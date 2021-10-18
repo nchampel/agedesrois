@@ -69,6 +69,11 @@ frêne, noisetier, chêne
 
 arc et arbalète construite à partir réserve planches frêne, puis noisetier, chêne etc.
 
+vase pour améliorer bonheur des citoyens ?
+
+ici, comment fonctionne un gestionnaire d'erreur SQL
+https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1972565-gestionnaires-derreurs-curseurs-et-utilisation-avancee
+tu peux gérer les erreurs SQL avec un handler SQL
 
 28/09
 
@@ -176,4 +181,4 @@ passage à la POO
 18/10
 
 passage à la POO
-bug tooltip archer
+bug tooltip archer => résolu

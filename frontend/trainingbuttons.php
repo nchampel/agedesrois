@@ -33,7 +33,7 @@ function colorResourceTrainingTown($resource, $training)
     // }
 }
 
-$trainingsType = ['archer'];
+$trainingsType = ['archer'/*, 'crossbowman'*/];
 
 // include_once('../backend/trainingChecking.php');
 
@@ -43,35 +43,39 @@ foreach ($trainingsType as $type) {
 
     switch ($type) {
         case 'archer':
+        case 'crossbowman':
             // $level = 'archer-level';
             // $displayLevel = (int)$_SESSION[$level] + 1;
-            $building = 'de la caserne';
+            $buildingAnswer = 'de la caserne';
+            $building = 'caserne';
+            $buildingEnglish = 'barracks';
             // $item = 'la';
             break;
     }
     $getter = 'getLevel_' . $type;
     $displayLevel = $_SESSION['player']->$getter() + 1;
-    echo '<form id="form-' . $type . '-training" class="tooltip" action="../backend/trainingSubstractResources.php?type=' . $type . '&level=' .
-        $_SESSION['player']->$getter() .
+    // action = "../backend/trainingSubstractResources.php
+    echo '<form id="form-' . $type . '-training" class="tooltip" action="../backend/training.php?type=' . $type .
+        '&level=' . $_SESSION['player']->$getter() . '&typeBuilding=' . $buildingEnglish .
         '&foodNeeded=' . $_SESSION[$type]->getFood() .
         '&bowNeeded=' . $_SESSION[$type]->getBow() .
         '&goldNeeded=' . $_SESSION[$type]->getGold() . '" method="POST">';
     echo '<div class="tooltiptext">
         <h3>' . ucfirst($building) . '</h3>';
     //if ($_SESSION[$type]['isOKTraining'] == 'disabled') {
-    echo '<p id="not-displayed-' . $type . '">Augmenter le niveau ' . $building . ' pour entraîner</p>';
+    echo '<p id="not-displayed-' . $type . '">Augmenter le niveau ' . $buildingAnswer . ' pour pouvoir entraîner</p>';
     //echo 'Augmenter le niveau de ' . $item . ' ' . $building . ' pour entraîner';
     //}
-    echo '<p>Nourriture : <span style="color: ' . colorResourceTrainingTown('food', $type) . ';">' . $_SESSION[$type]->getFood() . '</span></p>';
+    echo '<p>Nourriture : <span id="tooltip-food-' . $type . '" style="color: ' . colorResourceTrainingTown('food', $type) . ';">' . $_SESSION[$type]->getFood() . '</span></p>';
     if ($_SESSION[$type]->getBow() > 0) {
-        echo '<p>Arcs : <span style="color: ' . colorResourceTrainingTown('bow', $type) . '";>' . $_SESSION[$type]->getBow() . '</span></p>';
+        echo '<p>Arcs : <span id="tooltip-bow-' . $type . '" style="color: ' . colorResourceTrainingTown('bow', $type) . '";>' . $_SESSION[$type]->getBow() . '</span></p>';
     }
     if ($_SESSION[$type]->getGold() > 0) {
-        echo '<p>Or : <span style="color: ' . colorResourceTrainingTown('gold', $type) . '";>' . $_SESSION[$type]->getGold() . '</span></p>';
+        echo '<p>Or : <span id="tooltip-gold-' . $type . '" style="color: ' . colorResourceTrainingTown('gold', $type) . '";>' . $_SESSION[$type]->getGold() . '</span></p>';
     }
 
     echo '</div>';
-    echo '<input type="submit" value="Entraînement ' . $type . ' niveau ' . $displayLevel . '" class="button" id="btn-' . $type . '" ' ./* $_SESSION[$type]['isOKTraining'] .*/ '/>';
+    echo '<input type="submit" value="Entraînement ' . $_SESSION[$type]->getType_army() . ' niveau ' . $displayLevel . '" class="button" id="btn-' . $type . '" ' ./* $_SESSION[$type]['isOKTraining'] .*/ '/>';
     echo '</form>';
 }
 

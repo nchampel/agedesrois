@@ -34,6 +34,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
         }
         $_SESSION[] = array();
         session_destroy();
+        // print_r($_SESSION);
         ?>
     </p>
 

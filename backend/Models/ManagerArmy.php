@@ -20,6 +20,8 @@ class ManagerArmy
                 $item = new Archer($result);
                 break;
         }
+        // print_r($item);
+        // die();
         return $item;
     }
 }

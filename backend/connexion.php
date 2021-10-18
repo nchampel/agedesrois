@@ -1,5 +1,6 @@
 <?php
 
+use Models\InitGame;
 use Models\MySQL;
 use Models\ManagerArmy;
 use Models\ManagerItems;
@@ -15,6 +16,7 @@ use Models\ManagerPlayer;
 header('Access-Control-Allow-Origin: *');
 
 include_once('Models/MySQL.php');
+include_once('Models/InitGame.php');
 include_once('Models/ManagerPlayer.php');
 include_once('Models/ManagerItems.php');
 include_once('Models/ManagerArmy.php');
@@ -39,6 +41,7 @@ ini_set('display_startup_errors', TRUE);
 //     session_start();
 //     //$_SESSION['pseudo'] = "Lucie";
 // }
+// $_POST['pseudo'] = 'Lucie';
 // echo 'test' . $_SESSION['pseudo'];
 if (isset($_POST['pseudo'])) {
     $pseudo = filter_var($_POST['pseudo'], FILTER_SANITIZE_STRING);
@@ -56,6 +59,7 @@ $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 //     // pour afficher les erreurs dans le catch
 //     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // }
+
 $req = "SELECT * from player where pseudo = :pseudo";
 try {
 
@@ -67,56 +71,60 @@ try {
 
     $statement->execute();
 
-
-
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     if (password_verify($password, $results[0]['player_password'])) { // si vrai le mot de passe correspond au $hash
         // On vient de récupérer l'utilisateur, on créé sa session
         session_start();
         // $user = new Player($results[0]['id'], $results[0]['pseudo']);
-        $player = ManagerPlayer::playerLoading($results[0]['id']);
-        $_SESSION['player'] = $player;
-        $farm = ManagerItems::itemLoading($_SESSION['player']->getLevel_farm(), 'ferme');
-        $_SESSION['farm'] = $farm;
-        $castle = ManagerItems::itemLoading($_SESSION['player']->getLevel_castle(), 'chateau');
-        $_SESSION['castle'] = $castle;
-        $sawmill = ManagerItems::itemLoading(
-            $_SESSION['player']->getLevel_sawmill(),
-            'scierie'
-        );
-        $_SESSION['sawmill'] = $sawmill;
-        $extractor = ManagerItems::itemLoading(
-            $_SESSION['player']->getLevel_extractor(),
-            'extracteur'
-        );
-        $_SESSION['extractor'] = $extractor;
-        $quarry = ManagerItems::itemLoading(
-            $_SESSION['player']->getLevel_quarry(),
-            'carriere'
-        );
-        $_SESSION['quarry'] = $quarry;
-        $mine = ManagerItems::itemLoading(
-            $_SESSION['player']->getLevel_mine(),
-            'mine'
-        );
-        $_SESSION['mine'] = $mine;
-        $barracks = ManagerItems::itemLoading(
-            $_SESSION['player']->getLevel_barracks(),
-            'caserne'
-        );
-        $_SESSION['barracks'] = $barracks;
-        $workshop = ManagerItems::itemLoading(
-            $_SESSION['player']->getLevel_workshop(),
-            'atelier'
-        );
-        $_SESSION['workshop'] = $workshop;
 
-        $archer = ManagerArmy::armyLoading(
-            $_SESSION['player']->getLevel_archer(),
-            'archer'
-        );
-        $_SESSION['archer'] = $archer;
+        InitGame::initialization($results);
+
+        // $player = ManagerPlayer::playerLoading($results[0]['id']);
+        // $_SESSION['player'] = $player;
+        // $farm = ManagerItems::itemLoading($_SESSION['player']->getLevel_farm(), 'ferme');
+        // $_SESSION['farm'] = $farm;
+        // $castle = ManagerItems::itemLoading($_SESSION['player']->getLevel_castle(), 'chateau');
+        // $_SESSION['castle'] = $castle;
+        // $sawmill = ManagerItems::itemLoading(
+        //     $_SESSION['player']->getLevel_sawmill(),
+        //     'scierie'
+        // );
+        // $_SESSION['sawmill'] = $sawmill;
+        // $extractor = ManagerItems::itemLoading(
+        //     $_SESSION['player']->getLevel_extractor(),
+        //     'extracteur'
+        // );
+        // $_SESSION['extractor'] = $extractor;
+        // $quarry = ManagerItems::itemLoading(
+        //     $_SESSION['player']->getLevel_quarry(),
+        //     'carriere'
+        // );
+        // $_SESSION['quarry'] = $quarry;
+        // $mine = ManagerItems::itemLoading(
+        //     $_SESSION['player']->getLevel_mine(),
+        //     'mine'
+        // );
+        // $_SESSION['mine'] = $mine;
+        // $barracks = ManagerItems::itemLoading(
+        //     $_SESSION['player']->getLevel_barracks(),
+        //     'caserne'
+        // );
+        // $_SESSION['barracks'] = $barracks;
+        // $workshop = ManagerItems::itemLoading(
+        //     $_SESSION['player']->getLevel_workshop(),
+        //     'atelier'
+        // );
+        // $_SESSION['workshop'] = $workshop;
+
+        // $archer = ManagerArmy::armyLoading(
+        //     $_SESSION['player']->getLevel_archer(),
+        //     'archer'
+        // );
+        // $_SESSION['archer'] = $archer;
+
+
+
         // $_SESSION['pseudo'] = $user->getPseudo(); // les variable de session sont stockées dans le tableau super global $_SESSION
         // $_SESSION['town']['town-food'] = $results[0]['town_food'];
         // $_SESSION['town']['town-wood'] = $results[0]['town_wood'];

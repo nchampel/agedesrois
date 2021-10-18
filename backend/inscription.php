@@ -24,6 +24,27 @@ if ($password1 != $password2) {
 $hashPassword = password_hash($password1, PASSWORD_BCRYPT);
 $date = date("Y-m-d H:i:s");
 
+$req = "SELECT pseudo from player";
+try {
+
+    $cnx = MySQL::getInstance();
+
+    $statement = $cnx->prepare($req);
+
+    $statement->execute();
+
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($results as $result) {
+        if (in_array($pseudo, $result)) {
+            $_SESSION['flash'] = 'Pseudo déjà utilisé';
+            header('Location: ../inscription.php');
+            exit();
+        }
+    }
+} catch (Exception $exception) {
+    echo $exception->getMessage();
+}
+
 $req = "INSERT INTO player (pseudo, player_password, inscription_date) VALUES (:pseudo, :passwordPlayer, :inscriptionDate)";
 try {
 

@@ -168,8 +168,58 @@ class HandleResources
         HandleResources::resourcesNeeded();
     }
 
-    static function substractTraining($food, $gold, $bow, $id, $player)
+    static function substractTraining($foodNeeded, $goldNeeded, $bowNeeded, $id, $player)
     {
+        HandleResources::townResourcesRecovering($id, $player);
+
+        if (
+            $_SESSION['player']->getTown_food() < $foodNeeded ||
+            $_SESSION['player']->getTown_gold() < $goldNeeded ||
+            $_SESSION['player']->getTown_bow() < $bowNeeded
+        ) {
+            $_SESSION['flash'] = 'Entraînement annulé car pas assez de ressources en ville';
+            header('Location: ../frontend/map.php');
+            exit();
+        }
+
+        $food = $_SESSION['player']->getTown_food() - $foodNeeded;
+        $gold = $_SESSION['player']->getTown_gold() - $goldNeeded;
+        $bow = $_SESSION['player']->getTown_bow() - $bowNeeded;
+        // $food = (int)$_GET['food'];
+
+        // $pseudo = $_SESSION['pseudo'];
+
+
+        $rqt = "UPDATE town set town_food = :food, town_gold = :gold, town_bow = :bow where id_player = :id";
+        //$rqt = "insert into player (pseudo, town_food) values (:pseudo, '100')";
+        //On prépare notre requête. ça nous renvoie un objet qui est notre requête préparée prête à être executée
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':id', $id);
+            $statement->bindParam(':food', $food);
+            $statement->bindParam(':gold', $gold);
+            $statement->bindParam(':bow', $bow);
+            //On l'execute
+            $result = $statement->execute();
+            $_SESSION['player']->setTown_food($food);
+            $_SESSION['player']->setTown_gold($gold);
+            $_SESSION['player']->setTown_bow($bow);
+            //session_destroy();
+            // include('connexion.php');
+            // echo ('test après');
+
+            // $_SESSION['town-food'] = $resource;
+            // echo ('food');
+            // echo ($_SESSION['town-food']);
+            // header('Location: ../index.php');
+            // exit();
+            // On récupère l'ensemble des résultats dans un tableau
+            //$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            //$result = $statement->getAttribute();
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+        HandleResources::resourcesNeeded();
     }
 
     static function townResourcesRecovering($id, $player)
@@ -287,15 +337,15 @@ class HandleResources
             }
             // $typeItem = 'ferme';
             // var_dump($level);
-            $getter = 'getLevel_' . $type;
-            $level = $_SESSION['player']->$getter();
+            $getter = 'getLevel_' . $typeArmy;
+            $levelArmy = $_SESSION['player']->$getter();
 
-            $rqt = "SELECT * from army where type_army = :typeArmy and level_soldier = :level";
+            $rqt = "SELECT * from army where type_army = :typeArmy and level_soldier = :levelArmy";
             //On prépare notre requête. ça nous renvoie un objet qui est notre requête préparée prête à être executée
             try {
                 $statement = MySQL::getInstance()->prepare($rqt);
                 $statement->bindParam(':typeArmy', $typeArmy);
-                $statement->bindParam(':level', $level);
+                $statement->bindParam(':levelArmy', $levelArmy);
                 //On l'execute
                 $statement->execute();
 

@@ -17,9 +17,7 @@ include_once('../backend/Models/Constructs/Barracks.php');
 include_once('../backend/Models/Army/Archer.php');
 
 if (session_status() != PHP_SESSION_ACTIVE) {
-    //var_dump('test');
     session_start();
-    //$_SESSION['pseudo'] = "Lucie";
 }
 // echo ('test');
 if (empty($_SESSION['player'])) {
@@ -42,7 +40,7 @@ if (isset($_SESSION['player'])) {
 // }
 // include_once('../backend/resourcesRecoveringMap.php');
 echo ('<pre>');
-// print_r($_SESSION);
+print_r($_SESSION);
 // echo 'true';
 // echo true;
 // echo 'false';
