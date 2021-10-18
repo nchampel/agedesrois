@@ -1,6 +1,9 @@
 <?php
 
-// use Models\Player;
+use Models\MySQL;
+use Models\ManagerArmy;
+use Models\ManagerItems;
+use Models\ManagerPlayer;
 
 // include('Models/Player.php');
 
@@ -10,40 +13,158 @@
 
 // }
 header('Access-Control-Allow-Origin: *');
-if (session_status() != PHP_SESSION_ACTIVE) {
-    //var_dump('test');
-    session_start();
-    //$_SESSION['pseudo'] = "Lucie";
-}
+
+include_once('Models/MySQL.php');
+include_once('Models/ManagerPlayer.php');
+include_once('Models/ManagerItems.php');
+include_once('Models/ManagerArmy.php');
+include_once('Models/Player.php');
+include_once('Models/Constructs/Farm.php');
+include_once('Models/Constructs/Castle.php');
+include_once('Models/Constructs/Extractor.php');
+include_once('Models/Constructs/Mine.php');
+include_once('Models/Constructs/Quarry.php');
+include_once('Models/Constructs/Sawmill.php');
+include_once('Models/Constructs/Barracks.php');
+include_once('Models/Constructs/Workshop.php');
+include_once('Models/Army/Archer.php');
+
+// Affichage des messages d'erreurs
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+
+// if (session_status() != PHP_SESSION_ACTIVE) {
+//     //var_dump('test');
+//     session_start();
+//     //$_SESSION['pseudo'] = "Lucie";
+// }
 // echo 'test' . $_SESSION['pseudo'];
 if (isset($_POST['pseudo'])) {
-    $user = filter_var($_POST['pseudo'], FILTER_SANITIZE_STRING);
+    $pseudo = filter_var($_POST['pseudo'], FILTER_SANITIZE_STRING);
 } else {
-    $user = $_SESSION['pseudo'];
+    $pseudo = $_SESSION['pseudo'];
 }
+
+$password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 
 //$password = $_POST['password'];
 
-include_once('db.php');
-if (!isset($connexion)) {
-    $connexion = new PDO($url, $userDB, $pass);
-    // pour afficher les erreurs dans le catch
-    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// include_once('db.php');
+// if (!isset($connexion)) {
+//     $connexion = new PDO($url, $userDB, $pass);
+//     // pour afficher les erreurs dans le catch
+//     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// }
+$req = "SELECT * from player where pseudo = :pseudo";
+try {
+
+    $cnx = MySQL::getInstance();
+
+    $statement = $cnx->prepare($req);
+
+    $statement->bindParam(':pseudo', $pseudo);
+
+    $statement->execute();
+
+
+
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    if (password_verify($password, $results[0]['player_password'])) { // si vrai le mot de passe correspond au $hash
+        // On vient de récupérer l'utilisateur, on créé sa session
+        session_start();
+        // $user = new Player($results[0]['id'], $results[0]['pseudo']);
+        $player = ManagerPlayer::playerLoading($results[0]['id']);
+        $_SESSION['player'] = $player;
+        $farm = ManagerItems::itemLoading($_SESSION['player']->getLevel_farm(), 'ferme');
+        $_SESSION['farm'] = $farm;
+        $castle = ManagerItems::itemLoading($_SESSION['player']->getLevel_castle(), 'chateau');
+        $_SESSION['castle'] = $castle;
+        $sawmill = ManagerItems::itemLoading(
+            $_SESSION['player']->getLevel_sawmill(),
+            'scierie'
+        );
+        $_SESSION['sawmill'] = $sawmill;
+        $extractor = ManagerItems::itemLoading(
+            $_SESSION['player']->getLevel_extractor(),
+            'extracteur'
+        );
+        $_SESSION['extractor'] = $extractor;
+        $quarry = ManagerItems::itemLoading(
+            $_SESSION['player']->getLevel_quarry(),
+            'carriere'
+        );
+        $_SESSION['quarry'] = $quarry;
+        $mine = ManagerItems::itemLoading(
+            $_SESSION['player']->getLevel_mine(),
+            'mine'
+        );
+        $_SESSION['mine'] = $mine;
+        $barracks = ManagerItems::itemLoading(
+            $_SESSION['player']->getLevel_barracks(),
+            'caserne'
+        );
+        $_SESSION['barracks'] = $barracks;
+        $workshop = ManagerItems::itemLoading(
+            $_SESSION['player']->getLevel_workshop(),
+            'atelier'
+        );
+        $_SESSION['workshop'] = $workshop;
+
+        $archer = ManagerArmy::armyLoading(
+            $_SESSION['player']->getLevel_archer(),
+            'archer'
+        );
+        $_SESSION['archer'] = $archer;
+        // $_SESSION['pseudo'] = $user->getPseudo(); // les variable de session sont stockées dans le tableau super global $_SESSION
+        // $_SESSION['town']['town-food'] = $results[0]['town_food'];
+        // $_SESSION['town']['town-wood'] = $results[0]['town_wood'];
+        // $_SESSION['town']['town-metal'] = $results[0]['town_metal'];
+        // $_SESSION['town']['town-stone'] = $results[0]['town_stone'];
+        // $_SESSION['town']['town-gold'] = $results[0]['town_gold'];
+        // $_SESSION['town']['town-bow'] = $results[0]['town_bow'];
+        // $_SESSION['town']['town-crossbow'] = $results[0]['town_crossbow'];
+        // $_SESSION['stock']['stock-food'] = $results[0]['stock_food'];
+        // $_SESSION['stock']['stock-wood'] = $results[0]['stock_wood'];
+        // $_SESSION['stock']['stock-metal'] = $results[0]['stock_metal'];
+        // $_SESSION['stock']['stock-stone'] = $results[0]['stock_stone'];
+        // $_SESSION['stock']['stock-gold'] = $results[0]['stock_gold'];
+        // $_SESSION['castle-level'] = $results[0]['castle_level'];
+        // $_SESSION['farm-level'] = $results[0]['farm_level'];
+        // $_SESSION['sawmill-level'] = $results[0]['sawmill_level'];
+        // $_SESSION['extractor-level'] = $results[0]['extractor_level'];
+        // $_SESSION['quarry-level'] = $results[0]['quarry_level'];
+        // $_SESSION['mine-level'] = $results[0]['mine_level'];
+        // $_SESSION['barracks-level'] = $results[0]['barracks_level'];
+        // $_SESSION['workshop-level'] = $results[0]['workshop_level'];
+        // $_SESSION['archer-level'] = $results[0]['archer_level'];
+
+        // var_dump($_SESSION['user']);
+
+        header('Location: ../frontend/map.php');
+        exit();
+    } else {
+        session_start();
+        $_SESSION['flash'] = 'identifiant et/ou mot de passe erroné(s)';
+        header('Location: ../index.php');
+        exit();
+    }
+} catch (Exception $exception) {
+    echo $exception->getMessage();
 }
 
-include_once('infosPlayerRequest.php');
+
+
+
+
+
+// include_once('infosPlayerRequest.php');
 
 //On compare les mots avec la fonction password_verify
-//if (password_verify($password, $results[0]['mot_de_passe'])) { // si vrai le mot de passe correspond au $hash
-// On vient de récupérer l'utilisateur, on créé sa session
-//    session_start();
-//    $_SESSION['id_user'] = $results[0]['adherent_id']; // les variable de session sont stockées dans le tableau super global $_SESSION
-
-//    header('Location: ../frontend/edit-profile.php');
-//    exit();
 
 
-include_once('resourcesNeeded.php');
+                // include_once('resourcesNeeded.php');
 
 //http_response_code(200);
 //} else { // Sinon, on redirige vers index.html pour qu'il retente de se connecter. 
@@ -52,7 +173,7 @@ include_once('resourcesNeeded.php');
 //     exit();
 // }
 
-var_dump($_SESSION['town-food']);
+// var_dump($_SESSION['town-food']);
 
 
 
@@ -63,5 +184,5 @@ var_dump($_SESSION['town-food']);
 // $player->setPseudo($results[0]['pseudo']);
 // $player->setTownFood($results[0]['town_food']);
 
-header('Location: ../frontend/map.php');
-exit();
+// header('Location: ../index.php');
+// exit();

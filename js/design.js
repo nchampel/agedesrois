@@ -1,4 +1,4 @@
-console.log('design');
+// console.log('design');
 // let elem = document.getElementById("progress-bar");
 // let theCSSprop = window.getComputedStyle(elem, null).getPropertyValue("background");
 // // document.getElementById("demo").innerHTML = theCSSprop;
@@ -10,7 +10,7 @@ console.log('design');
 let containerElt = document.getElementById("div-progress-bar");
 let progressBarElt = document.getElementById("progress-bar");
 let colorProgressBar = window.getComputedStyle(progressBarElt, null).getPropertyValue("background-color");
-console.log(colorProgressBar);
+// console.log(colorProgressBar);
 progressBarElt.style.backgroundColor = "#FFDC00";
 
 let i = 0;

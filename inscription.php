@@ -1,12 +1,9 @@
 <?php
-header('Access-Control-Allow-Origin: *');
 if (session_status() != PHP_SESSION_ACTIVE) {
     //var_dump('test');
     session_start();
     //$_SESSION['pseudo'] = "Lucie";
 }
-
-// var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +19,9 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
 <body>
 
-    <h2>Se connecter</h2>
+    <h2>S'inscrire</h2>
 
-    <p id="flash-message-index">
+    <p id="flash-message-inscription">
         <?php
         if (isset($_SESSION['flash'])) {
             if (!empty($_SESSION['flash'])) {
@@ -32,20 +29,21 @@ if (session_status() != PHP_SESSION_ACTIVE) {
                 $_SESSION['flash'] = '';
             }
         }
-        $_SESSION[] = array();
         session_destroy();
         ?>
     </p>
 
-    <form action="backend/connexion.php" method="POST">
+    <form action="backend/inscription.php" method="POST">
 
         <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" required>
         <br>
-        <input type="password" name="password" id="password" placeholder="Mot de passe" required>
-
-        <input type="submit" value="Connexion" class="button" />
+        <input type="password" name="password1" id="password1" placeholder="Mot de passe" required>
+        <br>
+        <input type="password" name="password2" id="password2" placeholder="Retaper le mot de passe" required>
+        <br>
+        <input type="submit" value="S'inscrire" class="button" />
     </form>
-    <p><span>Pas encore inscrit ?</span><a href="inscription.php" class="button">Inscription</a></p>
+    <p><span>Déjà inscrit ?</span><a href="index.php" class="button">Connexion</a></p>
 </body>
 
 </html>

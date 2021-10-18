@@ -2,56 +2,58 @@ CREATE DATABASE IF NOT EXISTS agedesrois;
 
 -- ALTER DATABASE annuaire charset=utf8;
 
-CREATE TABLE player(
-    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    pseudo VARCHAR(255),
-    town_food INT DEFAULT 50,
-    town_wood INT DEFAULT 50,
-    town_metal INT DEFAULT 0,
-    town_stone INT DEFAULT 0,
-    town_gold INT DEFAULT 0,
-    town_mana INT DEFAULT 0,
-    town_mail INT DEFAULT 0,
-    town_leather INT DEFAULT 0,
-    town_sword INT DEFAULT 0,
-    town_bow INT DEFAULT 0,
-    town_crossbow INT DEFAULT 0,
-    stock_food INT DEFAULT 0,
-    stock_wood INT DEFAULT 0,
-    stock_metal INT DEFAULT 0,
-    stock_stone INT DEFAULT 0,
-    stock_gold INT DEFAULT 0,
-    castle_level INT DEFAULT 1,
-    farm_level INT DEFAULT 0,
-    sawmill_level INT DEFAULT 0,
-    extractor_level INT DEFAULT 0,
-    quarry_level INT DEFAULT 0,
-    mine_level INT DEFAULT 0,
-    barracks_level INT DEFAULT 0,
-    workshop_level INT DEFAULT 0,
-    archer_level INT DEFAULT 0
-);
 
-INSERT INTO player (pseudo) 
-VALUES ("Lucie");
 
-CREATE TABLE items(
-    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    type_item VARCHAR(255),
-    level_item INT,
-    time_construct INT,
-    food INT,
-    wood INT,
-    metal INT,
-    stone INT,
-    gold INT,
-    mana INT,
-    mail INT,
-    leather INT,
-    sword INT,
-    bow INT,
-    crossbow INT    
-);
+-- CREATE TABLE player(
+--     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+--     pseudo VARCHAR(255),
+--     town_food INT DEFAULT 50,
+--     town_wood INT DEFAULT 50,
+--     town_metal INT DEFAULT 0,
+--     town_stone INT DEFAULT 0,
+--     town_gold INT DEFAULT 0,
+--     town_mana INT DEFAULT 0,
+--     town_mail INT DEFAULT 0,
+--     town_leather INT DEFAULT 0,
+--     town_sword INT DEFAULT 0,
+--     town_bow INT DEFAULT 0,
+--     town_crossbow INT DEFAULT 0,
+--     stock_food INT DEFAULT 0,
+--     stock_wood INT DEFAULT 0,
+--     stock_metal INT DEFAULT 0,
+--     stock_stone INT DEFAULT 0,
+--     stock_gold INT DEFAULT 0,
+--     castle_level INT DEFAULT 1,
+--     farm_level INT DEFAULT 0,
+--     sawmill_level INT DEFAULT 0,
+--     extractor_level INT DEFAULT 0,
+--     quarry_level INT DEFAULT 0,
+--     mine_level INT DEFAULT 0,
+--     barracks_level INT DEFAULT 0,
+--     workshop_level INT DEFAULT 0,
+--     archer_level INT DEFAULT 0
+-- );
+
+-- INSERT INTO player (pseudo) 
+-- VALUES ("Lucie");
+
+-- CREATE TABLE items(
+--     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+--     type_item VARCHAR(255),
+--     level_item INT,
+--     time_construct INT,
+--     food INT,
+--     wood INT,
+--     metal INT,
+--     stone INT,
+--     gold INT,
+--     mana INT,
+--     mail INT,
+--     leather INT,
+--     sword INT,
+--     bow INT,
+--     crossbow INT    
+-- );
 
 INSERT INTO items (type_item, level_item, time_construct, food, wood, metal, stone, gold, mana, mail, leather, sword, bow, crossbow) VALUES 
 ("chateau", 0, 10, 2000, 1000, 500, 250, 0, 0, 0, 0, 0, 0, 0),
@@ -158,25 +160,25 @@ INSERT INTO items (type_item, level_item, time_construct, food, wood, metal, sto
 ("tour", 9, 50, 5000000, 500000, 500000, 500000, 200000, 0, 0, 0, 0, 0, 0)
 ;
 
-CREATE TABLE army(
-    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    type_item VARCHAR(255),
-    level_item INT,
-    time_construct INT,
-    strength INT,
-    life_points INT,
-    stock INT,
-    food INT,
-    gold INT,
-    mana INT,
-    mail INT,
-    leather INT,
-    sword INT,
-    bow INT,
-    crossbow INT  
-);
+-- CREATE TABLE army(
+--     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+--     type_item VARCHAR(255),
+--     level_item INT,
+--     time_construct INT,
+--     strength INT,
+--     life_points INT,
+--     stock INT,
+--     food INT,
+--     gold INT,
+--     mana INT,
+--     mail INT,
+--     leather INT,
+--     sword INT,
+--     bow INT,
+--     crossbow INT  
+-- );
 
-INSERT INTO army (type_item, level_item, time_construct, strength, life_points, stock, food, gold, mana, mail, leather, sword, bow, crossbow) VALUES 
+INSERT INTO army (type_army, level_soldier, time_training, strength, life_points, stock, food, gold, mana, mail, leather, sword, bow, crossbow) VALUES 
 ("archer", 0, 30, 10, 50, 1000, 1000, 0, 0, 0, 0, 0, 10, 0),
 ("archer", 1, 30, 20, 100, 2000, 2000, 0, 0, 0, 0, 0, 10, 0),
 ("archer", 2, 30, 30, 150, 3000, 2500, 0, 0, 0, 0, 0, 10, 0),

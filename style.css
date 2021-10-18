@@ -111,6 +111,30 @@ h3{
 #not-displayed-farm, #not-displayed-sawmill, #not-displayed-extractor, #not-displayed-quarry, #not-displayed-mine, #not-displayed-castle, #not-displayed-barracks {
   display: none;
 }
+.button {
+  background-image: linear-gradient(to right, #1FA2FF 0%, #29dbf3  51%, #1FA2FF  100%);
+}
+.button {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  /* text-transform: uppercase; */
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: green;    
+  font-weight: bold;        
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+.button:disabled, .button:disabled:hover {
+  color: red;
+}
+.button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: green;
+  text-decoration: none;
+}
 
 /* code townresources.php */
 

@@ -1,4 +1,5 @@
 let nf = Intl.NumberFormat("fr-FR", true);
+let townFood = ''; let townWood = ''; let townMetal = ''; let townStone = ''; let townGold = ''; let townBow = ''; let townCrossbow = ''; let id = '';
 
 function transformFormatNumber(number) {
     let numberExploded = number.split("");
@@ -14,9 +15,9 @@ function transformFormatNumber(number) {
 }
 
 function addTownResources() {
-    let pseudo = document.getElementById('pseudo').innerText;
+    // let pseudo = document.getElementById('pseudo').innerText;
     // console.log('function addTownFood');
-    let townFood = document.getElementById('town-food').innerText;
+    townFood = document.getElementById('town-food').innerText;
     // townFood.replace(" ", "");
     townFood = transformFormatNumber(townFood);
     // console.log(townFood);
@@ -27,15 +28,16 @@ function addTownResources() {
     townFoodInnerHTML = townFoodInnerHTML.replace(/[\s\uFEFF\xA0]/g, " ");
     document.getElementById('town-food').innerText = townFoodInnerHTML;
 
-    let townWood = document.getElementById('town-wood').innerText;
+    townWood = document.getElementById('town-wood').innerText;
     townWood = transformFormatNumber(townWood);
     townWood = parseFloat(townWood);
     townWood = townWood + 1 + 4 * levelSawmill;
     let townWoodInnerHTML = nf.format(townWood);
     townWoodInnerHTML = townWoodInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
     document.getElementById('town-wood').innerText = townWoodInnerHTML;
+    console.log(townWood);
 
-    let townMetal = document.getElementById('town-metal').innerText;
+    townMetal = document.getElementById('town-metal').innerText;
     townMetal = transformFormatNumber(townMetal);
     townMetal = parseFloat(townMetal);
     townMetal = townMetal + 3 * levelExtractor;
@@ -43,7 +45,7 @@ function addTownResources() {
     townMetalInnerHTML = townMetalInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
     document.getElementById('town-metal').innerText = townMetalInnerHTML;
 
-    let townStone = document.getElementById('town-stone').innerText;
+    townStone = document.getElementById('town-stone').innerText;
     townStone = transformFormatNumber(townStone);
     townStone = parseFloat(townStone);
     townStone = townStone + 2 * levelQuarry;
@@ -51,7 +53,7 @@ function addTownResources() {
     townStoneInnerHTML = townStoneInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
     document.getElementById('town-stone').innerText = townStoneInnerHTML;
 
-    let townGold = document.getElementById('town-gold').innerText;
+    townGold = document.getElementById('town-gold').innerText;
     townGold = transformFormatNumber(townGold);
     townGold = parseFloat(townGold);
     townGold = townGold + 1 * levelMine;
@@ -59,7 +61,7 @@ function addTownResources() {
     townGoldInnerHTML = townGoldInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
     document.getElementById('town-gold').innerText = townGoldInnerHTML;
 
-    let townBow = document.getElementById('town-bow').innerText;
+    townBow = document.getElementById('town-bow').innerText;
     // console.log('bow');
     townBow = transformFormatNumber(townBow);
     townBow = parseFloat(townBow);
@@ -68,7 +70,8 @@ function addTownResources() {
     townBowInnerHTML = townBowInnerHTML.replace(/[\s\uFEFF\xA0]/g, " "); //remplace le faux espace du formatage
     document.getElementById('town-bow').innerText = townBowInnerHTML;
 
-    let townCrossbow = document.getElementById('town-crossbow').innerText;
+    townCrossbow = document.getElementById('town-crossbow').innerText;
+    // console.log(townCrossbow);
     townCrossbow = transformFormatNumber(townCrossbow);
     townCrossbow = parseFloat(townCrossbow);
     townCrossbow = townCrossbow + 1 * levelWorkshop;
@@ -77,205 +80,215 @@ function addTownResources() {
     document.getElementById('town-crossbow').innerText = townCrossbowInnerHTML;
 
     // pour faire la coloration en temps réel des tooltip
+    // let townConstructs = ['farm', 'sawmill', 'extractor', 'quarry', 'mine', 'barracks'];
+    // // console.log(new ((function () { return 'test' }).Constructor));
+    // townConstructs.forEach(function (townConstruct) {
+    //     // const name = townConstruct.charAt(0).toUpperCase() + townConstruct.slice(1);
+    //     const foodResource = new Function('name', 'return name + "Food"');
+    //     const woodResource = new Function('name', 'return name + "Wood"');
+    //     const metalResource = new Function('name', 'return name + "Metal"');
+    //     const stoneResource = new Function('name', 'return name + "Stone"');
+    //     const goldResource = new Function('name', 'return name + "Gold"');
+    //     console.log(foodResource(townConstruct));
+    // });
 
+    // console.log(foodResource('farm'));
     if (townFood >= farmFood) {
-        let id = 'tooltip-food-farm';
+        id = 'tooltip-food-farm';
         document.getElementById(id).style.color = '#4cff49';
     }
     if (townWood >= farmWood) {
-        let id = 'tooltip-wood-farm';
+        id = 'tooltip-wood-farm';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
 
     }
     if (townMetal >= farmMetal) {
-        let id = 'tooltip-metal-farm';
+        id = 'tooltip-metal-farm';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townStone >= farmStone) {
-        let id = 'tooltip-stone-farm';
+        id = 'tooltip-stone-farm';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townGold >= farmGold) {
-        let id = 'tooltip-gold-farm';
+        id = 'tooltip-gold-farm';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
 
     if (townFood >= sawmillFood) {
-        let id = 'tooltip-food-sawmill';
+        id = 'tooltip-food-sawmill';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townWood >= sawmillWood) {
-        let id = 'tooltip-wood-sawmill';
+        id = 'tooltip-wood-sawmill';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townMetal >= sawmillMetal) {
-        let id = 'tooltip-metal-sawmill';
+        id = 'tooltip-metal-sawmill';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townStone >= sawmillStone) {
-        let id = 'tooltip-stone-sawmill';
+        id = 'tooltip-stone-sawmill';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townGold >= sawmillGold) {
-        let id = 'tooltip-gold-sawmill';
+        id = 'tooltip-gold-sawmill';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
 
     if (townFood >= extractorFood) {
-        let id = 'tooltip-food-extractor';
+        id = 'tooltip-food-extractor';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townWood >= extractorWood) {
-        let id = 'tooltip-wood-extractor';
+        id = 'tooltip-wood-extractor';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townMetal >= extractorMetal) {
-        let id = 'tooltip-metal-extractor';
+        id = 'tooltip-metal-extractor';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townStone >= extractorStone) {
-        let id = 'tooltip-stone-extractor';
+        id = 'tooltip-stone-extractor';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townGold >= extractorGold) {
-        let id = 'tooltip-gold-extractor';
+        id = 'tooltip-gold-extractor';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
 
     if (townFood >= quarryFood) {
-        let id = 'tooltip-food-quarry';
+        id = 'tooltip-food-quarry';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townWood >= quarryWood) {
-        let id = 'tooltip-wood-quarry';
+        id = 'tooltip-wood-quarry';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townMetal >= quarryMetal) {
-        let id = 'tooltip-metal-quarry';
+        id = 'tooltip-metal-quarry';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townStone >= quarryStone) {
-        let id = 'tooltip-stone-quarry';
+        id = 'tooltip-stone-quarry';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townGold >= quarryGold) {
-        let id = 'tooltip-gold-quarry';
+        id = 'tooltip-gold-quarry';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
 
     if (townFood >= mineFood) {
-        let id = 'tooltip-food-mine';
+        id = 'tooltip-food-mine';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townWood >= mineWood) {
-        let id = 'tooltip-wood-mine';
+        id = 'tooltip-wood-mine';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townMetal >= mineMetal) {
-        let id = 'tooltip-metal-mine';
+        id = 'tooltip-metal-mine';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townStone >= mineStone) {
-        let id = 'tooltip-stone-mine';
+        id = 'tooltip-stone-mine';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townGold >= mineGold) {
-        let id = 'tooltip-gold-mine';
+        id = 'tooltip-gold-mine';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
 
     if (townFood >= barracksFood) {
-        let id = 'tooltip-food-barracks';
+        id = 'tooltip-food-barracks';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townWood >= barracksWood) {
-        let id = 'tooltip-wood-barracks';
+        id = 'tooltip-wood-barracks';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townMetal >= barracksMetal) {
-        let id = 'tooltip-metal-barracks';
+        id = 'tooltip-metal-barracks';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townStone >= barracksStone) {
-        let id = 'tooltip-stone-barracks';
+        id = 'tooltip-stone-barracks';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
     if (townGold >= barracksGold) {
-        let id = 'tooltip-gold-barracks';
+        id = 'tooltip-gold-barracks';
         if (document.getElementById(id) !== null) {
             document.getElementById(id).style.color = '#4cff49';
         }
     }
 
-    setTimeout(function () {
-        addTownResources()
-    }, 10000);
+
 
     //qd je développe en local
 
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);//.then(response => console.log(response.text()));
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townFood + '&type=food&id=' + idPlayer);//.then(response => console.log(response.text()));
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townWood + '&type=wood&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townMetal + '&type=metal&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townStone + '&type=stone&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townGold + '&type=gold&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townBow + '&type=bow&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townCrossbow + '&type=crossbow&id=' + idPlayer);
 
     // let url = 'http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood;
     // let oReq = new XMLHttpRequest();
@@ -284,15 +297,17 @@ function addTownResources() {
 
     //pour que cela fonctionne en ligne
 
-    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);
-    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
-    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
-    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
-    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
-    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
-    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townFood + '&type=food&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townWood + '&type=wood&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townMetal + '&type=metal&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townStone + '&type=stone&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townGold + '&type=gold&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townBow + '&type=bow&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&id=' + idPlayer);
 
-
+    setTimeout(function () {
+        addTownResources()
+    }, 10000);
 }
 
 function addTownWood(level) {

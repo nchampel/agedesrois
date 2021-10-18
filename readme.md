@@ -51,6 +51,25 @@ attaque d'un ennemi pourra être en même temps qu'une action et ne pas être an
 
 fonction eval pour nom de variable dynamique en js
 
+sauvegarder temps qu'ont passé les gens sur le site
+
+bug sur code sans classe sur couleur arcs
+
+bien traiter erreur quand on veut s'inscrire avec un pseudo déjà existant
+
+fichiers logs
+
+cueillette, bûcheron, minerai
+
+carte immense où l'on se déplace avec bouton flèche, ou touches claviers (event onkeydown)
+
+recharger $_SESSION quand map.php se recharge
+
+frêne, noisetier, chêne
+
+arc et arbalète construite à partir réserve planches frêne, puis noisetier, chêne etc.
+
+
 28/09
 
 Début : page d'accueil où on s'identifie, on rentre son nom
@@ -140,3 +159,21 @@ limitation construction niveau château js => ok
 13/10
 
 impossible désormais de lancer une 2e action avant que la 1ère soit finie
+
+
+14/10
+
+passage à la POO
+inscription en cours
+bug sur sans classe sur couleur arcs
+inscription finie
+connexion en cours
+
+15/10 - 16/10 - 17/10
+
+passage à la POO
+
+18/10
+
+passage à la POO
+bug tooltip archer

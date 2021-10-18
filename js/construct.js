@@ -93,9 +93,14 @@ if (levelCastle <= levelBarracks) {
     document.getElementById('not-displayed-barracks').style.display = 'block';
 }
 
+if (levelCastle <= levelWorkshop) {
+    document.getElementById('btn-workshop').disabled = true;
+    document.getElementById('not-displayed-workshop').style.display = 'block';
+}
+
 if (levelBarracks <= levelArcher) {
     document.getElementById('btn-archer').disabled = true;
-    // document.getElementById('not-displayed-archer').style.display = 'block';
+    document.getElementById('not-displayed-archer').style.display = 'block';
 }
 
 function waitingTimeConstruct(type) {
@@ -251,7 +256,7 @@ function waitingTimeConstructStock(type) {
             id = 'form-workshop-construct';
             name = 'atelier lancée';
             answer = 'Pas assez de ressources pour lancer la construction de l\'atelier';
-            isOK = isConstructOKWorkshop;
+            // isOK = isConstructOKWorkshop;
             time = timeConstructWorkshop;
             food = workshopFood;
             wood = workshopWood;
@@ -310,7 +315,7 @@ function waitingTimeTraining(type) {
             id = 'form-archer-training';
             name = 'archer lancée';
             answer = 'Pas assez de ressources pour lancer l\'amélioration de l\'archer';
-            isOK = isTrainingOKArcher;
+            // isOK = isTrainingOKArcher;
             time = timeTrainingArcher;
             food = archerFood;
             gold = archerGold;
