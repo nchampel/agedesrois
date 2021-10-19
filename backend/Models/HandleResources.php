@@ -19,6 +19,26 @@ spl_autoload_register(function ($class_name) {
 
 class HandleResources
 {
+    static function addTownResource($type, $resource, $id)
+    {
+        $typeColumn = 'town_' . $type;
+        $setter = 'setTown_' . $type;
+        $getter = 'getTown_' . $type;
+        $amount = $resource + $_SESSION['player']->$getter();
+        $rqt = "UPDATE town set " . $typeColumn . " = :amount where id_player = :id";
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':id', $id);
+            $statement->bindParam(':amount', $amount);
+            //On l'execute
+            $result = $statement->execute();
+
+            $_SESSION['player']->$setter($resource);
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+    }
+
     static function substractConstructTown($foodNeeded, $woodNeeded, $metalNeeded, $stoneNeeded, $goldNeeded, $id, $player)
     {
 
@@ -32,6 +52,7 @@ class HandleResources
             $_SESSION['player']->getTown_gold() < $goldNeeded
         ) {
             $_SESSION['flash'] = 'Construction annulée car pas assez de ressources en ville';
+            ManagerGame::createLog($_SESSION['flash'], $id);
             header('Location: ../frontend/map.php');
             exit();
         }
@@ -105,6 +126,7 @@ class HandleResources
             $_SESSION['player']->getStock_gold() < $goldNeeded
         ) {
             $_SESSION['flash'] = 'Construction annulée car pas assez de ressources en stock';
+            ManagerGame::createLog($_SESSION['flash'], $id);
             header('Location: ../frontend/map.php');
             exit();
         }
@@ -178,6 +200,7 @@ class HandleResources
             $_SESSION['player']->getTown_bow() < $bowNeeded
         ) {
             $_SESSION['flash'] = 'Entraînement annulé car pas assez de ressources en ville';
+            ManagerGame::createLog($_SESSION['flash'], $id);
             header('Location: ../frontend/map.php');
             exit();
         }

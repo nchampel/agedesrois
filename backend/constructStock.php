@@ -1,11 +1,13 @@
 <?php
 
 use Models\MySQL;
+use Models\ManagerGame;
 use Models\HandleResources;
 
 include_once('Models/Player.php');
 include_once('Models/HandleResources.php');
 include_once('Models/MySQL.php');
+include_once('Models/ManagerGame.php');
 
 header('Access-Control-Allow-Origin: *');
 if (session_status() != PHP_SESSION_ACTIVE) {
@@ -49,6 +51,7 @@ $getter = 'getLevel_' . $type;
 
 if ((int)$castleLevel <= (int)$_SESSION['player']->$getter()) {
     $_SESSION['flash'] = 'Niveau de château insuffisant';
+    ManagerGame::createLog($_SESSION['flash'], $id);
     header('Location: ../frontend/map.php');
     exit();
 } else if ((int)$castleLevel > (int)$_SESSION['player']->$getter()) {
@@ -138,7 +141,7 @@ try {
     echo $exception->getMessage();
 }
 
-$_SESSION['flash'] = 'Construction ' . $_SESSION[$type]->getType_item() . ' finie';
-
+$_SESSION['flash'] = 'Construction ' . $_SESSION[$type]->getType_item() . ' niveau ' . $levelConstruct . ' finie';
+ManagerGame::createLog($_SESSION['flash'], $id);
 header('Location: ../frontend/map.php');
 exit();

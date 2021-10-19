@@ -149,3 +149,24 @@ try {
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }
+
+// $datePcclh = date("Y-m-d H:i:s");
+
+$req6 = 'INSERT INTO pcclh (id_player, pcclh_date) VALUES (:id, :datePcclh)';
+try {
+
+    // $cnx = MySQL::getInstance();
+    // var_dump($statement);
+    $statement = $cnx->prepare($req6);
+
+    $statement->bindParam(':id', $idPlayer);
+    $statement->bindParam(':datePcclh', $date);
+
+    $statement->execute();
+} catch (Exception $exception) {
+    echo $exception->getMessage();
+}
+
+$_SESSION['flash'] = 'Inscription réussie';
+header('Location: ../index.php');
+exit();

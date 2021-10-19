@@ -1,11 +1,15 @@
 <?php
 
+use Models\MySQL;
+use Models\HandleGames;
 use Models\HandleResources;
 
 header('Access-Control-Allow-Origin: *');
 
 include_once('../backend/Models/Player.php');
+include_once('../backend/Models/MySQL.php');
 include_once('../backend/Models/HandleResources.php');
+include_once('../backend/Models/HandleGames.php');
 include_once('../backend/Models/Constructs/Farm.php');
 include_once('../backend/Models/Constructs/Castle.php');
 include_once('../backend/Models/Constructs/Extractor.php');
@@ -28,10 +32,60 @@ if (empty($_SESSION['player'])) {
 
 
 if (isset($_SESSION['player'])) {
-    HandleResources::townResourcesRecovering($_SESSION['player']->getId(), $_SESSION['player']);
+    $id = $_SESSION['player']->getId();
+    HandleResources::townResourcesRecovering($id, $_SESSION['player']);
+    HandleGames::numberPartiesRecovering($id, $_SESSION['player']);
     HandleResources::resourcesNeeded();
 }
 
+// vérifier si il y a eu un jour passé pour savoir si on rajoute 5 parties
+// SELECT DATE_FORMAT("2018-09-24 22:21:20", "%Y-%m-%d");
+$rqt = 'SELECT DATE_FORMAT(pcclh_date, "%Y-%m-%d") AS `date_pcclh` from pcclh where id_player = :id';
+try {
+    $statement = MySQL::getInstance()->prepare($rqt);
+    $statement->bindParam(':id', $id);
+    // $statement->bindParam(':amount', $remainingParties);
+    //On l'execute
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+} catch (\Exception $exception) {
+    echo $exception->getMessage();
+}
+print_r($result);
+$datesql = $result[0]['date_pcclh'];
+$date = date("Y-m-d H:i:s");
+$date2 = new DateTime($date);
+$date1 = new DateTime($datesql);
+$date2->format('Y-m-d');
+echo $date1->diff($date2)->format("%d");
+// die();
+if ($date1->diff($date2)->format("%d") > 0) {
+    $remainingParties = 5;
+    $_SESSION['player']->setPcclh_parties($remainingParties);
+    $rqt = "UPDATE pcclh set pcclh_date = :actualDate where id_player = :id";
+    try {
+        $statement = MySQL::getInstance()->prepare($rqt);
+        $statement->bindParam(':id', $id);
+        $statement->bindParam(':actualDate', $date);
+        //On l'execute
+        $result = $statement->execute();
+        // echo $result;
+        $rqt = "UPDATE pcclh set pcclh_parties = :amount where id_player = :id";
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':id', $id);
+            $statement->bindParam(':amount', $remainingParties);
+            //On l'execute
+            $result = $statement->execute();
+            // echo $result;
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+    } catch (\Exception $exception) {
+        echo $exception->getMessage();
+    }
+    echo 'ajout';
+}
 
 
 // if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
@@ -89,6 +143,22 @@ echo ('</pre>');
     <p>Nourriture dans la ville : <?php //echo $player['player']; 
                                     ?> </p> -->
     <h1 id="test">Salut <span id="pseudo"><?php echo $_SESSION['player']->getPseudo(); ?></span> !</h1>
+
+    <form action="../backend/pcclh.php?choice=paper" method="POST">
+        <input type="submit" value="Papier" class="button" />
+    </form>
+    <form action="../backend/pcclh.php?choice=scissors" method="POST">
+        <input type="submit" value="Ciseaux" class="button" />
+    </form>
+    <form action="../backend/pcclh.php?choice=rock" method="POST">
+        <input type="submit" value="Caillou" class="button" />
+    </form>
+    <form action="../backend/pcclh.php?choice=lizard" method="POST">
+        <input type="submit" value="Lézard" class="button" />
+    </form>
+    <form action="../backend/pcclh.php?choice=man" method="POST">
+        <input type="submit" value="Homme" class="button" />
+    </form>
 
     <?php include('townresources.php'); ?>
 

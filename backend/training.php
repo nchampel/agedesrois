@@ -1,11 +1,13 @@
 <?php
 
 use Models\MySQL;
+use Models\ManagerGame;
 use Models\HandleResources;
 
 include_once('Models/Player.php');
 include_once('Models/HandleResources.php');
 include_once('Models/MySQL.php');
+include_once('Models/ManagerGame.php');
 
 header('Access-Control-Allow-Origin: *');
 if (session_status() != PHP_SESSION_ACTIVE) {
@@ -43,6 +45,7 @@ switch ($typeBuilding) {
 
 if ((int)$trainingLevel <= (int)$_SESSION['player']->$getter()) {
     $_SESSION['flash'] = 'Niveau de ' . $nameBuilding . ' insuffisant';
+    ManagerGame::createLog($_SESSION['flash'], $id);
     header('Location: ../frontend/map.php');
     exit();
 } else if ((int)$trainingLevel > (int)$_SESSION['player']->$getter()) {
@@ -70,7 +73,7 @@ try {
     echo $exception->getMessage();
 }
 
-$_SESSION['flash'] = 'Entraînement ' . $_SESSION[$type]->getType_army() . ' fini';
-
+$_SESSION['flash'] = 'Entraînement ' . $_SESSION[$type]->getType_army() . ' niveau ' . $levelTraining . ' fini';
+ManagerGame::createLog($_SESSION['flash'], $id);
 header('Location: ../frontend/map.php');
 exit();

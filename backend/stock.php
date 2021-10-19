@@ -1,11 +1,13 @@
 <?php
 
 use Models\MySQL;
+use Models\ManagerGame;
 use Models\HandleResources;
 
 include_once('Models/Player.php');
 include_once('Models/HandleResources.php');
 include_once('Models/MySQL.php');
+include_once('Models/ManagerGame.php');
 
 if (session_status() != PHP_SESSION_ACTIVE) {
     //var_dump('test');
@@ -34,6 +36,7 @@ if (
 ) {
 
     $_SESSION['flash'] = 'Mise en stock annulée car pas assez de ressources en ville';
+    ManagerGame::createLog($_SESSION['flash'], $id);
     header('Location: ../frontend/map.php');
     exit();
 }
@@ -132,7 +135,7 @@ try {
 }
 
 $_SESSION['flash'] = 'Mise en stock effectuée';
-
+ManagerGame::createLog($_SESSION['flash'], $id);
 // var_dump($_SESSION);
 
 

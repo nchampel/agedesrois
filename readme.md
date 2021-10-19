@@ -75,6 +75,12 @@ ici, comment fonctionne un gestionnaire d'erreur SQL
 https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1972565-gestionnaires-derreurs-curseurs-et-utilisation-avancee
 tu peux gérer les erreurs SQL avec un handler SQL
 
+pierre papier ciseaux lézard homme
+
+jeux pour avoir des bonus (ressources augmentent 2 fois plus vite pendant une certaine itération)
+
+jeux de hasard
+
 28/09
 
 Début : page d'accueil où on s'identifie, on rentre son nom
@@ -182,3 +188,12 @@ passage à la POO
 
 passage à la POO
 bug tooltip archer => résolu
+bouton archer fonctionnel
+création du jeu papier ciseaux caillou lézard homme
+je dois mettre en place la remise à 5 parties chaque jour, une fois par jour
+
+19/10
+
+enregistrement des logs en bdd => OK
+remise à 5 parties chaque jour, une fois par jour => OK
+je dois mettre en forme le code pcclh.php et map.php

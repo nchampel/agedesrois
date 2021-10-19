@@ -32,6 +32,7 @@ class Player
     private $level_quarry;
     private $level_mine;
     private $level_barracks;
+    private $pcclh_parties;
 
     function __construct(array $values)
     {
@@ -630,6 +631,26 @@ class Player
     public function setTown_crossbow($town_crossbow)
     {
         $this->town_crossbow = $town_crossbow;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pcclh_parties
+     */
+    public function getPcclh_parties()
+    {
+        return $this->pcclh_parties;
+    }
+
+    /**
+     * Set the value of pcclh_parties
+     *
+     * @return  self
+     */
+    public function setPcclh_parties($pcclh_parties)
+    {
+        $this->pcclh_parties = $pcclh_parties;
 
         return $this;
     }

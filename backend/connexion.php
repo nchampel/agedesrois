@@ -2,9 +2,6 @@
 
 use Models\InitGame;
 use Models\MySQL;
-use Models\ManagerArmy;
-use Models\ManagerItems;
-use Models\ManagerPlayer;
 
 // include('Models/Player.php');
 
@@ -72,6 +69,9 @@ try {
     $statement->execute();
 
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    // print_r($results[0]['id']);
+    // die();
 
     if (password_verify($password, $results[0]['player_password'])) { // si vrai le mot de passe correspond au $hash
         // On vient de récupérer l'utilisateur, on créé sa session
