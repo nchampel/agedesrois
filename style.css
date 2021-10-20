@@ -136,6 +136,10 @@ h3{
   color: green;
   text-decoration: none;
 }
+.form-pcclh{
+  display: inline;
+  margin-right: 25px;
+}
 
 /* code townresources.php */
 

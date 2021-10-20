@@ -3,8 +3,10 @@
 use Models\MySQL;
 use Models\HandleGames;
 use Models\HandleResources;
+use Models\ManagerGame;
 
 include_once('../backend/Models/MySQL.php');
+include_once('../backend/Models/ManagerGame.php');
 include_once('../backend/Models/HandleGames.php');
 include_once('../backend/Models/HandleResources.php');
 
@@ -12,40 +14,16 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
 }
 $id = $_SESSION['player']->getId();
-// echo $id;
 
-// $rqt = 'SELECT * from player where id = 4';
-// try {
-//     $statement = MySQL::getInstance()->prepare($rqt);
-//     // $statement->bindParam(':id', $id);
-//     // $statement->bindParam(':amount', $remainingParties);
-//     //On l'execute
-//     $statement->execute();
-//     $result1 = $statement->fetchAll(PDO::FETCH_ASSOC);
-// } catch (\Exception $exception) {
-//     echo $exception->getMessage();
-// }
-// print_r($result1);
-
-// die();
 $remainingParties = $_SESSION['player']->getPcclh_parties() - 1;
 // echo ($remainingParties);
 $_SESSION['player']->setPcclh_parties($remainingParties);
 
-$rqt = "UPDATE pcclh set pcclh_parties = :amount where id_player = :id";
-try {
-    $statement = MySQL::getInstance()->prepare($rqt);
-    $statement->bindParam(':id', $id);
-    $statement->bindParam(':amount', $remainingParties);
-    //On l'execute
-    $result = $statement->execute();
-    // echo $result;
-} catch (\Exception $exception) {
-    echo $exception->getMessage();
-}
+ManagerGame::savePartiesPcclh($remainingParties, $id);
 
 if ($remainingParties < 0) {
     $_SESSION['flash'] = 'Plus de parties restantes';
+    ManagerGame::createLog($_SESSION['flash'], $id);
     header('Location: ../frontend/map.php');
     exit();
 }
@@ -90,13 +68,15 @@ switch ($computerChoice) {
 }
 
 
-echo 'Vous avez choisi ' . $choiceInFrench . PHP_EOL;
-echo 'L\'adversaire a choisi ' . $computerChoiceInFrench . PHP_EOL;
+$_SESSION['flash'] = 'Vous avez choisi ' . $choiceInFrench . "\n";
+$_SESSION['flash'] .= 'L\'adversaire a choisi ' . $computerChoiceInFrench . "\n";
 $result = HandleGames::pcclh($playerChoice, $computerChoice);
 if ($result == 'égalité') {
-    echo 'Vous avez fait égalité';
-} else {
-    echo 'Vous avez ' . $result . PHP_EOL;
+    $_SESSION['flash'] .= 'Vous avez fait égalité';
+    ManagerGame::createLog($_SESSION['flash'], $id);
+} else if ($result == 'perdu') {
+    $_SESSION['flash'] .=  'Vous avez perdu';
+    ManagerGame::createLog($_SESSION['flash'], $id);
 }
 
 if ($result == 'gagné') {
@@ -122,5 +102,8 @@ if ($result == 'gagné') {
     $amounts = [1000, 2500, 5000, 7500, 10000];
     $resource = $amounts[rand(0, 4)];
     HandleResources::addTownResource($type, $resource, $_SESSION['player']->getId());
-    echo 'L\'adversaire vous donne ' . $resource . ' ' . $typeInFrench;
+    $_SESSION['flash'] .= 'Vous avez gagné ! L\'adversaire vous donne ' . number_format($resource, 0, ',', ' ') . ' ' . $typeInFrench;
+    ManagerGame::createLog($_SESSION['flash'], $id);
 }
+header('Location: ../frontend/map.php');
+exit();

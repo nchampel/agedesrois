@@ -77,7 +77,7 @@ try {
         // On vient de récupérer l'utilisateur, on créé sa session
         session_start();
         // $user = new Player($results[0]['id'], $results[0]['pseudo']);
-
+        // print_r($results);
         InitGame::initialization($results);
 
         // $player = ManagerPlayer::playerLoading($results[0]['id']);

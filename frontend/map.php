@@ -3,6 +3,7 @@
 use Models\MySQL;
 use Models\HandleGames;
 use Models\HandleResources;
+use Models\ManagerGame;
 
 header('Access-Control-Allow-Origin: *');
 
@@ -10,6 +11,7 @@ include_once('../backend/Models/Player.php');
 include_once('../backend/Models/MySQL.php');
 include_once('../backend/Models/HandleResources.php');
 include_once('../backend/Models/HandleGames.php');
+include_once('../backend/Models/ManagerGame.php');
 include_once('../backend/Models/Constructs/Farm.php');
 include_once('../backend/Models/Constructs/Castle.php');
 include_once('../backend/Models/Constructs/Extractor.php');
@@ -40,52 +42,8 @@ if (isset($_SESSION['player'])) {
 
 // vérifier si il y a eu un jour passé pour savoir si on rajoute 5 parties
 // SELECT DATE_FORMAT("2018-09-24 22:21:20", "%Y-%m-%d");
-$rqt = 'SELECT DATE_FORMAT(pcclh_date, "%Y-%m-%d") AS `date_pcclh` from pcclh where id_player = :id';
-try {
-    $statement = MySQL::getInstance()->prepare($rqt);
-    $statement->bindParam(':id', $id);
-    // $statement->bindParam(':amount', $remainingParties);
-    //On l'execute
-    $statement->execute();
-    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-} catch (\Exception $exception) {
-    echo $exception->getMessage();
-}
-print_r($result);
-$datesql = $result[0]['date_pcclh'];
-$date = date("Y-m-d H:i:s");
-$date2 = new DateTime($date);
-$date1 = new DateTime($datesql);
-$date2->format('Y-m-d');
-echo $date1->diff($date2)->format("%d");
-// die();
-if ($date1->diff($date2)->format("%d") > 0) {
-    $remainingParties = 5;
-    $_SESSION['player']->setPcclh_parties($remainingParties);
-    $rqt = "UPDATE pcclh set pcclh_date = :actualDate where id_player = :id";
-    try {
-        $statement = MySQL::getInstance()->prepare($rqt);
-        $statement->bindParam(':id', $id);
-        $statement->bindParam(':actualDate', $date);
-        //On l'execute
-        $result = $statement->execute();
-        // echo $result;
-        $rqt = "UPDATE pcclh set pcclh_parties = :amount where id_player = :id";
-        try {
-            $statement = MySQL::getInstance()->prepare($rqt);
-            $statement->bindParam(':id', $id);
-            $statement->bindParam(':amount', $remainingParties);
-            //On l'execute
-            $result = $statement->execute();
-            // echo $result;
-        } catch (\Exception $exception) {
-            echo $exception->getMessage();
-        }
-    } catch (\Exception $exception) {
-        echo $exception->getMessage();
-    }
-    echo 'ajout';
-}
+ManagerGame::addPartiesDay($id);
+
 
 
 // if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
@@ -94,7 +52,7 @@ if ($date1->diff($date2)->format("%d") > 0) {
 // }
 // include_once('../backend/resourcesRecoveringMap.php');
 echo ('<pre>');
-print_r($_SESSION);
+// print_r($_SESSION);
 // echo 'true';
 // echo true;
 // echo 'false';
@@ -125,7 +83,7 @@ echo ('</pre>');
         <?php
         if (isset($_SESSION['flash'])) {
             if (!empty($_SESSION['flash'])) {
-                echo $_SESSION['flash'];
+                echo nl2br($_SESSION['flash']);
                 $_SESSION['flash'] = '';
             }
         }
@@ -144,21 +102,30 @@ echo ('</pre>');
                                     ?> </p> -->
     <h1 id="test">Salut <span id="pseudo"><?php echo $_SESSION['player']->getPseudo(); ?></span> !</h1>
 
-    <form action="../backend/pcclh.php?choice=paper" method="POST">
-        <input type="submit" value="Papier" class="button" />
+    <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
+                                                                                    echo $_SESSION['player']->getPcclh_parties();
+                                                                                } else {
+                                                                                    echo 0;
+                                                                                } ?></h2>
+
+    <h2>Choississez votre coup</h2>
+    <form action="../backend/pcclh.php?choice=paper" method="POST" class="form-pcclh">
+        <input type="image" onClick="submit" src="../pictures/paper-modified.jpg" />
     </form>
-    <form action="../backend/pcclh.php?choice=scissors" method="POST">
-        <input type="submit" value="Ciseaux" class="button" />
+    <form action="../backend/pcclh.php?choice=scissors" method="POST" class="form-pcclh">
+        <input type="image" onClick="submit" src="../pictures/black-scissors.jpg" />
     </form>
-    <form action="../backend/pcclh.php?choice=rock" method="POST">
-        <input type="submit" value="Caillou" class="button" />
+    <form action="../backend/pcclh.php?choice=rock" method="POST" class="form-pcclh">
+        <input type="image" onClick="submit" src="../pictures/stones.jpg" />
     </form>
-    <form action="../backend/pcclh.php?choice=lizard" method="POST">
-        <input type="submit" value="Lézard" class="button" />
+    <form action="../backend/pcclh.php?choice=lizard" method="POST" class="form-pcclh">
+        <input type="image" onClick="submit" src="../pictures/lizard.jpg" />
     </form>
-    <form action="../backend/pcclh.php?choice=man" method="POST">
-        <input type="submit" value="Homme" class="button" />
+    <form action="../backend/pcclh.php?choice=man" method="POST" class="form-pcclh">
+        <input type="image" onClick="submit" src="../pictures/man.jpg" />
     </form>
+
+    <br>
 
     <?php include('townresources.php'); ?>
 

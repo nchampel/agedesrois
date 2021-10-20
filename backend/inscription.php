@@ -80,12 +80,12 @@ try {
     echo $exception->getMessage();
 }
 
-$req1 = "INSERT INTO town (id_player) VALUES (:id)";
+$req = "INSERT INTO town (id_player) VALUES (:id)";
 try {
 
     // $cnx = MySQL::getInstance();
     // var_dump($statement);
-    $statement = $cnx->prepare($req1);
+    $statement = $cnx->prepare($req);
 
     $statement->bindParam(':id', $idPlayer);
 
@@ -94,12 +94,12 @@ try {
     echo $exception->getMessage();
 }
 
-$req2 = "INSERT INTO stock (id_player) VALUES (:id)";
+$req = "INSERT INTO stock (id_player) VALUES (:id)";
 try {
 
     // $cnx = MySQL::getInstance();
     // var_dump($statement);
-    $statement = $cnx->prepare($req2);
+    $statement = $cnx->prepare($req);
 
     $statement->bindParam(':id', $idPlayer);
 
@@ -108,12 +108,12 @@ try {
     echo $exception->getMessage();
 }
 
-$req3 = "INSERT INTO level_constructs_town (id_player) VALUES (:id)";
+$req = "INSERT INTO level_constructs_town (id_player) VALUES (:id)";
 try {
 
     // $cnx = MySQL::getInstance();
     // var_dump($statement);
-    $statement = $cnx->prepare($req3);
+    $statement = $cnx->prepare($req);
 
     $statement->bindParam(':id', $idPlayer);
 
@@ -122,12 +122,12 @@ try {
     echo $exception->getMessage();
 }
 
-$req4 = "INSERT INTO level_constructs_stock (id_player) VALUES (:id)";
+$req = "INSERT INTO level_constructs_stock (id_player) VALUES (:id)";
 try {
 
     // $cnx = MySQL::getInstance();
     // var_dump($statement);
-    $statement = $cnx->prepare($req4);
+    $statement = $cnx->prepare($req);
 
     $statement->bindParam(':id', $idPlayer);
 
@@ -136,12 +136,12 @@ try {
     echo $exception->getMessage();
 }
 
-$req5 = "INSERT INTO level_army (id_player) VALUES (:id)";
+$req = "INSERT INTO level_army (id_player) VALUES (:id)";
 try {
 
     // $cnx = MySQL::getInstance();
     // var_dump($statement);
-    $statement = $cnx->prepare($req5);
+    $statement = $cnx->prepare($req);
 
     $statement->bindParam(':id', $idPlayer);
 
@@ -152,12 +152,12 @@ try {
 
 // $datePcclh = date("Y-m-d H:i:s");
 
-$req6 = 'INSERT INTO pcclh (id_player, pcclh_date) VALUES (:id, :datePcclh)';
+$req = 'INSERT INTO pcclh (id_player, pcclh_date) VALUES (:id, :datePcclh)';
 try {
 
     // $cnx = MySQL::getInstance();
     // var_dump($statement);
-    $statement = $cnx->prepare($req6);
+    $statement = $cnx->prepare($req);
 
     $statement->bindParam(':id', $idPlayer);
     $statement->bindParam(':datePcclh', $date);

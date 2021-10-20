@@ -197,3 +197,8 @@ je dois mettre en place la remise à 5 parties chaque jour, une fois par jour
 enregistrement des logs en bdd => OK
 remise à 5 parties chaque jour, une fois par jour => OK
 je dois mettre en forme le code pcclh.php et map.php
+
+20/10
+
+mise en forme du code
+mise en production de la version avec pcclh
