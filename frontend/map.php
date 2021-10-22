@@ -72,6 +72,7 @@ echo ('</pre>');
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>L'âge des Rois</title>
     <link rel="stylesheet" href="../style.css" />
+    <!-- <script src="../js/game.js"></script> -->
 </head>
 
 <body>
@@ -100,32 +101,38 @@ echo ('</pre>');
                     ?> !</h1>
     <p>Nourriture dans la ville : <?php //echo $player['player']; 
                                     ?> </p> -->
-    <h1 id="test">Salut <span id="pseudo"><?php echo $_SESSION['player']->getPseudo(); ?></span> !</h1>
+    <h1>Salut <span id="pseudo"><?php echo $_SESSION['player']->getPseudo(); ?></span> !</h1>
+    <div id="div-pcclh">
+        <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
+                                                                                        echo $_SESSION['player']->getPcclh_parties();
+                                                                                    } else {
+                                                                                        echo 0;
+                                                                                    } ?></h2>
+        <p class="pointer" id="link-game-pcclh" onclick="displayPcclh()">Jouer à Papier Ciseaux Caillou Lézard Homme</p>
+        <div id="div-game-pcclh">
+            <h2>Choisissez votre coup</h2>
+            <form action="../backend/pcclh.php?choice=paper" method="POST" class="form-pcclh">
+                <input type="image" onClick="submit" src="../pictures/paper-modified.jpg" />
+            </form>
+            <form action="../backend/pcclh.php?choice=scissors" method="POST" class="form-pcclh">
+                <input type="image" onClick="submit" src="../pictures/black-scissors.jpg" />
+            </form>
+            <form action="../backend/pcclh.php?choice=rock" method="POST" class="form-pcclh">
+                <input type="image" onClick="submit" src="../pictures/stones.jpg" />
+            </form>
+            <form action="../backend/pcclh.php?choice=lizard" method="POST" class="form-pcclh">
+                <input type="image" onClick="submit" src="../pictures/lizard.jpg" />
+            </form>
+            <form action="../backend/pcclh.php?choice=man" method="POST" class="form-pcclh">
+                <input type="image" onClick="submit" src="../pictures/man.jpg" />
+            </form>
+            <p class="pointer" onclick="notDisplayPcclh()">Quitter le jeu</p>
+        </div>
 
-    <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
-                                                                                    echo $_SESSION['player']->getPcclh_parties();
-                                                                                } else {
-                                                                                    echo 0;
-                                                                                } ?></h2>
+    </div>
 
-    <h2>Choississez votre coup</h2>
-    <form action="../backend/pcclh.php?choice=paper" method="POST" class="form-pcclh">
-        <input type="image" onClick="submit" src="../pictures/paper-modified.jpg" />
-    </form>
-    <form action="../backend/pcclh.php?choice=scissors" method="POST" class="form-pcclh">
-        <input type="image" onClick="submit" src="../pictures/black-scissors.jpg" />
-    </form>
-    <form action="../backend/pcclh.php?choice=rock" method="POST" class="form-pcclh">
-        <input type="image" onClick="submit" src="../pictures/stones.jpg" />
-    </form>
-    <form action="../backend/pcclh.php?choice=lizard" method="POST" class="form-pcclh">
-        <input type="image" onClick="submit" src="../pictures/lizard.jpg" />
-    </form>
-    <form action="../backend/pcclh.php?choice=man" method="POST" class="form-pcclh">
-        <input type="image" onClick="submit" src="../pictures/man.jpg" />
-    </form>
 
-    <br>
+
 
     <?php include('townresources.php'); ?>
 
@@ -341,7 +348,7 @@ echo ('</pre>');
         // let isTrainingOKArcher = true;
         // let isStockResourcesOK = true;
     </script>
-
+    <script src="../js/game.js"></script>
     <script src="../js/design.js"></script>
     <script src="../js/time.js"></script>
     <script src="../js/construct.js"></script>

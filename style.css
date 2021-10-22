@@ -86,6 +86,9 @@ progress[value]::-webkit-progress-bar {
 
 
 /* code map.php */
+body{
+  background-image: url('pictures/background.jpg') no-repeat;
+}
 h3{
     font-size: 1.5em;
 }
@@ -139,6 +142,28 @@ h3{
 .form-pcclh{
   display: inline;
   margin-right: 25px;
+}
+.img-resource{
+  width: 50px;
+}
+#div-town{
+  border: 1px black solid;
+  border-radius: 10px;
+  background-color: rgb(243, 243, 125);
+}
+#div-stock{
+  border: 1px black solid;
+  border-radius: 10px;
+  background-color: rgb(80, 240, 133);
+}
+#div-town h2, #div-stock h2{
+  margin-left: 20px;
+}
+#div-game-pcclh{
+  display: none;
+}
+.pointer{
+  cursor: pointer;
 }
 
 /* code townresources.php */

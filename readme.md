@@ -202,3 +202,14 @@ je dois mettre en forme le code pcclh.php et map.php
 
 mise en forme du code
 mise en production de la version avec pcclh
+mettre en place le comptage du temps passé sur le jeu
+
+21/10
+
+empêcher les joueurs de tricher en s'ajoutant des ressources
+recherche d'images pour agrémenter le site
+
+22/10
+
+ajout de la sauvegarde du comptage du temps passé sur le jeu
+travail sur le design

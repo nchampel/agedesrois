@@ -10,7 +10,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
     //$_SESSION['pseudo'] = "Lucie";
 }
-print_r($_SESSION);
+// print_r($_SESSION);
 $resource = (int)filter_var($_GET['resource'], FILTER_SANITIZE_STRING);
 // $resource = $_GET['resource'];
 $type = filter_var($_GET['type'], FILTER_SANITIZE_STRING);

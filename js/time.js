@@ -345,6 +345,7 @@ function addTownResources() {
 
     //qd je développe en local
 
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/countTime.php?id=' + idPlayer);
     fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townFood + '&type=food&id=' + idPlayer);//.then(response => console.log(response.text()));
     fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townWood + '&type=wood&id=' + idPlayer);
     fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townMetal + '&type=metal&id=' + idPlayer);
