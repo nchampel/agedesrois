@@ -87,7 +87,7 @@ progress[value]::-webkit-progress-bar {
 
 /* code map.php */
 body{
-  background-image: url('pictures/background.jpg') no-repeat;
+  background-image: url("pictures/background1.jpg");
 }
 h3{
     font-size: 1.5em;

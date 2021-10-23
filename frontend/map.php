@@ -103,12 +103,12 @@ echo ('</pre>');
                                     ?> </p> -->
     <h1>Salut <span id="pseudo"><?php echo $_SESSION['player']->getPseudo(); ?></span> !</h1>
     <div id="div-pcclh">
-        <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
-                                                                                        echo $_SESSION['player']->getPcclh_parties();
-                                                                                    } else {
-                                                                                        echo 0;
-                                                                                    } ?></h2>
-        <p class="pointer" id="link-game-pcclh" onclick="displayPcclh()">Jouer à Papier Ciseaux Caillou Lézard Homme</p>
+        <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes (5 parties disponibles par jour) : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
+                                                                                                                        echo $_SESSION['player']->getPcclh_parties();
+                                                                                                                    } else {
+                                                                                                                        echo 0;
+                                                                                                                    } ?></h2>
+        <p class="pointer" id="link-game-pcclh" onclick="displayPcclh()">Cliquer pour jouer à Papier Ciseaux Caillou Lézard Homme</p>
         <div id="div-game-pcclh">
             <h2>Choisissez votre coup</h2>
             <form action="../backend/pcclh.php?choice=paper" method="POST" class="form-pcclh">

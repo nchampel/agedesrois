@@ -81,6 +81,8 @@ jeux pour avoir des bonus (ressources augmentent 2 fois plus vite pendant une ce
 
 jeux de hasard
 
+faire classement joueurs
+
 28/09
 
 Début : page d'accueil où on s'identifie, on rentre son nom
@@ -213,3 +215,8 @@ recherche d'images pour agrémenter le site
 
 ajout de la sauvegarde du comptage du temps passé sur le jeu
 travail sur le design
+
+23/10
+
+faire classement joueurs
+les joueurs ne peuvent plus tricher
