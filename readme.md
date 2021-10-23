@@ -88,6 +88,8 @@ faire classement joueurs
 Début : page d'accueil où on s'identifie, on rentre son nom
 Récupération des données pour le nom OK
 
+quand on ajoute des nouvelles constructions, des nouvelles ressources, ajouter à Ranking.php, time.js
+
 29/09
 
 Découverte du bug de l'actualisation par f5 : remet les ressources au niveau du chargement de départ de la page
@@ -220,3 +222,4 @@ travail sur le design
 
 faire classement joueurs
 les joueurs ne peuvent plus tricher
+classement fait

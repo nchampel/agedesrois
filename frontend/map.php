@@ -1,26 +1,45 @@
 <?php
 
-use Models\MySQL;
+use Models\Ranking;
 use Models\HandleGames;
-use Models\HandleResources;
 use Models\ManagerGame;
+use Models\HandleResources;
 
 header('Access-Control-Allow-Origin: *');
 
-include_once('../backend/Models/Player.php');
-include_once('../backend/Models/MySQL.php');
-include_once('../backend/Models/HandleResources.php');
-include_once('../backend/Models/HandleGames.php');
-include_once('../backend/Models/ManagerGame.php');
-include_once('../backend/Models/Constructs/Farm.php');
-include_once('../backend/Models/Constructs/Castle.php');
-include_once('../backend/Models/Constructs/Extractor.php');
-include_once('../backend/Models/Constructs/Mine.php');
-include_once('../backend/Models/Constructs/Quarry.php');
-include_once('../backend/Models/Constructs/Sawmill.php');
-include_once('../backend/Models/Constructs/Workshop.php');
-include_once('../backend/Models/Constructs/Barracks.php');
-include_once('../backend/Models/Army/Archer.php');
+// include_once('../backend/Models/Player.php');
+// include_once('../backend/Models/MySQL.php');
+// include_once('../backend/Models/HandleResources.php');
+// include_once('../backend/Models/HandleGames.php');
+// include_once('../backend/Models/ManagerGame.php');
+// include_once('../backend/Models/Constructs/Farm.php');
+// include_once('../backend/Models/Constructs/Castle.php');
+// include_once('../backend/Models/Constructs/Extractor.php');
+// include_once('../backend/Models/Constructs/Mine.php');
+// include_once('../backend/Models/Constructs/Quarry.php');
+// include_once('../backend/Models/Constructs/Sawmill.php');
+// include_once('../backend/Models/Constructs/Workshop.php');
+// include_once('../backend/Models/Constructs/Barracks.php');
+// include_once('../backend/Models/Army/Archer.php');
+
+spl_autoload_register(function ($class_name) {
+    // echo $class_name;
+    if ($class_name == 'Models\MySQL') {
+        $class_name = 'MySQL';
+        include('../backend/Models/' . $class_name . '.php');
+    }
+    // if ($class_name == 'Models\Ranking') {
+    //     $transf = str_replace('\\', '/', $class_name);
+    //     include_once('../backend/' . $transf . '.php');
+    // }
+
+    if ($class_name != 'MySQL' && $class_name != 'Ranking') {
+        $transf = str_replace('\\', '/', $class_name);
+        // echo $transf . "\n";
+        include('../backend/' . $transf . '.php');
+        // include('Models/Constructs/' . $transf . '.php');
+    }
+});
 
 if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
@@ -130,9 +149,19 @@ echo ('</pre>');
         </div>
 
     </div>
+    <!-- <pre> -->
+    <?php
 
+    $rankings = Ranking::giveRanking();
+    // var_dump($rankings);
+    foreach ($rankings as $ranking) {
+        echo $ranking['pseudo'] . ' : ' . $ranking['points'] . ' points';
+        echo '<br/>';
+    }
+    // var_dump($rankings);
 
-
+    ?>
+    <!-- </pre> -->
 
     <?php include('townresources.php'); ?>
 

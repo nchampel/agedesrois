@@ -345,14 +345,14 @@ function addTownResources() {
 
     //qd je développe en local
 
-    // fetch('http://localhost:8080/LageDesRoisPOO/backend/countTime.php?id=' + idPlayer);
-    // fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townFood + '&type=food&building=farm&id=' + idPlayer);//.then(response => console.log(response.text()));
-    // fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townWood + '&type=wood&building=sawmill&id=' + idPlayer);
-    // fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townMetal + '&type=metal&building=extractor&id=' + idPlayer);
-    // fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townStone + '&type=stone&building=quarry&id=' + idPlayer);
-    // fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townGold + '&type=gold&building=mine&id=' + idPlayer);
-    // fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townBow + '&type=bow&building=workshop&id=' + idPlayer);
-    // fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townCrossbow + '&type=crossbow&building=workshop&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/countTime.php?id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townFood + '&type=food&building=farm&id=' + idPlayer);//.then(response => console.log(response.text()));
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townWood + '&type=wood&building=sawmill&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townMetal + '&type=metal&building=extractor&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townStone + '&type=stone&building=quarry&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townGold + '&type=gold&building=mine&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townBow + '&type=bow&building=workshop&id=' + idPlayer);
+    fetch('http://localhost:8080/LageDesRoisPOO/backend/save.php?resource=' + townCrossbow + '&type=crossbow&building=workshop&id=' + idPlayer);
 
     // let url = 'http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood;
     // let oReq = new XMLHttpRequest();
@@ -361,14 +361,14 @@ function addTownResources() {
 
     //pour que cela fonctionne en ligne
 
-    fetch('https://agedesrois.alwaysdata.net/backend/countTime.php?id=' + idPlayer);
-    fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townFood + '&type=food&id=' + idPlayer);
-    fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townWood + '&type=wood&id=' + idPlayer);
-    fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townMetal + '&type=metal&id=' + idPlayer);
-    fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townStone + '&type=stone&id=' + idPlayer);
-    fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townGold + '&type=gold&id=' + idPlayer);
-    fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townBow + '&type=bow&id=' + idPlayer);
-    fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/countTime.php?id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townFood + '&type=food&building=farm&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townWood + '&type=wood&building=sawmill&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townMetal + '&type=metal&building=extractor&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townStone + '&type=stone&building=quarry&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townGold + '&type=gold&building=mine&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townBow + '&type=bow&building=workshop&id=' + idPlayer);
+    // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&building=workshop&id=' + idPlayer);
 
     setTimeout(function () {
         addTownResources()
