@@ -83,6 +83,8 @@ jeux de hasard
 
 faire classement joueurs
 
+sauvegarde pseudo entré lors du rechargement de la page inscription lors erreur mdp
+
 28/09
 
 Début : page d'accueil où on s'identifie, on rentre son nom
@@ -223,3 +225,45 @@ travail sur le design
 faire classement joueurs
 les joueurs ne peuvent plus tricher
 classement fait
+
+24/10
+
+A FAIRE :
+tâches planifiées (pour ajout de ressources automatique par le serveur)
+carte de 81 cases par 9 x 9 cartes
+design card pour construire les bâtiments => en cours
+
+25/10
+
+travail sur le design
+
+26/10
+
+A FAIRE :
+tâche planifiée qui lance l'attaque sur la ville
+compter ressources dépensées pour les constructions dans les points
+IDEES :
+image cliquable sur carte
+constructions se débloquent en fonction du niveau du château
+
+recherche images constructions
+
+27/10
+
+création de la page fb et invitation de tous mes contacts
+
+28/10
+
+5 personnes aiment la page
+
+31/10
+
+mécanisme d'ajout de ressource de la carte en cours
+ajouter position dans player et s'en servir pour récupérer quantité ressources => fait
+
+01/11
+
+empêcher les joueurs de tricher en modifiant les ressources nécessaires pour la construction en passant uniquement le bêtiment à améliorer. On récupère les infos de construction dans la bdd.
+dans inscription remplir la table map_player avec l'id du nouveau joueur
+mécanisme d'ajout de ressource de la carte en cours, il manque que le serveur rende actif les ressources prises au bout d'un certain temps => fichier php écrit : resetMapResources
+faire apparaître disparaître la carte et les données de la ville en fonction des besoins

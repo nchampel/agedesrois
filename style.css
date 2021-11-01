@@ -84,6 +84,9 @@ progress[value]::-webkit-progress-bar {
   background: blue;
 } */
 
+input[type='submit']{
+  border: black 1px solid;
+}
 
 /* code map.php */
 body{
@@ -117,6 +120,7 @@ h3{
 }
 .button {
   background-image: linear-gradient(to right, #1FA2FF 0%, #29dbf3  51%, #1FA2FF  100%);
+  cursor: pointer;
 }
 .button {
   margin: 10px;
@@ -127,7 +131,7 @@ h3{
   background-size: 200% auto;
   color: green;    
   font-weight: bold;        
-  box-shadow: 0 0 20px #eee;
+  box-shadow: 0 0 20px #111;
   border-radius: 10px;
   display: block;
 }
@@ -163,6 +167,27 @@ h3{
   display: none;
 }
 .pointer{
+  cursor: pointer;
+}
+.div-constructs{
+  width: 200px;
+  display: inline-block;
+  border: 1px black solid;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px black;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* cursor: pointer; */
+}
+.img-constructs{
+  display: block;
+  margin: auto;
+}
+.div-constructs p{
+  text-align: center;
+}
+.class-resource{
   cursor: pointer;
 }
 

@@ -1,4 +1,6 @@
 <?php
+
+header('Access-Control-Allow-Origin: *');
 if (session_status() != PHP_SESSION_ACTIVE) {
     var_dump('test');
     session_start();

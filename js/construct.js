@@ -18,43 +18,43 @@ idNames.forEach(function (name) {
 
 function construction(food, time) {
 
-    let level = document.getElementById('farm-level').innerText;
-    let townFood = document.getElementById('town-food').innerText;
-    console.log(level);
-    parseFloat(level);
-    parseFloat(townFood);
-    if (townFood - food >= 0) {
-        townFood = townFood - food;
-        document.getElementById('town-food').innerText = townFood;
-        fetch('http://localhost:8080/LageDesRois/backend/constructSubstractResources.php?food=' + townFood);
-        setTimeout(function () {
-            fetch('http://localhost:8080/LageDesRois/backend/construct.php?type=farm&level=' + level);
-            level++;
-            document.getElementById('farm-level').innerText = level;
-        }, time * 1000);
-    }
+    // let level = document.getElementById('farm-level').innerText;
+    // let townFood = document.getElementById('town-food').innerText;
+    // console.log(level);
+    // parseFloat(level);
+    // parseFloat(townFood);
+    // if (townFood - food >= 0) {
+    //     townFood = townFood - food;
+    //     document.getElementById('town-food').innerText = townFood;
+    //     fetch('http://localhost:8080/LageDesRois/backend/constructSubstractResources.php?food=' + townFood);
+    //     setTimeout(function () {
+    //         fetch('http://localhost:8080/LageDesRois/backend/construct.php?type=farm&level=' + level);
+    //         level++;
+    //         document.getElementById('farm-level').innerText = level;
+    //     }, time * 1000);
+    // }
 }
 
 function saveResources() {
-    let pseudo = document.getElementById('pseudo').innerText;
+    // let pseudo = document.getElementById('pseudo').innerText;
     // console.log('function addTownFood');
-    let townFood = document.getElementById('town-food').innerText;
-    let townWood = document.getElementById('town-wood').innerText;
-    let townMetal = document.getElementById('town-metal').innerText;
-    let townStone = document.getElementById('town-stone').innerText;
-    let townGold = document.getElementById('town-gold').innerText;
-    let townBow = document.getElementById('town-bow').innerText;
-    let townCrossbow = document.getElementById('town-crossbow').innerText;
+    // let townFood = document.getElementById('town-food').innerText;
+    // let townWood = document.getElementById('town-wood').innerText;
+    // let townMetal = document.getElementById('town-metal').innerText;
+    // let townStone = document.getElementById('town-stone').innerText;
+    // let townGold = document.getElementById('town-gold').innerText;
+    // let townBow = document.getElementById('town-bow').innerText;
+    // let townCrossbow = document.getElementById('town-crossbow').innerText;
 
     //qd je développe en local
 
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);//.then(response => console.log(response.text()));
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
-    fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
+    // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townFood + '&type=food&pseudo=' + pseudo);//.then(response => console.log(response.text()));
+    // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townWood + '&type=wood&pseudo=' + pseudo);
+    // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townMetal + '&type=metal&pseudo=' + pseudo);
+    // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townStone + '&type=stone&pseudo=' + pseudo);
+    // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townGold + '&type=gold&pseudo=' + pseudo);
+    // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townBow + '&type=bow&pseudo=' + pseudo);
+    // fetch('http://localhost:8080/LageDesRois/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
 
     //pour que cela fonctionne en ligne
 
@@ -67,7 +67,6 @@ function saveResources() {
     // fetch('https://agedesrois.alwaysdata.net/backend/save.php?resource=' + townCrossbow + '&type=crossbow&pseudo=' + pseudo);
 
 }
-
 if (levelCastle <= levelFarm) {
     document.getElementById('btn-farm').disabled = true;
     document.getElementById('not-displayed-farm').style.display = 'block';
@@ -417,3 +416,66 @@ stockFormElt.addEventListener("submit", function (e) {
 
 
 });
+
+// gère l'ajout des ressources à partir de la carte
+let itemResourceElts = document.getElementsByClassName('class-resource');
+// console.log(itemResourceElts);
+Array.from(itemResourceElts).forEach(function (itemResourceElt) {
+    itemResourceElt.addEventListener('click', function (e) {
+        let typeResource = itemResourceElt.getAttribute('data-type-resource');
+        let position = itemResourceElt.getAttribute('data-position');
+        let isActive = itemResourceElt.getAttribute('data-is-active');
+        // console.log(typeResource);
+        if (isActive == '1') {
+            switch (typeResource) {
+                case 'nourriture':
+                    waitingMessageElt.innerText = 'Récupération de la nourriture en cours';
+                    break;
+                case 'bois':
+                    waitingMessageElt.innerText = 'Récupération du bois en cours';
+                    break;
+                case 'metal':
+                    waitingMessageElt.innerText = 'Récupération du métal en cours';
+                    break;
+                case 'pierre':
+                    waitingMessageElt.innerText = 'Récupération de la pierre en cours';
+                    break;
+            }
+
+            timedProgBar(20);
+            setTimeout(function () {
+                // saveResources();
+                e.preventDefault();
+                fetch('http://localhost:8080/LageDesRoisPOO/backend/addingMapResources.php?type=' + typeResource + '&id=' + idPlayer + '&position=' + position).then(() => {
+                    document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+                });
+                // document.getElementById('form-save-resources').submit();
+            }, 20000 + 4000);
+        }
+
+
+        // document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+        // console.log();
+    });
+
+});
+// formElt.addEventListener("submit", function (e) {
+//     e.preventDefault();
+//     let townFoodUpdate = document.getElementById('town-food').innerText;
+//     townFoodUpdate = parseFloat(transformFormatNumber(townFoodUpdate));
+//     let townGoldUpdate = parseFloat(transformFormatNumber(document.getElementById('town-gold').innerText));
+//     let townBowUpdate = parseFloat(transformFormatNumber(document.getElementById('town-bow').innerText));
+//     if (townFoodUpdate >= food && townGoldUpdate >= gold && townBowUpdate >= bow) {
+//         waitingMessageElt.innerText = 'Amélioration ' + name;
+//         idNames.forEach(function (name) {
+//             let idName = 'btn-' + name;
+//             document.getElementById(idName).disabled = true;
+//         });
+//         timedProgBar(time);
+//         setTimeout(function () {
+//             formElt.submit();
+//         }, time * 1000 + 2000);
+//     } else {
+//         waitingMessageElt.innerText = answer;
+//     }
+// });

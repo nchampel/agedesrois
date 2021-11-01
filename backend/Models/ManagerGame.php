@@ -2,6 +2,8 @@
 
 namespace Models;
 
+use Models\Map\Item;
+
 class ManagerGame
 {
     static function createLog($messageLog, $id)
@@ -86,5 +88,25 @@ class ManagerGame
             }
             // echo 'ajout';
         }
+    }
+    static function createMap(int $x, int $y, int $id)
+    {
+        $rqt = "SELECT * FROM map_player WHERE position_x = :x AND position_y = :y AND id_player = :id";
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':x', $x);
+            $statement->bindParam(':y', $y);
+            $statement->bindParam(':id', $id);
+            //On l'execute
+            $statement->execute();
+            // echo $result;
+            $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            foreach ($results as $result) {
+                $items[] = new Item($result);
+            }
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+        return $items;
     }
 }

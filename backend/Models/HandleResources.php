@@ -19,7 +19,7 @@ spl_autoload_register(function ($class_name) {
 
 class HandleResources
 {
-    static function addTownResource($type, $resource, $id)
+    static function addTownResource($type, int $resource, int $id)
     {
         $typeColumn = 'town_' . $type;
         $setter = 'setTown_' . $type;
@@ -34,6 +34,37 @@ class HandleResources
             $result = $statement->execute();
 
             $_SESSION['player']->$setter($resource);
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+    }
+
+    static function addMapResource($type, int $resource, int $id)
+    {
+        $typeColumn = 'town_' . $type;
+
+        $rqt = "SELECT " . $typeColumn . " from town where id_player = :id";
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':id', $id);
+            //On l'execute
+            $statement->execute();
+            $result = $statement->fetch(\PDO::FETCH_ASSOC);
+            $resourceInTown = $result[$typeColumn];
+            // $_SESSION['player']->$setter($resource);
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+        $amount = $resource + $resourceInTown;
+        $rqt = "UPDATE town set " . $typeColumn . " = :amount where id_player = :id";
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':id', $id);
+            $statement->bindParam(':amount', $amount);
+            //On l'execute
+            $result = $statement->execute();
+            // echo $amount;
+            // $_SESSION['player']->$setter($resource);
         } catch (\Exception $exception) {
             echo $exception->getMessage();
         }

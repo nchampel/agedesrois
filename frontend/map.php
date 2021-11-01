@@ -129,6 +129,7 @@ echo ('</pre>');
                                                                                                                     } ?></h2>
         <p class="pointer" id="link-game-pcclh" onclick="displayPcclh()">Cliquer pour jouer à Papier Ciseaux Caillou Lézard Homme</p>
         <div id="div-game-pcclh">
+            <p class="pointer" onclick="notDisplayPcclh()">Quitter le jeu</p>
             <h2>Choisissez votre coup</h2>
             <form action="../backend/pcclh.php?choice=paper" method="POST" class="form-pcclh">
                 <input type="image" onClick="submit" src="../pictures/paper-modified.jpg" />
@@ -145,19 +146,24 @@ echo ('</pre>');
             <form action="../backend/pcclh.php?choice=man" method="POST" class="form-pcclh">
                 <input type="image" onClick="submit" src="../pictures/man.jpg" />
             </form>
-            <p class="pointer" onclick="notDisplayPcclh()">Quitter le jeu</p>
+
         </div>
 
     </div>
     <!-- <pre> -->
+    <h2>Top 5 :</h2>
     <?php
 
     $rankings = Ranking::giveRanking();
     // var_dump($rankings);
-    foreach ($rankings as $ranking) {
-        echo $ranking['pseudo'] . ' : ' . $ranking['points'] . ' points';
+    for ($i = 0; $i < 5; $i++) {
+        echo $rankings[$i]['pseudo'] . ' : ' . $rankings[$i]['points'] . ' points';
         echo '<br/>';
     }
+    // foreach ($rankings as $ranking) {
+    //     echo $ranking['pseudo'] . ' : ' . $ranking['points'] . ' points';
+    //     echo '<br/>';
+    // }
     // var_dump($rankings);
 
     ?>
@@ -171,13 +177,16 @@ echo ('</pre>');
 
     <?php include('informations.php'); ?>
 
-    <?php include('constructionlevels.php'); ?>
-
-    <?php include('constructionbuttons.php');
+    <?php // include('constructionlevels.php'); 
     ?>
 
-    <?php // include('../backend/trainingChecking.php'); 
+    <?php // include('constructionbuttons.php');
     ?>
+
+    <?php include('townConstructsCards.php'); ?>
+
+    <?php include('stockConstructsCards.php'); ?>
+
 
     <?php include('trainingbuttons.php');
     ?>
@@ -230,7 +239,27 @@ echo ('</pre>');
         <input type="submit" value="Mettre en stock" class="button" id="btn-stock" />
     </form>
 
-    <?php include('world.php'); ?>
+    <?php // include('world.php'); 
+    $mapItems = ManagerGame::createMap(0, 0, $id);
+    // print_r($mapItems);
+    echo '<table>';
+    foreach ($mapItems as $mapItem) {
+        if ($mapItem->getMap_position() == 1 || $mapItem->getMap_position() == 10 || $mapItem->getMap_position() == 19 || $mapItem->getMap_position() == 28) {
+            echo '<tr>';
+        }
+        if (($mapItem->getType_item() == 'bois' || $mapItem->getType_item() == 'nourriture') && $mapItem->getIs_active() == true) {
+            echo '<td class="class-item class-resource" id="id-map-item-' . $mapItem->getMap_position() . '" data-is-active="' . $mapItem->getIs_active() . '" data-position ="' . $mapItem->getMap_position() . '" data-type-resource="' . $mapItem->getType_item() . '">' . $mapItem->getType_item() . '</td>';
+        } else {
+            echo '<td class="class-item" data-is-active="' . $mapItem->getIs_active() . '" id="id-map-item-' . $mapItem->getMap_position() . '">' . $mapItem->getType_item() . '</td>';
+        }
+
+        if ($mapItem->getMap_position() == 9 || $mapItem->getMap_position() == 18 || $mapItem->getMap_position() == 27 || $mapItem->getMap_position() == 36) {
+            echo '</tr>';
+        }
+        // echo $mapItem->getType_item() . PHP_EOL;
+    }
+    echo '</table>';
+    ?>
 
     <?php
     // $constructsFromTownResources = ['farm', 'sawmill', 'extractor', 'quarry', 'mine'];

@@ -33,6 +33,8 @@ class Player
     private $level_mine;
     private $level_barracks;
     private $pcclh_parties;
+    private $position_x;
+    private $position_y;
 
     function __construct(array $values)
     {
@@ -651,6 +653,46 @@ class Player
     public function setPcclh_parties($pcclh_parties)
     {
         $this->pcclh_parties = $pcclh_parties;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of position_x
+     */
+    public function getPosition_x()
+    {
+        return $this->position_x;
+    }
+
+    /**
+     * Set the value of position_x
+     *
+     * @return  self
+     */
+    public function setPosition_x($position_x)
+    {
+        $this->position_x = $position_x;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of position_y
+     */
+    public function getPosition_y()
+    {
+        return $this->position_y;
+    }
+
+    /**
+     * Set the value of position_y
+     *
+     * @return  self
+     */
+    public function setPosition_y($position_y)
+    {
+        $this->position_y = $position_y;
 
         return $this;
     }
