@@ -67,6 +67,10 @@ recharger $_SESSION quand map.php se recharge
 
 frêne, noisetier, chêne
 
+sauge, belladone, sureau, ortie, millepertuis
+
+mithril, thorium, cristal, quartz, titane, orichalque
+
 arc et arbalète construite à partir réserve planches frêne, puis noisetier, chêne etc.
 
 vase pour améliorer bonheur des citoyens ?
@@ -175,7 +179,7 @@ limitation construction niveau château js => ok
 
 13/10
 
-impossible désormais de lancer une 2e action avant que la 1ère soit finie
+impossible désormais de lancer une 2e action avant que la 1ère soit finie côté js
 
 
 14/10
@@ -266,4 +270,55 @@ ajouter position dans player et s'en servir pour récupérer quantité ressource
 empêcher les joueurs de tricher en modifiant les ressources nécessaires pour la construction en passant uniquement le bêtiment à améliorer. On récupère les infos de construction dans la bdd.
 dans inscription remplir la table map_player avec l'id du nouveau joueur
 mécanisme d'ajout de ressource de la carte en cours, il manque que le serveur rende actif les ressources prises au bout d'un certain temps => fichier php écrit : resetMapResources
-faire apparaître disparaître la carte et les données de la ville en fonction des besoins
+faire apparaître disparaître la carte et les données de la ville en fonction des besoins => fait
+empêcher les joueurs de récolter plusieurs ressources à la fois : fait en js
+
+02/11
+
+6 personnes aiment la page fb
+
+03/11
+
+texte explicatif du jeu sur la page de connexion
+carte entière (tous les morceaux) changent chaque jour, aléatoirement
+carte est à un niveau particluier, défini. la quantité des ressources est choisie aléatoirement, en fonction de valeurs en fonction du niveau 
+faire événement qui donne en récompense par exemple unité spéciale avec forte attaque et défense
+mettre buissons sur la carte et obtenir aléatoirement (genre 1/20) l'objet de quête
+mettre neige au lieu d'herbe pendant l'hiver
+mettre paille au lieu herbe l'été
+mettre image bois coupé, tas diminué etc. quand on a récolté
+gérer en php la vérification du temps d'attente de construction, faire pareil pour récolte
+pour changer de carte, pas de combat, on doit atteindre une force définie
+quête de crottin, déjection à ramasser
+objets en récompense : augmentation un certain nombre de fois de la quantité de bois ou cueillette par ex. 18 planches de frêne au lieu de 9. minerai, herbe médicinale
+battre x loups, ours
+
+05/11
+
+pouvoir vendre objets de quêtes et ressources aux autres joueurs (utiliser que or)
+panneau aide pour expliquer comment jouer
+pouvoir confronter son équipe aux autres joueurs et gagner ressources
+
+06/11
+
+j'ai commencé à coder la création de map aléatoire (fillMapsWorld.php)
+
+07/11
+
+utilisation énergie pour changer de carte vers la droite. on commence à 0,0 et le dragon est à 9,9
+pour avoir énergie, on doit fabriquer potion à partir herbes niveau 2
+on peut l'acheter (herbe ou potion) à un autre joueur
+faire que map_item se réinitialise chaque jour
+lors connexion on met à jour map_player
+PROBLEME avec carte mise à jour à minuit, que faire pour mettre à jour celle des joueurs connectés ?
+création de la carte 0,0 et iniatilisation lors de la connexion => OK
+il faut que je fasse changer la carte (map_item) à minuit url incomplète LageDesRoisPOO/backend/fillMapsWorld.php
+enregistrer la date de connexion du joueur (last_connexion)
+
+12/11
+
+expérience crafting ?
+réactivation de la ressource au bout de 10 min => OK
+modifier la vérification d'un jour passé pour la mise à jour => passage en tâche planifiée
+gibier avec crafting nourriture ?
+champignons ?

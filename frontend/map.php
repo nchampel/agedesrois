@@ -61,7 +61,8 @@ if (isset($_SESSION['player'])) {
 
 // vérifier si il y a eu un jour passé pour savoir si on rajoute 5 parties
 // SELECT DATE_FORMAT("2018-09-24 22:21:20", "%Y-%m-%d");
-ManagerGame::addPartiesDay($id);
+// fait désormais à partir de la tâche à minuit
+// ManagerGame::addPartiesDay($id);
 
 
 
@@ -107,7 +108,7 @@ echo ('</pre>');
                 $_SESSION['flash'] = '';
             }
         }
-        // echo $_SESSION['user']->getPseudo;
+        // echo $_SESSION['player']->getView();
         ?>
     </p>
 
@@ -121,147 +122,162 @@ echo ('</pre>');
     <p>Nourriture dans la ville : <?php //echo $player['player']; 
                                     ?> </p> -->
     <h1>Salut <span id="pseudo"><?php echo $_SESSION['player']->getPseudo(); ?></span> !</h1>
-    <div id="div-pcclh">
-        <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes (5 parties disponibles par jour) : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
-                                                                                                                        echo $_SESSION['player']->getPcclh_parties();
-                                                                                                                    } else {
-                                                                                                                        echo 0;
-                                                                                                                    } ?></h2>
-        <p class="pointer" id="link-game-pcclh" onclick="displayPcclh()">Cliquer pour jouer à Papier Ciseaux Caillou Lézard Homme</p>
-        <div id="div-game-pcclh">
-            <p class="pointer" onclick="notDisplayPcclh()">Quitter le jeu</p>
-            <h2>Choisissez votre coup</h2>
-            <form action="../backend/pcclh.php?choice=paper" method="POST" class="form-pcclh">
-                <input type="image" onClick="submit" src="../pictures/paper-modified.jpg" />
-            </form>
-            <form action="../backend/pcclh.php?choice=scissors" method="POST" class="form-pcclh">
-                <input type="image" onClick="submit" src="../pictures/black-scissors.jpg" />
-            </form>
-            <form action="../backend/pcclh.php?choice=rock" method="POST" class="form-pcclh">
-                <input type="image" onClick="submit" src="../pictures/stones.jpg" />
-            </form>
-            <form action="../backend/pcclh.php?choice=lizard" method="POST" class="form-pcclh">
-                <input type="image" onClick="submit" src="../pictures/lizard.jpg" />
-            </form>
-            <form action="../backend/pcclh.php?choice=man" method="POST" class="form-pcclh">
-                <input type="image" onClick="submit" src="../pictures/man.jpg" />
-            </form>
+    <?php
+    include('townresources.php');
+    if ($_SESSION['player']->getView() == 'town') {
+        echo '<h2 id="go-world" class="pointer">Aller sur le monde</h2>'; ?>
+        <div id="div-pcclh">
+            <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes (5 parties disponibles par jour) : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
+                                                                                                                            echo $_SESSION['player']->getPcclh_parties();
+                                                                                                                        } else {
+                                                                                                                            echo 0;
+                                                                                                                        } ?></h2>
+            <p class="pointer" id="link-game-pcclh" onclick="displayPcclh()">Cliquer pour jouer à Papier Ciseaux Caillou Lézard Homme</p>
+            <div id="div-game-pcclh">
+                <p class="pointer" onclick="notDisplayPcclh()">Quitter le jeu</p>
+                <h2>Choisissez votre coup</h2>
+                <form action="../backend/pcclh.php?choice=paper" method="POST" class="form-pcclh">
+                    <input type="image" onClick="submit" src="../pictures/paper-modified.jpg" />
+                </form>
+                <form action="../backend/pcclh.php?choice=scissors" method="POST" class="form-pcclh">
+                    <input type="image" onClick="submit" src="../pictures/black-scissors.jpg" />
+                </form>
+                <form action="../backend/pcclh.php?choice=rock" method="POST" class="form-pcclh">
+                    <input type="image" onClick="submit" src="../pictures/stones.jpg" />
+                </form>
+                <form action="../backend/pcclh.php?choice=lizard" method="POST" class="form-pcclh">
+                    <input type="image" onClick="submit" src="../pictures/lizard.jpg" />
+                </form>
+                <form action="../backend/pcclh.php?choice=man" method="POST" class="form-pcclh">
+                    <input type="image" onClick="submit" src="../pictures/man.jpg" />
+                </form>
+
+            </div>
 
         </div>
+        <!-- <pre> -->
+        <h2>Top 5 :</h2>
+        <?php
 
-    </div>
-    <!-- <pre> -->
-    <h2>Top 5 :</h2>
-    <?php
+        $rankings = Ranking::giveRanking();
+        // var_dump($rankings);
+        for ($i = 0; $i < 5; $i++) {
+            echo $rankings[$i]['pseudo'] . ' : ' . $rankings[$i]['points'] . ' points';
+            echo '<br/>';
+        }
+        // foreach ($rankings as $ranking) {
+        //     echo $ranking['pseudo'] . ' : ' . $ranking['points'] . ' points';
+        //     echo '<br/>';
+        // }
+        // var_dump($rankings);
 
-    $rankings = Ranking::giveRanking();
-    // var_dump($rankings);
-    for ($i = 0; $i < 5; $i++) {
-        echo $rankings[$i]['pseudo'] . ' : ' . $rankings[$i]['points'] . ' points';
-        echo '<br/>';
-    }
-    // foreach ($rankings as $ranking) {
-    //     echo $ranking['pseudo'] . ' : ' . $ranking['points'] . ' points';
-    //     echo '<br/>';
-    // }
-    // var_dump($rankings);
+        ?>
+        <!-- </pre> -->
 
-    ?>
-    <!-- </pre> -->
+        <?php //include('townresources.php'); 
+        ?>
 
-    <?php include('townresources.php'); ?>
+        <br>
 
-    <br>
+        <?php include('stockresources.php'); ?>
 
-    <?php include('stockresources.php'); ?>
+        <?php include('informations.php'); ?>
 
-    <?php include('informations.php'); ?>
+        <?php // include('constructionlevels.php'); 
+        ?>
 
-    <?php // include('constructionlevels.php'); 
-    ?>
+        <?php // include('constructionbuttons.php');
+        ?>
 
-    <?php // include('constructionbuttons.php');
-    ?>
+        <?php include('townConstructsCards.php'); ?>
 
-    <?php include('townConstructsCards.php'); ?>
-
-    <?php include('stockConstructsCards.php'); ?>
-
-
-    <?php include('trainingbuttons.php');
-    ?>
-
-    <!-- ajout -->
-
-    <?php
-    // function colorResourceTown($resource, $construct)
-    // {
-    //     switch ($resource) {
-    //         case 'food':
-    //             $resourceColumn = 'town-food';
-    //             break;
-    //     }
-    //     $getterTown = 'getTown_' . $resource;
-    //     $getterConstruct = 'get' . ucfirst($resource);
-    //     // echo $_SESSION[$construct][$resource];
-    //     // echo $_SESSION['farm']['food'];
-    //     if ($_SESSION['player']->$getterTown() >= $_SESSION[$construct]->$getterConstruct()) {
-    //         // if ($_SESSION['town'][$resourceColumn] >= $_SESSION[$construct][$resource]) {
-    //         return '#4cff49';
-    //     } else {
-    //         return '#ff2020';
-    //     }
-    // }
-
-    // echo colorResourceTown('food', 'castle');
-
-    ?>
-    <!-- fin ajout -->
+        <?php include('stockConstructsCards.php'); ?>
 
 
+        <?php include('trainingbuttons.php');
+        ?>
 
-    <!-- <form action="../backend/connexion.php" method="POST" id="form-save-resources">
+        <!-- ajout -->
+
+        <?php
+        // function colorResourceTown($resource, $construct)
+        // {
+        //     switch ($resource) {
+        //         case 'food':
+        //             $resourceColumn = 'town-food';
+        //             break;
+        //     }
+        //     $getterTown = 'getTown_' . $resource;
+        //     $getterConstruct = 'get' . ucfirst($resource);
+        //     // echo $_SESSION[$construct][$resource];
+        //     // echo $_SESSION['farm']['food'];
+        //     if ($_SESSION['player']->$getterTown() >= $_SESSION[$construct]->$getterConstruct()) {
+        //         // if ($_SESSION['town'][$resourceColumn] >= $_SESSION[$construct][$resource]) {
+        //         return '#4cff49';
+        //     } else {
+        //         return '#ff2020';
+        //     }
+        // }
+
+        // echo colorResourceTown('food', 'castle');
+
+        ?>
+        <!-- fin ajout -->
+
+
+
+        <!-- <form action="../backend/connexion.php" method="POST" id="form-save-resources">
         <input type="submit" value="Sauvegarde ressources" class="button" />
     </form> -->
 
-    <p>Ressources à transférer dans la réserve</p>
-    <form id="form-stock" action="../backend/stock.php" method="POST">
-        <label for="transfer-food">Nourriture</label>
-        <input type="text" name="transfer-food" id="transfer-food" value="0">
-        <label for="transfer-wood">Bois</label>
-        <input type="text" name="transfer-wood" id="transfer-wood" value="0">
-        <label for="transfer-metal">Métal</label>
-        <input type="text" name="transfer-metal" id="transfer-metal" value="0">
-        <label for="transfer-stone">Pierre</label>
-        <input type="text" name="transfer-stone" id="transfer-stone" value="0">
-        <label for="transfer-gold">Or</label>
-        <input type="text" name="transfer-gold" id="transfer-gold" value="0">
-        <input type="submit" value="Mettre en stock" class="button" id="btn-stock" />
-    </form>
+        <p>Ressources à transférer dans la réserve</p>
+        <form id="form-stock" action="../backend/stock.php" method="POST">
+            <label for="transfer-food">Nourriture</label>
+            <input type="text" name="transfer-food" id="transfer-food" value="0">
+            <label for="transfer-wood">Bois</label>
+            <input type="text" name="transfer-wood" id="transfer-wood" value="0">
+            <label for="transfer-metal">Métal</label>
+            <input type="text" name="transfer-metal" id="transfer-metal" value="0">
+            <label for="transfer-stone">Pierre</label>
+            <input type="text" name="transfer-stone" id="transfer-stone" value="0">
+            <label for="transfer-gold">Or</label>
+            <input type="text" name="transfer-gold" id="transfer-gold" value="0">
+            <input type="submit" value="Mettre en stock" class="button" id="btn-stock" />
+        </form>
+    <?php } ?>
 
     <?php // include('world.php'); 
-    $mapItems = ManagerGame::createMap(0, 0, $id);
-    // print_r($mapItems);
-    echo '<table>';
-    foreach ($mapItems as $mapItem) {
-        if ($mapItem->getMap_position() == 1 || $mapItem->getMap_position() == 10 || $mapItem->getMap_position() == 19 || $mapItem->getMap_position() == 28) {
-            echo '<tr>';
-        }
-        if (($mapItem->getType_item() == 'bois' || $mapItem->getType_item() == 'nourriture') && $mapItem->getIs_active() == true) {
-            echo '<td class="class-item class-resource" id="id-map-item-' . $mapItem->getMap_position() . '" data-is-active="' . $mapItem->getIs_active() . '" data-position ="' . $mapItem->getMap_position() . '" data-type-resource="' . $mapItem->getType_item() . '">' . $mapItem->getType_item() . '</td>';
-        } else {
-            echo '<td class="class-item" data-is-active="' . $mapItem->getIs_active() . '" id="id-map-item-' . $mapItem->getMap_position() . '">' . $mapItem->getType_item() . '</td>';
-        }
+    if ($_SESSION['player']->getView() == 'world') {
+        $mapItems = ManagerGame::createMap(0, 0, $id);
+        // print_r($mapItems);
+        echo '<h2 id="go-town" class="pointer">Aller à la ville</h2>';
+        echo '<table>';
+        foreach ($mapItems as $mapItem) {
+            if (
+                $mapItem->getMap_position() == 1 || $mapItem->getMap_position() == 10 || $mapItem->getMap_position() == 19 || $mapItem->getMap_position() == 28
+                || $mapItem->getMap_position() == 37 || $mapItem->getMap_position() == 46 || $mapItem->getMap_position() == 55 || $mapItem->getMap_position() == 64
+                || $mapItem->getMap_position() == 73
+            ) {
+                echo '<tr>';
+            }
+            if (($mapItem->getType_item() == 'bois' || $mapItem->getType_item() == 'nourriture') && $mapItem->getIs_active() == true) {
+                echo '<td class="class-item class-resource" id="id-map-item-' . $mapItem->getMap_position() . '" data-is-active="' . $mapItem->getIs_active() . '" data-position ="' . $mapItem->getMap_position() . '" data-type-resource="' . $mapItem->getType_item() . '">' . $mapItem->getType_item() . '</td>';
+            } else {
+                echo '<td class="class-item" data-is-active="' . $mapItem->getIs_active() . '" id="id-map-item-' . $mapItem->getMap_position() . '">' . $mapItem->getType_item() . '</td>';
+            }
 
-        if ($mapItem->getMap_position() == 9 || $mapItem->getMap_position() == 18 || $mapItem->getMap_position() == 27 || $mapItem->getMap_position() == 36) {
-            echo '</tr>';
+            if (
+                $mapItem->getMap_position() == 9 || $mapItem->getMap_position() == 18 || $mapItem->getMap_position() == 27 || $mapItem->getMap_position() == 36
+                || $mapItem->getMap_position() == 45 || $mapItem->getMap_position() == 54 || $mapItem->getMap_position() == 63
+                || $mapItem->getMap_position() == 72 || $mapItem->getMap_position() == 81
+            ) {
+                echo '</tr>';
+            }
+            // echo $mapItem->getType_item() . PHP_EOL;
         }
-        // echo $mapItem->getType_item() . PHP_EOL;
+        echo '</table>';
     }
-    echo '</table>';
-    ?>
 
-    <?php
     // $constructsFromTownResources = ['farm', 'sawmill', 'extractor', 'quarry', 'mine'];
     // $constructsFromStockResources = ['workshop'];
 
@@ -347,6 +363,8 @@ echo ('</pre>');
         let metalTown = <?php echo $_SESSION['player']->getTown_metal(); ?>;
         let stoneTown = <?php echo $_SESSION['player']->getTown_stone(); ?>;
         let goldTown = <?php echo $_SESSION['player']->getTown_gold(); ?>;
+
+        let viewPage = <?php echo json_encode($_SESSION['player']->getView()); ?>;
 
         <?php
 

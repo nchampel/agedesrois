@@ -35,6 +35,7 @@ class Player
     private $pcclh_parties;
     private $position_x;
     private $position_y;
+    private $view;
 
     function __construct(array $values)
     {
@@ -693,6 +694,26 @@ class Player
     public function setPosition_y($position_y)
     {
         $this->position_y = $position_y;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of view
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * Set the value of view
+     *
+     * @return  self
+     */
+    public function setView($view)
+    {
+        $this->view = $view;
 
         return $this;
     }

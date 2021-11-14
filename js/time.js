@@ -95,62 +95,66 @@ function addTownResources() {
         // const goldResource = new Function('name', 'return name + "Gold"');
         // console.log(foodResource(townConstruct));
         // if (townFood >= foodResource(townConstruct)) {
-        if (townFood >= eval(townConstruct + "Food")) {
-            id = 'tooltip-food-' + townConstruct;
-            document.getElementById(id).style.color = '#4cff49';
-        }
-        // if (townWood >= woodResource(townConstruct)) {
-        if (townWood >= eval(townConstruct + "Wood")) {
-            id = 'tooltip-wood-' + townConstruct;
-            if (document.getElementById(id) !== null) {
+        if (viewPage == "town") {
+            if (townFood >= eval(townConstruct + "Food")) {
+                id = 'tooltip-food-' + townConstruct;
                 document.getElementById(id).style.color = '#4cff49';
             }
+            // if (townWood >= woodResource(townConstruct)) {
+            if (townWood >= eval(townConstruct + "Wood")) {
+                id = 'tooltip-wood-' + townConstruct;
+                if (document.getElementById(id) !== null) {
+                    document.getElementById(id).style.color = '#4cff49';
+                }
 
-        }
-        // if (townMetal >= metalResource(townConstruct)) {
-        if (townMetal >= eval(townConstruct + "Metal")) {
-            id = 'tooltip-metal-' + townConstruct;
-            if (document.getElementById(id) !== null) {
-                document.getElementById(id).style.color = '#4cff49';
+            }
+            // if (townMetal >= metalResource(townConstruct)) {
+            if (townMetal >= eval(townConstruct + "Metal")) {
+                id = 'tooltip-metal-' + townConstruct;
+                if (document.getElementById(id) !== null) {
+                    document.getElementById(id).style.color = '#4cff49';
+                }
+            }
+            // if (townStone >= stoneResource(townConstruct)) {
+            if (townStone >= eval(townConstruct + "Stone")) {
+                id = 'tooltip-stone-' + townConstruct;
+                if (document.getElementById(id) !== null) {
+                    document.getElementById(id).style.color = '#4cff49';
+                }
+            }
+            // if (townGold >= goldResource(townConstruct)) {
+            if (townGold >= eval(townConstruct + "Gold")) {
+                id = 'tooltip-gold-' + townConstruct;
+                if (document.getElementById(id) !== null) {
+                    document.getElementById(id).style.color = '#4cff49';
+                }
             }
         }
-        // if (townStone >= stoneResource(townConstruct)) {
-        if (townStone >= eval(townConstruct + "Stone")) {
-            id = 'tooltip-stone-' + townConstruct;
-            if (document.getElementById(id) !== null) {
-                document.getElementById(id).style.color = '#4cff49';
-            }
-        }
-        // if (townGold >= goldResource(townConstruct)) {
-        if (townGold >= eval(townConstruct + "Gold")) {
-            id = 'tooltip-gold-' + townConstruct;
-            if (document.getElementById(id) !== null) {
-                document.getElementById(id).style.color = '#4cff49';
-            }
-        }
+
     });
 
     let trainings = ['archer'/*, 'crossbowman'*/];
     // console.log(new ((function () { return 'test' }).Constructor));
     trainings.forEach(function (training) {
-
-        if (townFood >= eval(training + "Food")) {
-            id = 'tooltip-food-' + training;
-            document.getElementById(id).style.color = '#4cff49';
-        }
-        // if (townWood >= woodResource(townConstruct)) {
-        if (townGold >= eval(training + "Gold")) {
-            id = 'tooltip-gold-' + training;
-            if (document.getElementById(id) !== null) {
+        if (viewPage != "world") {
+            if (townFood >= eval(training + "Food")) {
+                id = 'tooltip-food-' + training;
                 document.getElementById(id).style.color = '#4cff49';
             }
+            // if (townWood >= woodResource(townConstruct)) {
+            if (townGold >= eval(training + "Gold")) {
+                id = 'tooltip-gold-' + training;
+                if (document.getElementById(id) !== null) {
+                    document.getElementById(id).style.color = '#4cff49';
+                }
 
-        }
-        // if (townMetal >= metalResource(townConstruct)) {
-        if (townBow >= eval(training + "Bow")) {
-            id = 'tooltip-bow-' + training;
-            if (document.getElementById(id) !== null) {
-                document.getElementById(id).style.color = '#4cff49';
+            }
+            // if (townMetal >= metalResource(townConstruct)) {
+            if (townBow >= eval(training + "Bow")) {
+                id = 'tooltip-bow-' + training;
+                if (document.getElementById(id) !== null) {
+                    document.getElementById(id).style.color = '#4cff49';
+                }
             }
         }
     });

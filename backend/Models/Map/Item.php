@@ -4,6 +4,7 @@ namespace Models\Map;
 
 class Item
 {
+    private $id_player;
     private $type_item;
     private $level_item;
     private $position_x;
@@ -208,6 +209,26 @@ class Item
     public function setIs_active($is_active)
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_player
+     */
+    public function getId_player()
+    {
+        return $this->id_player;
+    }
+
+    /**
+     * Set the value of id_player
+     *
+     * @return  self
+     */
+    public function setId_player($id_player)
+    {
+        $this->id_player = $id_player;
 
         return $this;
     }

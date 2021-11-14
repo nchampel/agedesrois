@@ -197,13 +197,14 @@ INSERT INTO army (type_army, level_soldier, time_training, strength, life_points
 CREATE TABLE map_item(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     type_item VARCHAR(255),
-    level_item INT,
+    level_item INT DEFAULT 0,
     position_x INT,
     position_y INT,
     map_position INT,
     item_strength INT,
     item_defense INT,
-    item_quantity INT
+    item_quantity INT,
+    generation_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO map_item (type_item, level_item, position_x, position_y, map_position, item_strength, item_defense, item_quantity) VALUES
@@ -255,14 +256,16 @@ CREATE TABLE map_player(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     id_player INT,
     type_item VARCHAR(255),
-    level_item INT,
+    level_item INT DEFAULT 0,
     position_x INT,
     position_y INT,
     map_position INT,
     item_strength INT,
     item_defense INT,
     item_quantity INT,
-    is_active BOOLEAN default true
+    is_active BOOLEAN default true,
+    generation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    using_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO map_player (id_player, type_item, level_item, position_x, position_y, map_position, item_strength, item_defense, item_quantity) VALUES
