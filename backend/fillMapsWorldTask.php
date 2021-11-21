@@ -4,6 +4,20 @@ use Models\MySQL;
 
 include_once('Models/MySQL.php');
 
+// on vide la table map_item
+
+$req = "TRUNCATE TABLE map_item;";
+try {
+
+    $cnx = MySQL::getInstance();
+    // var_dump($statement);
+    $statement = $cnx->prepare($req);
+
+    $statement->execute();
+} catch (Exception $exception) {
+    echo $exception->getMessage();
+}
+
 $level = 1;
 $x = 0;
 $y = 0;

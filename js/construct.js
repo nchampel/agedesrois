@@ -426,10 +426,11 @@ if (viewPage == 'town') {
 
 // gère l'ajout des ressources à partir de la carte
 let itemResourceElts = document.getElementsByClassName('class-resource');
+let itemProductElts = document.getElementsByClassName('class-product');
 // console.log(itemResourceElts);
 Array.from(itemResourceElts).forEach(function (itemResourceElt) {
     itemResourceElt.addEventListener('click', function (e) {
-        // let typeResource = itemResourceElt.getAttribute('data-type-resource');
+        let typeResource = itemResourceElt.getAttribute('data-type-resource');
         let position = itemResourceElt.getAttribute('data-position');
         let isActive = itemResourceElt.getAttribute('data-is-active');
         // console.log(typeResource);
@@ -452,14 +453,27 @@ Array.from(itemResourceElts).forEach(function (itemResourceElt) {
             Array.from(itemResourceElts).forEach(function (item) {
                 item.setAttribute('data-is-active', '0');
             });
+            Array.from(itemProductElts).forEach(function (item) {
+                item.setAttribute('data-is-active', '0');
+            });
 
             timedProgBar(20);
             setTimeout(function () {
                 // saveResources();
                 e.preventDefault();
+
+                // qd je développe en local
+
                 fetch('http://localhost:8080/LageDesRoisPOO/backend/addingMapResources.php?id=' + idPlayer + '&position=' + position).then(() => {
                     document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
                 });
+
+                // pour que cela fonctionne en ligne
+
+                // fetch('https://agedesrois.alwaysdata.net/backend/addingMapResources.php?id=' + idPlayer + '&position=' + position).then(() => {
+                //     document.location.href = 'https://agedesrois.alwaysdata.net/frontend/map.php';
+                // });
+
                 // document.getElementById('form-save-resources').submit();
             }, 20000 + 4000);
         }
@@ -470,6 +484,65 @@ Array.from(itemResourceElts).forEach(function (itemResourceElt) {
     });
 
 });
+
+// gère l'ajout des produits (herbes, minerai, arbre) à partir de la carte
+
+// console.log(itemProductElts);
+Array.from(itemProductElts).forEach(function (itemProductElt) {
+    itemProductElt.addEventListener('click', function (e) {
+        let typeProduct = itemProductElt.getAttribute('data-type-product');
+        let position = itemProductElt.getAttribute('data-position');
+        let isActive = itemProductElt.getAttribute('data-is-active');
+        // console.log(typeResource);
+        if (isActive == '1') {
+            switch (typeProduct) {
+                case 'herbes':
+                    waitingMessageElt.innerText = 'Cueillette en cours';
+                    break;
+                case 'arbre':
+                    waitingMessageElt.innerText = 'Abattage en cours';
+                    break;
+                case 'minerai':
+                    waitingMessageElt.innerText = 'Minage en cours';
+                    break;
+            }
+            ///////////// //ne pas oublier de désactiver les monstres aussi
+            Array.from(itemResourceElts).forEach(function (item) {
+                item.setAttribute('data-is-active', '0');
+            });
+            Array.from(itemProductElts).forEach(function (item) {
+                item.setAttribute('data-is-active', '0');
+            });
+
+            timedProgBar(10);
+            setTimeout(function () {
+                // saveResources();
+                e.preventDefault();
+
+                // qd je développe en local
+
+                fetch('http://localhost:8080/LageDesRoisPOO/backend/addingMapProducts.php?id=' + idPlayer + '&position=' + position).then(() => {
+                    document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+                });
+
+                // pour que cela fonctionne en ligne
+
+                // fetch('https://agedesrois.alwaysdata.net/backend/addingMapProducts.php?id=' + idPlayer + '&position=' + position).then(() => {
+                //     document.location.href = 'https://agedesrois.alwaysdata.net/frontend/map.php';
+                // });
+
+
+                // document.getElementById('form-save-resources').submit();
+            }, 10000 + 2000);
+        }
+
+
+        // document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+        // console.log();
+    });
+
+});
+
 // formElt.addEventListener("submit", function (e) {
 //     e.preventDefault();
 //     let townFoodUpdate = document.getElementById('town-food').innerText;

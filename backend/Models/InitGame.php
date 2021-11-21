@@ -68,7 +68,7 @@ class InitGame
     }
     static function mapInitialization($id)
     {
-        $req = "SELECT * from map_item";
+        $req = "SELECT *, DATE_FORMAT(generation_date, '%Y-%m-%d') as generation_date_format from map_item";
         try {
 
             $cnx = MySQL::getInstance();
@@ -79,7 +79,12 @@ class InitGame
 
             $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-            $req = "SELECT generation_date from map_player WHERE id_player = :id";
+            // foreach ($results as $result) {
+            //     print_r($result) . PHP_EOL;
+            // }
+            // die();
+
+            $req = "SELECT DATE_FORMAT(generation_date, '%Y-%m-%d') as generation_date from map_player WHERE id_player = :id";
             try {
 
                 $cnx = MySQL::getInstance();
@@ -90,6 +95,10 @@ class InitGame
 
                 $statement->execute();
                 $mapPlayerResults = $statement->fetchAll(\PDO::FETCH_ASSOC);
+                // foreach ($mapPlayerResults as $result) {
+                //     echo $result['generation_date'] . PHP_EOL;
+                // }
+                // die();
             } catch (\Exception $exception) {
                 echo $exception->getMessage();
             }
@@ -106,30 +115,58 @@ class InitGame
             // $timeDate = strtotime($dateUsingResource);
             // $timeDiff = $timeDateActual - $timeDate;
 
-            $dateMapGeneral = strtotime($results[0]['generation_date']);
+            $dateMapGeneral = $results[0]['generation_date_format'];
             // $date1 = new \DateTime($dateMapGeneral);
             if (!empty($mapPlayerResults)) {
 
                 // $dateMapPlayer = strtotime($mapPlayerResults[0]['generation_date']);
                 // $date2 = new \DateTime($dateMapPlayer);
-                $date2 = strtotime($mapPlayerResults[0]['generation_date']);
+                $date2 = $mapPlayerResults[0]['generation_date'];
             } else {
-                $date = date("Y-m-d H:i:s");
+                // $date = date("Y-m-d H:i:s");
+                $date2 = date("Y-m-d");
                 // $date2 = new \DateTime($date);
-                $date2 = strtotime($date);
+                // $date2 = strtotime($date);
             }
-
+            // echo $date2;
+            // echo $dateMapGeneral;
+            // if ($date2 == $dateMapGeneral) {
+            //     echo "égal";
+            //     die();
+            // } else {
+            //     echo "diff";
+            //     die();
+            // }
             // $date2->format('Y-m-d');
             // echo $date1->diff($date2)->format("%d");
             // die();
             // print_r($date1->diff($date2)->format("%d"));
             // die();
             // if (empty($mapPlayerResults) || $date1->diff($date2)->format("%d") > 0) {
-            if (empty($mapPlayerResults) || $date2 - $dateMapGeneral > 86400) {
+            // if (empty($mapPlayerResults) || $date2 - $dateMapGeneral > 86400) {
+            if (empty($mapPlayerResults) || $date2 != $dateMapGeneral) {
                 // echo 'réussi';
                 // die();
+
+                // effacer les lignes du joueur
+                $req = "DELETE FROM map_player WHERE id_player = :id";
+                try {
+
+                    $cnx = MySQL::getInstance();
+                    // var_dump($statement);
+                    $statement = $cnx->prepare($req);
+                    $statement->bindParam(':id', $id);
+
+                    $statement->execute();
+                } catch (\Exception $exception) {
+                    echo $exception->getMessage();
+                }
+                // echo $resultDel;
+                // die();
+
                 foreach ($results as $result) {
                     $item = new Item($result);
+                    // print_r($item);
                     $item->setId_player($id);
 
                     $idPlayer = $item->getId_player();
@@ -165,6 +202,7 @@ class InitGame
                         echo $exception->getMessage();
                     }
                 }
+                // die();
             }
             // print_r($result);
 

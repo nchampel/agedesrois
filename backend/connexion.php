@@ -80,6 +80,22 @@ try {
         // print_r($results);
         InitGame::initialization($results);
         InitGame::mapInitialization($results[0]['id']);
+
+        $req = "UPDATE player SET last_connexion = CURRENT_TIME() where id = :id";
+        try {
+
+            $cnx = MySQL::getInstance();
+
+            $statement = $cnx->prepare($req);
+
+            $statement->bindParam(':id', $results[0]['id']);
+
+            $statement->execute();
+
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+        }
         // $player = ManagerPlayer::playerLoading($results[0]['id']);
         // $_SESSION['player'] = $player;
         // $farm = ManagerItems::itemLoading($_SESSION['player']->getLevel_farm(), 'ferme');

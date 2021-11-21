@@ -125,7 +125,8 @@ echo ('</pre>');
     <?php
     include('townresources.php');
     if ($_SESSION['player']->getView() == 'town') {
-        echo '<h2 id="go-world" class="pointer">Aller sur le monde</h2>'; ?>
+        echo '<h2 id="go-world" class="pointer">Aller sur le monde</h2>';
+        echo '<h2 id="go-help" class="pointer">Aide</h2>'; ?>
         <div id="div-pcclh">
             <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes (5 parties disponibles par jour) : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
                                                                                                                             echo $_SESSION['player']->getPcclh_parties();
@@ -251,6 +252,7 @@ echo ('</pre>');
         $mapItems = ManagerGame::createMap(0, 0, $id);
         // print_r($mapItems);
         echo '<h2 id="go-town" class="pointer">Aller à la ville</h2>';
+        echo '<h2 id="go-help" class="pointer">Aide</h2>';
         echo '<table>';
         foreach ($mapItems as $mapItem) {
             if (
@@ -260,8 +262,12 @@ echo ('</pre>');
             ) {
                 echo '<tr>';
             }
-            if (($mapItem->getType_item() == 'bois' || $mapItem->getType_item() == 'nourriture') && $mapItem->getIs_active() == true) {
+            if (($mapItem->getType_item() == 'bois' || $mapItem->getType_item() == 'nourriture' || $mapItem->getType_item() == 'pierre' || $mapItem->getType_item() == 'metal') && $mapItem->getIs_active() == true) {
                 echo '<td class="class-item class-resource" id="id-map-item-' . $mapItem->getMap_position() . '" data-is-active="' . $mapItem->getIs_active() . '" data-position ="' . $mapItem->getMap_position() . '" data-type-resource="' . $mapItem->getType_item() . '">' . $mapItem->getType_item() . '</td>';
+            } else if (($mapItem->getType_item() == 'herbes' || $mapItem->getType_item() == 'minerai' || $mapItem->getType_item() == 'arbre') && $mapItem->getIs_active() == true) {
+                echo '<td class="class-item class-product" id="id-map-item-' . $mapItem->getMap_position() . '" data-is-active="' . $mapItem->getIs_active() . '" data-position ="' . $mapItem->getMap_position() . '" data-type-product="' . $mapItem->getType_item() . '">' . $mapItem->getType_item() . '</td>';
+            } else if ($mapItem->getType_item() == 'prairie' || $mapItem->getType_item() == 'monstre') {
+                echo '<td class="class-item class-background" data-is-active="' . $mapItem->getIs_active() . '" id="id-map-item-' . $mapItem->getMap_position() . '">' . /*$mapItem->getType_item() */ ' ' . '</td>';
             } else {
                 echo '<td class="class-item" data-is-active="' . $mapItem->getIs_active() . '" id="id-map-item-' . $mapItem->getMap_position() . '">' . $mapItem->getType_item() . '</td>';
             }
@@ -277,6 +283,19 @@ echo ('</pre>');
         }
         echo '</table>';
     }
+    if ($_SESSION['player']->getView() == 'help') {
+        echo '<h2 id="go-town" class="pointer">Aller à la ville</h2>';
+        echo '<h2 id="go-world" class="pointer">Aller sur le monde</h2>'; ?>
+        <p>Le but du jeu est de récolter des ressources (sous l'"onglet" monde), construire des bâtiments (sous l'"onglet" ville), recruter une équipe d'héros pour pouvoir battre le dragon qui se terrre sur le monde.</p>
+        <p>Pour construire les bâtiments, il faut que le château soit toujours de niveau supérieur.</p>
+        <p>Construire des bâtiments permet l'ajout de ressources dans le temps, par exemple la ferme produit de la nourriture.</p>
+        <p>Laisser la souris sur une ressource pour voir son taux de production.</p>
+        <p>Un texte écrit en rouge veut dire que l'on ne peut pas interargir avec.</p>
+        <p>Il y a un autre moyen de récupérer des ressources, c'est de cliquer sur les ressources sur le monde. Après un temps de récolte, les ressources sont ajoutées à vos réserves.</p>
+        <p>Au bout de 10 minutes, les ressources du monde sont à nouveau récoltables.</p>
+        <p>Les herbes, minerai et arbre sont uniquement récoltables pour le moment, elles seront utilisées dans une prochaine mise à jour.</p>
+        <p>Au mois de décembre débutera l'événement de Noël qui consistera à récolter des ressources particulières qui ne sont récoltables que pendant la durée de l'événement. La récompense pour la réussite de la quête est avantageuse, profitez-en.</p>
+    <?php }
 
     // $constructsFromTownResources = ['farm', 'sawmill', 'extractor', 'quarry', 'mine'];
     // $constructsFromStockResources = ['workshop'];

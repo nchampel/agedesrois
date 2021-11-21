@@ -39,7 +39,7 @@ class ManagerGame
             echo $exception->getMessage();
         }
     }
-    // plus utlisé
+    // plus utilisé
     static function addPartiesDay($id)
     {
         $rqt = 'SELECT DATE_FORMAT(pcclh_date, "%Y-%m-%d") AS `date_pcclh` from pcclh where id_player = :id';
@@ -55,7 +55,7 @@ class ManagerGame
         }
 
 
-        // cf resetMapResources.php pour le calcul de différence entre 2 dates
+        // cf resetMapResourcesTask.php pour le calcul de différence entre 2 dates
 
         $datesql = $result[0]['date_pcclh'];
         $date = date("Y-m-d H:i:s");
@@ -98,7 +98,7 @@ class ManagerGame
     }
     static function createMap(int $x, int $y, int $id)
     {
-        $rqt = "SELECT * FROM map_player WHERE position_x = :x AND position_y = :y AND id_player = :id";
+        $rqt = "SELECT * FROM map_player WHERE position_x = :x AND position_y = :y AND id_player = :id ORDER BY map_position ASC";
         try {
             $statement = MySQL::getInstance()->prepare($rqt);
             $statement->bindParam(':x', $x);

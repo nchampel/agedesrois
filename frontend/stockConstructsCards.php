@@ -18,9 +18,9 @@ foreach ($constructsStockType as $stockType) {
     $getter = 'getLevel_' . $stockType;
     // $displayLevel = $_SESSION['player']->$getter() + 1;
     echo '<div class="div-constructs">';
-    echo '<img class="img-constructs" src="../pictures/Castle-icon.png" alt="' . ucfirst($_SESSION[$stockType]->getType_item()) . '" />';
+    echo '<img class="img-constructs" src="../pictures/workshop-text.jpg" alt="' . ucfirst($_SESSION[$stockType]->getType_item()) . '" />';
     echo '<p>' . ucfirst($_SESSION[$stockType]->getType_item()) . ' niveau <span id="' . $stockType . '-level">'  . $_SESSION['player']->$getter() . '</span> </p>';
-    echo '<form id="form-' . $stockType . '-construct" class="tooltip" action="../backend/constructTown.php?type=' . $stockType . '&level=' .
+    echo '<form id="form-' . $stockType . '-construct" class="tooltip" action="../backend/constructStock.php?type=' . $stockType . '&level=' .
         $_SESSION['player']->$getter() .
         '&foodNeeded=' . $_SESSION[$stockType]->getFood() .
         '&woodNeeded=' .  $_SESSION[$stockType]->getWood() .

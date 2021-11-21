@@ -18,7 +18,7 @@ foreach ($constructsTownType as $townType) {
     $getter = 'getLevel_' . $townType;
     // $displayLevel = $_SESSION['player']->$getter() + 1;
     echo '<div class="div-constructs">';
-    echo '<img class="img-constructs" src="../pictures/Castle-icon.png" alt="' . ucfirst($_SESSION[$townType]->getType_item()) . '" />';
+    echo '<img class="img-constructs" src="../pictures/' . $townType . '-text.jpg" alt="' . ucfirst($_SESSION[$townType]->getType_item()) . '" />';
     echo '<p>' . ucfirst($_SESSION[$townType]->getType_item()) . ' niveau <span id="' . $townType . '-level">'  . $_SESSION['player']->$getter() . '</span> </p>';
     echo '<form id="form-' . $townType . '-construct" class="tooltip" action="../backend/constructTown.php?type=' . $townType . '&level=' .
         $_SESSION['player']->$getter() .

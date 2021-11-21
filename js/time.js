@@ -136,7 +136,7 @@ function addTownResources() {
     let trainings = ['archer'/*, 'crossbowman'*/];
     // console.log(new ((function () { return 'test' }).Constructor));
     trainings.forEach(function (training) {
-        if (viewPage != "world") {
+        if (viewPage == "town") {
             if (townFood >= eval(training + "Food")) {
                 id = 'tooltip-food-' + training;
                 document.getElementById(id).style.color = '#4cff49';

@@ -1,3 +1,7 @@
+qd je mets en ligne
+
+modifier construct.js, time.js, game.js et db.php
+
 résumé du jeu :
 
 construction de bâtiments, récupération de ressources, recrutement d'héros, augmentation de leur niveau, parcourir la carte pour récupérer des ressources pour se battre. Le but : battre le dragon de la carte
@@ -23,13 +27,13 @@ créer ressources en réserve
 
 si SOUCI avec fichier css, vider le cache
 
-mettre taux production ressources par heure
+mettre taux production ressources par heure => fait
 
 or trouvable uniquement sur les monstres
 
 augmenter niveau bâtiment militaire avant de monter le niveau des héros
 
-mettre gif animé d'attente ou barre de progression comme clikerheroes2
+mettre gif animé d'attente ou barre de progression comme clikerheroes2 => fait
 
 pour souci attente à blanc si pas asssez de ressources en ville pour le stockage => form pointant sur map.php, on remplit les champs avec les valeurs saisies, on compare les valeurs et on définit si isStockResourcesOK est true ou false
 
@@ -49,15 +53,15 @@ soigner héros après combat
 
 attaque d'un ennemi pourra être en même temps qu'une action et ne pas être annulée par f5 ou déconnexion
 
-fonction eval pour nom de variable dynamique en js
+fonction eval pour nom de variable dynamique en js => ok
 
-sauvegarder temps qu'ont passé les gens sur le site
+sauvegarder temps qu'ont passé les gens sur le site => fait
 
-bug sur code sans classe sur couleur arcs
+bug sur code sans classe sur couleur arcs => corrigé
 
 bien traiter erreur quand on veut s'inscrire avec un pseudo déjà existant
 
-fichiers logs
+fichiers logs => ok
 
 cueillette, bûcheron, minerai
 
@@ -68,8 +72,10 @@ recharger $_SESSION quand map.php se recharge
 frêne, noisetier, chêne
 
 sauge, belladone, sureau, ortie, millepertuis
+millepertuis, ortie, sauge
 
 mithril, thorium, cristal, quartz, titane, orichalque
+mithril, orichalque, thorium
 
 arc et arbalète construite à partir réserve planches frêne, puis noisetier, chêne etc.
 
@@ -267,7 +273,7 @@ ajouter position dans player et s'en servir pour récupérer quantité ressource
 
 01/11
 
-empêcher les joueurs de tricher en modifiant les ressources nécessaires pour la construction en passant uniquement le bêtiment à améliorer. On récupère les infos de construction dans la bdd.
+empêcher les joueurs de tricher en modifiant les ressources nécessaires pour la construction en passant uniquement le bâtiment à améliorer. On récupère les infos de construction dans la bdd.
 dans inscription remplir la table map_player avec l'id du nouveau joueur
 mécanisme d'ajout de ressource de la carte en cours, il manque que le serveur rende actif les ressources prises au bout d'un certain temps => fichier php écrit : resetMapResources
 faire apparaître disparaître la carte et les données de la ville en fonction des besoins => fait
@@ -279,9 +285,9 @@ empêcher les joueurs de récolter plusieurs ressources à la fois : fait en js
 
 03/11
 
-texte explicatif du jeu sur la page de connexion
-carte entière (tous les morceaux) changent chaque jour, aléatoirement
-carte est à un niveau particluier, défini. la quantité des ressources est choisie aléatoirement, en fonction de valeurs en fonction du niveau 
+texte explicatif du jeu sur la page de connexion => sur map.php
+carte entière (tous les morceaux) changent chaque jour, aléatoirement => en cours
+carte est à un niveau particulier, défini. la quantité des ressources est choisie aléatoirement, en fonction de valeurs en fonction du niveau => ok
 faire événement qui donne en récompense par exemple unité spéciale avec forte attaque et défense
 mettre buissons sur la carte et obtenir aléatoirement (genre 1/20) l'objet de quête
 mettre neige au lieu d'herbe pendant l'hiver
@@ -296,7 +302,7 @@ battre x loups, ours
 05/11
 
 pouvoir vendre objets de quêtes et ressources aux autres joueurs (utiliser que or)
-panneau aide pour expliquer comment jouer
+panneau aide pour expliquer comment jouer = ok
 pouvoir confronter son équipe aux autres joueurs et gagner ressources
 
 06/11
@@ -308,12 +314,12 @@ j'ai commencé à coder la création de map aléatoire (fillMapsWorld.php)
 utilisation énergie pour changer de carte vers la droite. on commence à 0,0 et le dragon est à 9,9
 pour avoir énergie, on doit fabriquer potion à partir herbes niveau 2
 on peut l'acheter (herbe ou potion) à un autre joueur
-faire que map_item se réinitialise chaque jour
+faire que map_item se réinitialise chaque jour => ok
 lors connexion on met à jour map_player
 PROBLEME avec carte mise à jour à minuit, que faire pour mettre à jour celle des joueurs connectés ?
 création de la carte 0,0 et iniatilisation lors de la connexion => OK
-il faut que je fasse changer la carte (map_item) à minuit url incomplète LageDesRoisPOO/backend/fillMapsWorld.php
-enregistrer la date de connexion du joueur (last_connexion)
+il faut que je fasse changer la carte (map_item) à minuit url incomplète LageDesRoisPOO/backend/fillMapsWorld.php => ok
+enregistrer la date de connexion du joueur (last_connexion) => ok
 
 12/11
 
@@ -322,3 +328,25 @@ réactivation de la ressource au bout de 10 min => OK
 modifier la vérification d'un jour passé pour la mise à jour => passage en tâche planifiée
 gibier avec crafting nourriture ?
 champignons ?
+
+15/11
+
+implémentation ajout produits (herbes, minerai, arbre) => ok
+stockage en bdd moment construction ou récolte map et comparaison avec différence temps actuel pour empêcher de tricher temps raccourci en php
+ajouter en bdd les produits et tester l'ajout produits => ok
+le mettre en bdd en ligne => ok
+implémenter expérience produits
+s'occuper des monstres
+last_connexion => ok
+finir le fillMapsWorld.php en implémentant la suppression des journées de la veille, le mettre en task, mettre à jour les cartes des joueurs(voir si je le fais à partir de la task qui remplirait map_player ou lors de la connexion du player) => ok
+faire message flash récolte sur carte
+
+20/11
+
+FAIRE : pour les constructions et l'entraînement, récupérer les infos de ressources nécessaires à partir de bdd, et pas passées dans l'url
+HACKAGE : faire page pointant vers map.php avec un $_SESSION
+FAIRE : remplir table item niveau 20
+mise à jour du site avec nouveau design, carte et ressources et produits récoltables, mise à jour carte à minuit avec parties pcclh, ressources récoltées rerécoltrables au bout de 10 min, onglet aide
+
+21/11
+

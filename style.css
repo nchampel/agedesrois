@@ -187,8 +187,14 @@ h3{
 .div-constructs p{
   text-align: center;
 }
-.class-resource{
+.class-resource, .class-product{
   cursor: pointer;
+}
+.class-background{
+  background-color: greenyellow;
+}
+td[data-is-active="0"]{
+  color:red;
 }
 
 /* code townresources.php */
