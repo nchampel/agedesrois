@@ -1,6 +1,6 @@
 qd je mets en ligne
 
-modifier construct.js, time.js, game.js et db.php
+modifier construct.js ligne 429 et db.php
 
 résumé du jeu :
 
@@ -350,3 +350,32 @@ mise à jour du site avec nouveau design, carte et ressources et produits récol
 
 21/11
 
+codage de l'événement Noël avec 6 houx à récolter dans les buissons. Mise en ligne début décembre
+codage fini
+codage du nombre de points personnel affiché sous le top 5
+
+22/11
+
+appel avec Damien : il est enthousiaste par rapport au jeu, m'a parlé du mini jeu du loto. Rendre visible la barre de progression tout le temps
+
+23/11
+
+test => 100 min pour avoir un houx avec 3 buissons
+couleurs à faire à partir stock => fait
+2e test 40 min
+changement dans le décompte des points
+FAIRE : task qui enregistre tous les points des joueurs à minuit
+
+24/11
+
+bug de non-redirection qd déconnecté en lançant construction => corrigé
+
+27/11
+
+codage de l'échange entre joueurs du houx
+IDEE : peut-être faire monter les ressources au carré ou puissance fractionnaire
+
+28/11
+
+codage fini échange entre joueurs du houx
+texte explicatif page de connexion

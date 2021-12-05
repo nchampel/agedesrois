@@ -18,12 +18,24 @@ class Player
     private $town_sword;
     private $town_bow;
     private $town_crossbow;
+    private $town_tool;
+    private $town_wort;
+    private $town_nettle;
+    private $town_sage;
+    private $town_mithril;
+    private $town_orichalcum;
+    private $town_thorium;
+    private $town_ash;
+    private $town_hazel;
+    private $town_oak;
+    private $town_event_holly;
     private $stock_food;
     private $stock_wood;
     private $stock_metal;
     private $stock_stone;
     private $stock_gold;
     private $level_archer;
+    private $level_christmas_elf;
     private $level_workshop;
     private $level_castle;
     private $level_farm;
@@ -714,6 +726,226 @@ class Player
     public function setView($view)
     {
         $this->view = $view;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_wort
+     */
+    public function getTown_wort()
+    {
+        return $this->town_wort;
+    }
+
+    /**
+     * Set the value of town_wort
+     *
+     * @return  self
+     */
+    public function setTown_wort($town_wort)
+    {
+        $this->town_wort = $town_wort;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_nettle
+     */
+    public function getTown_nettle()
+    {
+        return $this->town_nettle;
+    }
+
+    /**
+     * Set the value of town_nettle
+     *
+     * @return  self
+     */
+    public function setTown_nettle($town_nettle)
+    {
+        $this->town_nettle = $town_nettle;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_sage
+     */
+    public function getTown_sage()
+    {
+        return $this->town_sage;
+    }
+
+    /**
+     * Set the value of town_sage
+     *
+     * @return  self
+     */
+    public function setTown_sage($town_sage)
+    {
+        $this->town_sage = $town_sage;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_mithril
+     */
+    public function getTown_mithril()
+    {
+        return $this->town_mithril;
+    }
+
+    /**
+     * Set the value of town_mithril
+     *
+     * @return  self
+     */
+    public function setTown_mithril($town_mithril)
+    {
+        $this->town_mithril = $town_mithril;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_orichalcum
+     */
+    public function getTown_orichalcum()
+    {
+        return $this->town_orichalcum;
+    }
+
+    /**
+     * Set the value of town_orichalcum
+     *
+     * @return  self
+     */
+    public function setTown_orichalcum($town_orichalcum)
+    {
+        $this->town_orichalcum = $town_orichalcum;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_thorium
+     */
+    public function getTown_thorium()
+    {
+        return $this->town_thorium;
+    }
+
+    /**
+     * Set the value of town_thorium
+     *
+     * @return  self
+     */
+    public function setTown_thorium($town_thorium)
+    {
+        $this->town_thorium = $town_thorium;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_ash
+     */
+    public function getTown_ash()
+    {
+        return $this->town_ash;
+    }
+
+    /**
+     * Set the value of town_ash
+     *
+     * @return  self
+     */
+    public function setTown_ash($town_ash)
+    {
+        $this->town_ash = $town_ash;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_hazel
+     */
+    public function getTown_hazel()
+    {
+        return $this->town_hazel;
+    }
+
+    /**
+     * Set the value of town_hazel
+     *
+     * @return  self
+     */
+    public function setTown_hazel($town_hazel)
+    {
+        $this->town_hazel = $town_hazel;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_oak
+     */
+    public function getTown_oak()
+    {
+        return $this->town_oak;
+    }
+
+    /**
+     * Set the value of town_oak
+     *
+     * @return  self
+     */
+    public function setTown_oak($town_oak)
+    {
+        $this->town_oak = $town_oak;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of town_event_holly
+     */
+    public function getTown_event_holly()
+    {
+        return $this->town_event_holly;
+    }
+
+    /**
+     * Set the value of town_event_holly
+     *
+     * @return  self
+     */
+    public function setTown_event_holly($town_event_holly)
+    {
+        $this->town_event_holly = $town_event_holly;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of level_christmas_elf
+     */
+    public function getLevel_christmas_elf()
+    {
+        return $this->level_christmas_elf;
+    }
+
+    /**
+     * Set the value of level_christmas_elf
+     *
+     * @return  self
+     */
+    public function setLevel_christmas_elf($level_christmas_elf)
+    {
+        $this->level_christmas_elf = $level_christmas_elf;
 
         return $this;
     }

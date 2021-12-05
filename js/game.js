@@ -14,8 +14,8 @@ if (document.getElementById('go-town') !== null) {
 
         // qd je développe en local
 
-        fetch('http://localhost:8080/LageDesRoisPOO/backend/changeView.php?view=town&id=' + idPlayer).then(() => {
-            document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+        fetch(url + 'backend/changeView.php?view=town&id=' + idPlayer).then(() => {
+            document.location.href = url + 'frontend/map.php';
         });
 
         // pour que cela fonctionne en ligne
@@ -32,8 +32,8 @@ if (document.getElementById('go-world') !== null) {
 
         // qd je développe en local
 
-        fetch('http://localhost:8080/LageDesRoisPOO/backend/changeView.php?view=world&id=' + idPlayer).then(() => {
-            document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+        fetch(url + 'backend/changeView.php?view=world&id=' + idPlayer).then(() => {
+            document.location.href = url + 'frontend/map.php';
         });
 
         // pour que cela fonctionne en ligne
@@ -50,8 +50,27 @@ if (document.getElementById('go-help') !== null) {
 
         // qd je développe en local
 
-        fetch('http://localhost:8080/LageDesRoisPOO/backend/changeView.php?view=help&id=' + idPlayer).then(() => {
-            document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+        fetch(url + 'backend/changeView.php?view=help&id=' + idPlayer).then(() => {
+            document.location.href = url + 'frontend/map.php';
+        });
+
+        // pour que cela fonctionne en ligne
+
+        // fetch('https://agedesrois.alwaysdata.net/backend/changeView.php?view=help&id=' + idPlayer).then(() => {
+        //     document.location.href = 'https://agedesrois.alwaysdata.net/frontend/map.php';
+        // });
+    });
+}
+
+if (document.getElementById('go-buying') !== null) {
+    let goBuyingElt = document.getElementById('go-buying');
+    goBuyingElt.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // qd je développe en local
+
+        fetch(url + 'backend/changeView.php?view=buying&id=' + idPlayer).then(() => {
+            document.location.href = url + 'frontend/map.php';
         });
 
         // pour que cela fonctionne en ligne

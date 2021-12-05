@@ -187,14 +187,36 @@ h3{
 .div-constructs p{
   text-align: center;
 }
-.class-resource, .class-product{
+.class-resource, .class-product, .class-object{
   cursor: pointer;
 }
+.class-object{
+  background-color: green;
+  /* color: coral; */
+}
 .class-background{
-  background-color: greenyellow;
+  background-color: white; /* événement Noël */
+  /* background-color: greenyellow; */
 }
 td[data-is-active="0"]{
   color:red;
+}
+.form-buy{
+  display: inline;
+}
+.button-buy{
+  margin: 10px;
+  padding: 5px 15px;
+  text-align: center;
+  /* text-transform: uppercase; */
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: grey;    
+  font-weight: bold;        
+  box-shadow: 0 0 20px #111;
+  border-radius: 10px;
+  cursor: pointer;
+  /* display: inline-block; */
 }
 
 /* code townresources.php */

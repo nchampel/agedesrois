@@ -23,6 +23,12 @@ $metalNeeded = (int)filter_var($_GET['metalNeeded'], FILTER_SANITIZE_STRING);
 $stoneNeeded = (int)filter_var($_GET['stoneNeeded'], FILTER_SANITIZE_STRING);
 $goldNeeded = (int)filter_var($_GET['goldNeeded'], FILTER_SANITIZE_STRING);
 
+if (empty($_SESSION['player'])) {
+    // echo ('test');
+    header('Location: ../index.php');
+    exit();
+}
+
 $id = $_SESSION['player']->getId();
 
 // $type = 'farm';

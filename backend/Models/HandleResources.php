@@ -70,6 +70,62 @@ class HandleResources
         }
     }
 
+    static function addMapObject($type, int $resource, int $id)
+    {
+        $typeColumn = 'town_' . $type;
+
+        $rqt = "SELECT " . $typeColumn . " from town where id_player = :id";
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':id', $id);
+            //On l'execute
+            $statement->execute();
+            $result = $statement->fetch(\PDO::FETCH_ASSOC);
+            $resourceInTown = $result[$typeColumn];
+            // $_SESSION['player']->$setter($resource);
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+        $amount = $resource + $resourceInTown;
+        $rqt = "SELECT level_christmas_elf from level_army where id_player = :id";
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':id', $id);
+            //On l'execute
+            $statement->execute();
+            $result = $statement->fetch(\PDO::FETCH_ASSOC);
+            $levelElf = $result['level_christmas_elf'];
+            // $_SESSION['player']->$setter($resource);
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+        if ($amount == 6 && $levelElf == 0) {
+            $rqt = "UPDATE level_army set level_christmas_elf = 1 where id_player = :id";
+            try {
+                $statement = MySQL::getInstance()->prepare($rqt);
+                $statement->bindParam(':id', $id);
+                //On l'execute
+                $statement->execute();
+                // $_SESSION['player']->$setter($resource);
+            } catch (\Exception $exception) {
+                echo $exception->getMessage();
+            }
+            $amount = 0;
+        }
+        $rqt = "UPDATE town set " . $typeColumn . " = :amount where id_player = :id";
+        try {
+            $statement = MySQL::getInstance()->prepare($rqt);
+            $statement->bindParam(':id', $id);
+            $statement->bindParam(':amount', $amount);
+            //On l'execute
+            $result = $statement->execute();
+            // echo $amount;
+            // $_SESSION['player']->$setter($resource);
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
+        }
+    }
+
     static function substractConstructTown($foodNeeded, $woodNeeded, $metalNeeded, $stoneNeeded, $goldNeeded, $id, $player)
     {
 
@@ -280,7 +336,8 @@ class HandleResources
     {
         // echo 'resources';
         try {
-            $statement = MySQL::getInstance()->prepare('SELECT * FROM `player` INNER JOIN town ON player.id = town.id_player WHERE id = :id');
+            $statement = MySQL::getInstance()->prepare('SELECT * FROM `player` INNER JOIN town ON player.id = town.id_player 
+            INNER JOIN level_army ON player.id = level_army.id_player WHERE id = :id');
             $statement->bindParam(':id', $id);
             $statement->execute();
 

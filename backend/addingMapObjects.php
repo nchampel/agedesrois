@@ -55,45 +55,15 @@ try {
 }
 
 switch ($type) {
-    case 'herbes':
+    case 'buisson':
         switch ($level) {
             case 1:
-                $typeDB = 'wort'; //millepertuis = st John's wort
-                break;
             case 2:
-                $typeDB = 'nettle'; //ortie
-                break;
             case 3:
-                $typeDB = 'sage'; //sauge
+                $typeDB = 'event_holly'; //houx
                 break;
         }
 
-        break;
-    case 'minerai':
-        switch ($level) {
-            case 1:
-                $typeDB = 'mithril';
-                break;
-            case 2:
-                $typeDB = 'orichalcum'; //orichalque
-                break;
-            case 3:
-                $typeDB = 'thorium';
-                break;
-        }
-        break;
-    case 'arbre':
-        switch ($level) {
-            case 1:
-                $typeDB = 'ash'; //frêne = ash tree
-                break;
-            case 2:
-                $typeDB = 'hazel'; //noisetier
-                break;
-            case 3:
-                $typeDB = 'oak'; //chêne
-                break;
-        }
         break;
 }
 // echo $typeDB;
@@ -115,10 +85,11 @@ try {
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }
-if ($result['is_active']) {
-    $multiplier = 1; //le multiplier en fonction de son niveau d'expérience et des bonus
-    $amount = $amount * $multiplier;
-    HandleResources::addMapResource($typeDB, $amount, $id);
+
+$drawing = rand(1, 20);
+
+if ($result['is_active'] && $drawing == 20) {
+    HandleResources::addMapObject($typeDB, $amount, $id);
 }
 
 

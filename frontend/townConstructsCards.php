@@ -30,18 +30,18 @@ foreach ($constructsTownType as $townType) {
     echo '<div class="tooltiptext">
         <h3>Ville</h3>
         <p id="not-displayed-' . $townType . '">Augmenter le niveau du château pour pouvoir construire</p>
-        <p>Nourriture : <span id="tooltip-food-' . $townType . '" style="color: ' . colorResourceTown('food', $townType) . ';">' . $_SESSION[$townType]->getFood() . '</span></p>';
+        <p>Nourriture : <span id="tooltip-food-' . $townType . '" style="color: ' . colorResourceTown('food', $townType) . ';">' . number_format((float)$_SESSION[$townType]->getFood(), 0, ',', ' ') . '</span></p>';
     if ($_SESSION[$townType]->getWood() > 0) {
-        echo '<p>Bois : <span id="tooltip-wood-' . $townType . '" style="color: ' . colorResourceTown('wood', $townType) . '";>' . $_SESSION[$townType]->getWood() . '</span></p>';
+        echo '<p>Bois : <span id="tooltip-wood-' . $townType . '" style="color: ' . colorResourceTown('wood', $townType) . '";>' . number_format((float)$_SESSION[$townType]->getWood(), 0, ',', ' ') . '</span></p>';
     }
     if ($_SESSION[$townType]->getMetal() > 0) {
-        echo '<p>Métal : <span id="tooltip-metal-' . $townType . '" style="color: ' . colorResourceTown('metal', $townType) . '";>' . $_SESSION[$townType]->getMetal() . '</span></p>';
+        echo '<p>Métal : <span id="tooltip-metal-' . $townType . '" style="color: ' . colorResourceTown('metal', $townType) . '";>' . number_format((float)$_SESSION[$townType]->getMetal(), 0, ',', ' ') . '</span></p>';
     }
     if ($_SESSION[$townType]->getStone() > 0) {
-        echo '<p>Pierre : <span id="tooltip-stone-' . $townType . '" style="color: ' . colorResourceTown('stone', $townType) . '";>' . $_SESSION[$townType]->getStone() . '</span></p>';
+        echo '<p>Pierre : <span id="tooltip-stone-' . $townType . '" style="color: ' . colorResourceTown('stone', $townType) . '";>' . number_format((float)$_SESSION[$townType]->getStone(), 0, ',', ' ') . '</span></p>';
     }
     if ($_SESSION[$townType]->getGold() > 0) {
-        echo '<p>Or : <span id="tooltip-gold-' . $townType . '" style="color: ' . colorResourceTown('gold', $townType) . '" ;>' . $_SESSION[$townType]->getGold() . '</span></p>';
+        echo '<p>Or : <span id="tooltip-gold-' . $townType . '" style="color: ' . colorResourceTown('gold', $townType) . '" ;>' . number_format((float)$_SESSION[$townType]->getGold(), 0, ',', ' ') . '</span></p>';
     }
 
     echo '

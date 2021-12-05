@@ -4,6 +4,7 @@ use Models\Ranking;
 use Models\HandleGames;
 use Models\ManagerGame;
 use Models\HandleResources;
+use Models\HandleTransactions;
 
 header('Access-Control-Allow-Origin: *');
 
@@ -126,14 +127,16 @@ echo ('</pre>');
     include('townresources.php');
     if ($_SESSION['player']->getView() == 'town') {
         echo '<h2 id="go-world" class="pointer">Aller sur le monde</h2>';
+        echo '<h2 id="go-buying" class="pointer">Aller sur les achats</h2>';
         echo '<h2 id="go-help" class="pointer">Aide</h2>'; ?>
         <div id="div-pcclh">
-            <h2>Nombre de parties de "Papier Ciseaux Caillou Lézard Homme" restantes (5 parties disponibles par jour) : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
-                                                                                                                            echo $_SESSION['player']->getPcclh_parties();
-                                                                                                                        } else {
-                                                                                                                            echo 0;
-                                                                                                                        } ?></h2>
-            <p class="pointer" id="link-game-pcclh" onclick="displayPcclh()">Cliquer pour jouer à Papier Ciseaux Caillou Lézard Homme</p>
+            <h2></h2>
+            <p class="pointer" id="link-game-pcclh" onclick="displayPcclh()">Cliquer pour jouer à Papier Ciseaux Caillou Lézard Homme.
+                Nombre de parties restantes (5 parties disponibles par jour) : <?php if ($_SESSION['player']->getPcclh_parties() > 0) {
+                                                                                    echo $_SESSION['player']->getPcclh_parties();
+                                                                                } else {
+                                                                                    echo 0;
+                                                                                } ?></p>
             <div id="div-game-pcclh">
                 <p class="pointer" onclick="notDisplayPcclh()">Quitter le jeu</p>
                 <h2>Choisissez votre coup</h2>
@@ -163,9 +166,12 @@ echo ('</pre>');
         $rankings = Ranking::giveRanking();
         // var_dump($rankings);
         for ($i = 0; $i < 5; $i++) {
-            echo $rankings[$i]['pseudo'] . ' : ' . $rankings[$i]['points'] . ' points';
+            echo $rankings[$i]['pseudo'] . ' : ' . number_format((float)$rankings[$i]['points'], 0, ',', ' ') . ' points';
             echo '<br/>';
         }
+        $ranking = Ranking::giveRankingPlayer($id);
+        echo '<br/>';
+        echo 'Mes points : ' . number_format((float)$ranking, 0, ',', ' ');
         // foreach ($rankings as $ranking) {
         //     echo $ranking['pseudo'] . ' : ' . $ranking['points'] . ' points';
         //     echo '<br/>';
@@ -249,9 +255,28 @@ echo ('</pre>');
 
     <?php // include('world.php'); 
     if ($_SESSION['player']->getView() == 'world') {
+    ?>
+        <h2>Evénement de Noël</h2>
+        <p>Pendant tout le mois de décembre, vous pouvez récolter dans les buissons du houx de manière aléatoire.</p>
+        <p>Au bout de 6 houx récoltés vous obtiendrez une récompense unique qui vous sera très utile pour parcourir le monde dans l'avenir.</p>
+        <p>Vous pouvez vendre le houx en surplus contre de l'or aux autres joueurs ou en acheter dans l'"onglet" Achats.</p>
+        <?php
+        echo 'houx : ' . $_SESSION['player']->getTown_event_holly();
+        echo "<br />";
+        if ($_SESSION['player']->getLevel_christmas_elf() == 1) {
+            echo 'Vous avez un elfe de Noël dans votre équipe';
+        }
+        ?>
+        <form action="../backend/createTransactions.php" method="POST">
+            <label for="holly">Prix de vente en or</label>
+            <input type="text" name="holly-price" id="holly">
+            <input type="submit" value="Vendre houx">
+        </form>
+        <?php
         $mapItems = ManagerGame::createMap(0, 0, $id);
         // print_r($mapItems);
         echo '<h2 id="go-town" class="pointer">Aller à la ville</h2>';
+        echo '<h2 id="go-buying" class="pointer">Aller sur les achats</h2>';
         echo '<h2 id="go-help" class="pointer">Aide</h2>';
         echo '<table>';
         foreach ($mapItems as $mapItem) {
@@ -268,6 +293,8 @@ echo ('</pre>');
                 echo '<td class="class-item class-product" id="id-map-item-' . $mapItem->getMap_position() . '" data-is-active="' . $mapItem->getIs_active() . '" data-position ="' . $mapItem->getMap_position() . '" data-type-product="' . $mapItem->getType_item() . '">' . $mapItem->getType_item() . '</td>';
             } else if ($mapItem->getType_item() == 'prairie' || $mapItem->getType_item() == 'monstre') {
                 echo '<td class="class-item class-background" data-is-active="' . $mapItem->getIs_active() . '" id="id-map-item-' . $mapItem->getMap_position() . '">' . /*$mapItem->getType_item() */ ' ' . '</td>';
+            } else if (($mapItem->getType_item() == 'buisson' || $mapItem->getType_item() == 'dejection') && $mapItem->getIs_active() == true) {
+                echo '<td class="class-item class-object" data-is-active="' . $mapItem->getIs_active() . '" id="id-map-item-' . $mapItem->getMap_position() . '" data-position ="' . $mapItem->getMap_position() . '" data-type-object="' . $mapItem->getType_item() . '">' . $mapItem->getType_item() . '</td>';
             } else {
                 echo '<td class="class-item" data-is-active="' . $mapItem->getIs_active() . '" id="id-map-item-' . $mapItem->getMap_position() . '">' . $mapItem->getType_item() . '</td>';
             }
@@ -285,7 +312,8 @@ echo ('</pre>');
     }
     if ($_SESSION['player']->getView() == 'help') {
         echo '<h2 id="go-town" class="pointer">Aller à la ville</h2>';
-        echo '<h2 id="go-world" class="pointer">Aller sur le monde</h2>'; ?>
+        echo '<h2 id="go-world" class="pointer">Aller sur le monde</h2>';
+        echo '<h2 id="go-buying" class="pointer">Aller sur les achats</h2>'; ?>
         <p>Le but du jeu est de récolter des ressources (sous l'"onglet" monde), construire des bâtiments (sous l'"onglet" ville), recruter une équipe d'héros pour pouvoir battre le dragon qui se terrre sur le monde.</p>
         <p>Pour construire les bâtiments, il faut que le château soit toujours de niveau supérieur.</p>
         <p>Construire des bâtiments permet l'ajout de ressources dans le temps, par exemple la ferme produit de la nourriture.</p>
@@ -295,8 +323,27 @@ echo ('</pre>');
         <p>Au bout de 10 minutes, les ressources du monde sont à nouveau récoltables.</p>
         <p>Les herbes, minerai et arbre sont uniquement récoltables pour le moment, elles seront utilisées dans une prochaine mise à jour.</p>
         <p>Au mois de décembre débutera l'événement de Noël qui consistera à récolter des ressources particulières qui ne sont récoltables que pendant la durée de l'événement. La récompense pour la réussite de la quête est avantageuse, profitez-en.</p>
-    <?php }
-
+        <?php }
+    if ($_SESSION['player']->getView() == 'buying') {
+        echo '<h2 id="go-town" class="pointer">Aller à la ville</h2>';
+        echo '<h2 id="go-world" class="pointer">Aller sur le monde</h2>';
+        echo '<h2 id="go-help" class="pointer">Aide</h2>';
+        echo '<h3>Produits à vendre</h3>';
+        $transactions = HandleTransactions::getTransactions($id);
+        if (empty($transactions)) {
+            echo 'Pas de produits en vente';
+        }
+        foreach ($transactions as $transaction) {
+            echo $transaction['article_type'] . ' prix : ' . $transaction['price'] . ' or';
+        ?>
+            <form class="form-buy" action="../backend/buy.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $transaction['id_transaction']; ?>">
+                <input type="submit" value="Acheter" class="button-buy">
+            </form>
+            <br>
+    <?php
+        }
+    }
     // $constructsFromTownResources = ['farm', 'sawmill', 'extractor', 'quarry', 'mine'];
     // $constructsFromStockResources = ['workshop'];
 
@@ -443,10 +490,11 @@ echo ('</pre>');
         // let isTrainingOKArcher = true;
         // let isStockResourcesOK = true;
     </script>
+    <script src="../js/construct.js"></script>
     <script src="../js/game.js"></script>
     <script src="../js/design.js"></script>
     <script src="../js/time.js"></script>
-    <script src="../js/construct.js"></script>
+
 
 </body>
 

@@ -30,18 +30,18 @@ foreach ($constructsStockType as $stockType) {
     echo '<div class="tooltiptext">
         <h3>Stock</h3>
         <p id="not-displayed-' . $stockType . '">Augmenter le niveau du château pour pouvoir construire</p>
-        <p>Nourriture : <span id="tooltip-food-' . $stockType . '" style="color: ' . colorResourceTown('food', $stockType) . ';">' . $_SESSION[$stockType]->getFood() . '</span></p>';
+        <p>Nourriture : <span id="tooltip-food-' . $stockType . '" style="color: ' . colorResourceStock('food', $stockType) . ';">' . number_format((float)$_SESSION[$stockType]->getFood(), 0, ',', ' ') . '</span></p>';
     if ($_SESSION[$stockType]->getWood() > 0) {
-        echo '<p>Bois : <span id="tooltip-wood-' . $stockType . '" style="color: ' . colorResourceTown('wood', $stockType) . '";>' . $_SESSION[$stockType]->getWood() . '</span></p>';
+        echo '<p>Bois : <span id="tooltip-wood-' . $stockType . '" style="color: ' . colorResourceStock('wood', $stockType) . '";>' . number_format((float)$_SESSION[$stockType]->getWood(), 0, ',', ' ') . '</span></p>';
     }
     if ($_SESSION[$stockType]->getMetal() > 0) {
-        echo '<p>Métal : <span id="tooltip-metal-' . $stockType . '" style="color: ' . colorResourceTown('metal', $stockType) . '";>' . $_SESSION[$stockType]->getMetal() . '</span></p>';
+        echo '<p>Métal : <span id="tooltip-metal-' . $stockType . '" style="color: ' . colorResourceStock('metal', $stockType) . '";>' . number_format((float)$_SESSION[$stockType]->getMetal(), 0, ',', ' ') . '</span></p>';
     }
     if ($_SESSION[$stockType]->getStone() > 0) {
-        echo '<p>Pierre : <span id="tooltip-stone-' . $stockType . '" style="color: ' . colorResourceTown('stone', $stockType) . '";>' . $_SESSION[$stockType]->getStone() . '</span></p>';
+        echo '<p>Pierre : <span id="tooltip-stone-' . $stockType . '" style="color: ' . colorResourceStock('stone', $stockType) . '";>' . number_format((float)$_SESSION[$stockType]->getStone(), 0, ',', ' ') . '</span></p>';
     }
     if ($_SESSION[$stockType]->getGold() > 0) {
-        echo '<p>Or : <span id="tooltip-gold-' . $stockType . '" style="color: ' . colorResourceTown('gold', $stockType) . '" ;>' . $_SESSION[$stockType]->getGold() . '</span></p>';
+        echo '<p>Or : <span id="tooltip-gold-' . $stockType . '" style="color: ' . colorResourceStock('gold', $stockType) . '" ;>' . number_format((float)$_SESSION[$stockType]->getGold(), 0, ',', ' ') . '</span></p>';
     }
 
     echo '

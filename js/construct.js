@@ -424,9 +424,18 @@ if (viewPage == 'town') {
     });
 }
 
+// qd je développe en local
+
+let url = 'http://localhost:8080/LageDesRoisPOO/';
+
+// pour que cela fonctionne en ligne
+
+// let url = 'https://agedesrois.alwaysdata.net/';
+
 // gère l'ajout des ressources à partir de la carte
 let itemResourceElts = document.getElementsByClassName('class-resource');
 let itemProductElts = document.getElementsByClassName('class-product');
+let itemObjectElts = document.getElementsByClassName('class-object');
 // console.log(itemResourceElts);
 Array.from(itemResourceElts).forEach(function (itemResourceElt) {
     itemResourceElt.addEventListener('click', function (e) {
@@ -464,8 +473,12 @@ Array.from(itemResourceElts).forEach(function (itemResourceElt) {
 
                 // qd je développe en local
 
-                fetch('http://localhost:8080/LageDesRoisPOO/backend/addingMapResources.php?id=' + idPlayer + '&position=' + position).then(() => {
-                    document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+                // fetch('http://localhost:8080/LageDesRoisPOO/backend/addingMapResources.php?id=' + idPlayer + '&position=' + position).then(() => {
+                //     document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+                // });
+
+                fetch(url + 'backend/addingMapResources.php?id=' + idPlayer + '&position=' + position).then(() => {
+                    document.location.href = url + 'frontend/map.php';
                 });
 
                 // pour que cela fonctionne en ligne
@@ -521,13 +534,68 @@ Array.from(itemProductElts).forEach(function (itemProductElt) {
 
                 // qd je développe en local
 
-                fetch('http://localhost:8080/LageDesRoisPOO/backend/addingMapProducts.php?id=' + idPlayer + '&position=' + position).then(() => {
-                    document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+                fetch(url + 'backend/addingMapProducts.php?id=' + idPlayer + '&position=' + position).then(() => {
+                    document.location.href = url + 'frontend/map.php';
                 });
 
                 // pour que cela fonctionne en ligne
 
                 // fetch('https://agedesrois.alwaysdata.net/backend/addingMapProducts.php?id=' + idPlayer + '&position=' + position).then(() => {
+                //     document.location.href = 'https://agedesrois.alwaysdata.net/frontend/map.php';
+                // });
+
+
+                // document.getElementById('form-save-resources').submit();
+            }, 10000 + 2000);
+        }
+
+
+        // document.location.href = 'http://localhost:8080/LageDesRoisPOO/frontend/map.php';
+        // console.log();
+    });
+
+});
+
+// gère l'ajout des objets d'événement (buisson/houx) à partir de la carte
+
+// console.log(itemProductElts);
+Array.from(itemObjectElts).forEach(function (itemObjectElt) {
+    itemObjectElt.addEventListener('click', function (e) {
+        let typeObject = itemObjectElt.getAttribute('data-type-object');
+        let position = itemObjectElt.getAttribute('data-position');
+        let isActive = itemObjectElt.getAttribute('data-is-active');
+        // console.log(typeResource);
+        if (isActive == '1') {
+            switch (typeObject) {
+                case 'buisson':
+                    waitingMessageElt.innerText = 'Recherche de houx dans le buisson';
+                    break;
+            }
+            ///////////// //ne pas oublier de désactiver les monstres aussi
+            Array.from(itemResourceElts).forEach(function (item) {
+                item.setAttribute('data-is-active', '0');
+            });
+            Array.from(itemProductElts).forEach(function (item) {
+                item.setAttribute('data-is-active', '0');
+            });
+            Array.from(itemObjectElts).forEach(function (item) {
+                item.setAttribute('data-is-active', '0');
+            });
+
+            timedProgBar(10);
+            setTimeout(function () {
+                // saveResources();
+                e.preventDefault();
+
+                // qd je développe en local
+
+                fetch(url + 'backend/addingMapObjects.php?id=' + idPlayer + '&position=' + position).then(() => {
+                    document.location.href = url + 'frontend/map.php';
+                });
+
+                // pour que cela fonctionne en ligne
+
+                // fetch('https://agedesrois.alwaysdata.net/backend/addingMapObjects.php?id=' + idPlayer + '&position=' + position).then(() => {
                 //     document.location.href = 'https://agedesrois.alwaysdata.net/frontend/map.php';
                 // });
 
