@@ -50,10 +50,6 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     <p>Résumé du jeu :</p>
     <p>Construction de bâtiments, récupération de ressources, recrutement d'héros, augmentation de leur niveau, parcourir la carte pour récupérer des ressources pour se battre.</p>
     <p> But du jeu : battre le dragon de la carte</p>
-    <h2>Evénement de Noël</h2>
-    <p>Pendant tout le mois de décembre, vous pouvez récolter dans les buissons du houx de manière aléatoire.</p>
-    <p>Au bout de 6 houx récoltés vous obtiendrez une récompense unique qui vous sera très utile pour parcourir le monde dans l'avenir.</p>
-    <p>Vous pouvez vendre le houx en surplus contre de l'or aux autres joueurs ou en acheter dans l'"onglet" Achats.</p>
 </body>
 
 </html>
