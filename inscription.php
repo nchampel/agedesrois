@@ -37,6 +37,8 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
         <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" required>
         <br>
+        <input type="text" name="email" id="email" placeholder="Email" required>
+        <br>
         <input type="password" name="password1" id="password1" placeholder="Mot de passe" required>
         <br>
         <input type="password" name="password2" id="password2" placeholder="Retaper le mot de passe" required>

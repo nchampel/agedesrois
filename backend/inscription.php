@@ -14,9 +14,19 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 $pseudo = filter_var($_POST['pseudo'], FILTER_SANITIZE_STRING);
 $password1 = filter_var($_POST['password1'], FILTER_SANITIZE_STRING);
 $password2 = filter_var($_POST['password2'], FILTER_SANITIZE_STRING);
+$email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+
+// var_dump($email);
+// die();
 
 if ($password1 != $password2) {
     $_SESSION['flash'] = "mots de passe différents";
+    header('Location: ../inscription.php');
+    exit();
+}
+
+if (!$email) {
+    $_SESSION['flash'] = "mail obligatoire et valide";
     header('Location: ../inscription.php');
     exit();
 }
@@ -45,7 +55,7 @@ try {
     echo $exception->getMessage();
 }
 
-$req = "INSERT INTO player (pseudo, player_password, inscription_date) VALUES (:pseudo, :passwordPlayer, :inscriptionDate)";
+$req = "INSERT INTO player (pseudo, player_password, inscription_date, email) VALUES (:pseudo, :passwordPlayer, :inscriptionDate, :email)";
 try {
 
     $cnx = MySQL::getInstance();
@@ -55,8 +65,11 @@ try {
     $statement->bindParam(':pseudo', $pseudo);
     $statement->bindParam(':passwordPlayer', $hashPassword);
     $statement->bindParam(':inscriptionDate', $date);
+    $statement->bindParam(':email', $email);
 
-    $statement->execute();
+    $result = $statement->execute();
+
+
 
     $idPlayer = $cnx->lastInsertId();
 
@@ -79,6 +92,9 @@ try {
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }
+
+// var_dump($result);
+// die();
 
 $req = "INSERT INTO town (id_player) VALUES (:id)";
 try {

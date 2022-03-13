@@ -312,7 +312,6 @@ echo ('</pre>');
         <p>Il y a un autre moyen de récupérer des ressources, c'est de cliquer sur les ressources sur le monde. Après un temps de récolte, les ressources sont ajoutées à vos réserves.</p>
         <p>Au bout de 10 minutes, les ressources du monde sont à nouveau récoltables.</p>
         <p>Les herbes, minerai et arbre sont uniquement récoltables pour le moment, elles seront utilisées dans une prochaine mise à jour.</p>
-        <p>Au mois de décembre débutera l'événement de Noël qui consistera à récolter des ressources particulières qui ne sont récoltables que pendant la durée de l'événement. La récompense pour la réussite de la quête est avantageuse, profitez-en.</p>
         <?php }
     if ($_SESSION['player']->getView() == 'buying') {
         echo '<h2 id="go-town" class="pointer">Aller à la ville</h2>';

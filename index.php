@@ -50,6 +50,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     <p>Résumé du jeu :</p>
     <p>Construction de bâtiments, récupération de ressources, recrutement d'héros, augmentation de leur niveau, parcourir la carte pour récupérer des ressources pour se battre.</p>
     <p> But du jeu : battre le dragon de la carte</p>
+    <h2>L'événement de Noël est terminé ! Merci pour votre participation.</h2>
 </body>
 
 </html>
